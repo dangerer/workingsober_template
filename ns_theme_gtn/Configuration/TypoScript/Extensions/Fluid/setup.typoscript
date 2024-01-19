@@ -1,0 +1,11 @@
+lib.contentElement {
+    templateRootPaths {
+        20 = EXT:ns_theme_gtn/Resources/Private/Extensions/Fluid/Templates/
+    }
+    partialRootPaths {
+        20 = EXT:ns_theme_gtn/Resources/Private/Extensions/Fluid/Partials/
+    }
+    layoutRootPaths {
+        20 = EXT:ns_theme_gtn/Resources/Private/Extensions/Fluid/Layouts/
+    }
+}

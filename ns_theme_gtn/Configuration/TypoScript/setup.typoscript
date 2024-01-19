@@ -1,0 +1,14 @@
+# Includes Basic Configuration of website
+@import 'EXT:ns_theme_gtn/Configuration/TypoScript/Configuration/*.typoscript'
+
+# Includes EXT:Form Configuration
+@import 'EXT:ns_theme_gtn/Configuration/TypoScript/Extensions/Form/*.typoscript'
+
+# Includes EXT:Fluid Configuration
+@import 'EXT:ns_theme_gtn/Configuration/TypoScript/Extensions/Fluid/*.typoscript'
+
+# Includes Page Configuration
+@import 'EXT:ns_theme_gtn/Configuration/TypoScript/Page/*.typoscript'
+
+# Includes EXT:FELogin
+@import 'EXT:ns_theme_gtn/Configuration/TypoScript/Extensions/Felogin/*.typoscript'

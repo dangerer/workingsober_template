@@ -1,0 +1,100 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<div class="login-form-section">
+    <div class="container">
+        <div class="login-form-block">
+            <div class="row">
+                <div class="col-md-3 col-lg-3">
+                    <div class="login-form-block__info">
+                        <div class="login-form-block__info-icon">
+                            <svg viewBox="0 0 209.53 107.32" xmlns="http://www.w3.org/2000/svg" width="210" height="108"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-miterlimit:10;stroke-width:16.11px}.cls-2{stroke-width:0}</style></defs><path d="M2.57 2.19h7.14v32.16h19.28l-.86 5.92H2.57V2.19zm55.96 23.87c0 8.43-4.97 14.87-13.83 14.87s-13.6-6.27-13.6-14.74S36.22 11.3 45.06 11.3c8.17 0 13.48 5.88 13.48 14.76zm-13.76-9.31c-4.19 0-6.7 3.22-6.7 9.37 0 5.7 2.6 9.37 6.81 9.37s6.68-3.59 6.68-9.33c0-6.07-2.42-9.41-6.79-9.41zm43.66 20.37c0 9.08-3.48 14.63-13.71 14.63s-11.98-5.45-12.34-8.86h6.98c.64 2.33 2.43 3.76 5.66 3.76 5.54 0 6.71-3.43 6.71-9.3v-1.67c-1.49 2.69-3.91 4.31-8.27 4.31-7.29 0-11.71-5.96-11.71-13.8 0-8.98 5.32-14.89 12.32-14.89 5.04 0 7.15 2.37 7.65 3.88.06-.94.23-2.71.28-3.22h6.49c-.04 2.23-.07 5.42-.07 8.14v17.02zM68.81 25.89c0 5.24 2.66 8.51 6.52 8.51 5.18 0 6.62-3.53 6.62-8.8s-1.12-8.74-6.46-8.74c-4.02 0-6.68 3.21-6.68 9.03zM94.65 0h6.85v6.69h-6.85V0zm0 11.97h6.85v28.3h-6.85v-28.3zm13.03 7.13c0-2.42 0-5.01-.06-7.13h6.64c.15.77.24 3.07.26 3.96 1.02-2 3.31-4.62 8.45-4.62 5.56 0 9.41 3.64 9.41 10.89v18.07h-6.85V22.99c0-3.55-1.27-6.05-5.01-6.05-4 0-5.99 2.59-5.99 7.82v15.51h-6.85V19.1z" class="cls-2"/><path d="M8.06 70.47h134.63" class="cls-1"/><path d="M35.58 72.19v27.95c0 2.9-2.94 5.25-6.57 5.25h-9.6c-3.63 0-6.57-2.35-6.57-5.25V72.19c0-2.9 2.94-5.25 6.57-5.25h9.6c3.63 0 6.57 2.35 6.57 5.25m26.28 2.18V95.5c0 2.19-1.91 3.97-4.27 3.97h-6.24c-2.36 0-4.27-1.78-4.27-3.97V74.37c0-2.19 1.91-3.97 4.27-3.97h6.24c2.36 0 4.27 1.78 4.27 3.97" class="cls-2"/><path d="M61.83 73.33v9.22c0 1.62-3.32 2.94-7.42 2.94H32.68c-4.1 0-7.42-1.31-7.42-2.94v-9.22c0-1.62 3.32-2.94 7.42-2.94h21.73c4.1 0 7.42 1.32 7.42 2.94" class="cls-2"/><circle cx="173.36" cy="71.14" r="28.12" class="cls-1"/></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9 col-lg-8">
+                    <div class="login-form-wrap">
+                        <f:flashMessages/>
+                        <f:if condition="{cookieWarning}">
+                            <f:render partial="CookieWarning" />
+                        </f:if>
+                        
+                        <f:if condition="{messageKey}">
+                            <h3>
+                                <f:render partial="RenderLabelOrMessage" arguments="{key: '{messageKey}_header'}"/>
+                            </h3>
+                            <p>
+                                <f:render partial="RenderLabelOrMessage" arguments="{key: '{messageKey}_message'}"/>
+                            </p>
+                        </f:if>
+                        <f:if condition="{onSubmit}">
+                            <f:then>
+                                <f:form target="_top" fieldNamePrefix="" action="login" onsubmit="{onSubmit}" additionalAttributes="{spellcheck: 'false'}">
+                                    <f:render section="content" arguments="{_all}"/>
+                                </f:form>
+                            </f:then>
+                            <f:else>
+                                <f:form target="_top" fieldNamePrefix="" action="login" additionalAttributes="{spellcheck: 'false'}">
+                                    <f:render section="content" arguments="{_all}"/>
+                                </f:form>
+                            </f:else>
+                        </f:if>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<f:section name="content">
+    <fieldset>
+        <div class="form-group">            
+            <f:form.textfield name="user" required="true" additionalAttributes="{autocomplete: 'username'}" class="form-control" placeholder="{f:translate(key: 'username', extensionName:'NsThemeGtn')}"/>
+        </div>
+        <div class="form-group">
+            <f:form.password name="pass" additionalAttributes="{required: 'required', autocomplete: 'current-password'}" class="form-control" placeholder="{f:translate(key: 'password', extensionName:'NsThemeGtn')}"/>
+        </div>
+        <f:if condition="{permaloginStatus} > -1">
+            <div class="form-group">
+                <label>
+                    <f:translate id="permalogin"/>
+                    <f:if condition="{permaloginStatus} == 1">
+                        <f:then>
+                            <f:form.hidden name="permalogin" value="0" additionalAttributes="{disabled: 'disabled'}"/>
+                            <f:form.checkbox name="permalogin" id="permalogin" value="1" checked="checked"/>
+                        </f:then>
+                        <f:else>
+                            <f:form.hidden name="permalogin" value="0"/>
+                            <f:form.checkbox name="permalogin" id="permalogin" value="1"/>
+                        </f:else>
+                    </f:if>
+                </label>
+            </div>
+        </f:if>
+
+        <div class="form-group d-flex btn-wrap">
+            <f:form.submit value="{f:translate(key: 'login')}" name="submit" class="btn"/>
+            <f:if condition="{settings.showForgotPassword}">
+                <f:link.action action="recovery" controller="PasswordRecovery" class="forgot-password-link">
+                    <f:render partial="RenderLabelOrMessage" arguments="{key: 'forgot_header'}"/>
+                </f:link.action>
+            </f:if>
+        </div>
+
+        <div class="felogin-hidden">
+            <f:form.hidden name="logintype" value="login"/>
+            <f:form.hidden name="pid" value="{storagePid}"/>
+            <f:if condition="{redirectURL}!=''">
+                <f:form.hidden name="redirect_url" value="{redirectURL}" />
+            </f:if>
+            <f:if condition="{referer}!=''">
+                <f:form.hidden name="referer" value="{referer}" />
+            </f:if>
+            <f:if condition="{redirectReferrer}!=''">
+                <f:form.hidden name="redirectReferrer" value="off" />
+            </f:if>
+            <f:if condition="{noRedirect}!=''">
+                <f:form.hidden name="noredirect" value="1" />
+            </f:if>
+        </div>
+    </fieldset>
+</f:section>
+</html>

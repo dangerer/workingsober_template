@@ -1,0 +1,52 @@
+<!-- Footer -->
+<footer class="page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <f:if condition="{f:cObject(typoscriptObjectPath: 'lib.footerContent')}">
+                    <div class="page-footer__text-block">
+                        <f:cObject typoscriptObjectPath="lib.footerContent"/>
+                    </div>
+                </f:if>
+            </div>
+        </div>
+        <div class="page-footer__bottom">
+            <div class="row align-items-end">
+                <div class="col-md-7 col-lg-8">
+                    <f:if condition="{f:cObject(typoscriptObjectPath: 'lib.footerContent2')}">
+                        <f:cObject typoscriptObjectPath="lib.footerContent2"/>
+                    </f:if>
+                </div>
+                <div class="col-md-5 col-lg-4 text-md-end">
+                    <f:if condition="{FooterMenu}">
+                        <ul class="page-footer__menu d-flex">
+                            <f:render section="FooterMenu" arguments="{FooterMenu: FooterMenu}" />
+                        </ul>
+                    </f:if>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<f:if condition="{settings.childSettings.back_to_top}">
+    <a href="javascript:;" class="goto-top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="20" viewBox="0 0 9.515 5.605"><path d="M2070.667,110.667,2075,115l-4.333,4.333" transform="translate(-110.242 2075.848) rotate(-90)" fill="none" stroke="#fff" stroke-width="1.2"/></svg>
+    </a>
+</f:if>
+
+<f:section name="FooterMenu">
+    <f:if condition="{FooterMenu}">
+        <f:for each="{FooterMenu}" as="item">
+            <f:if condition="{item.spacer}">
+                <f:then>
+                    </ul>
+                    <ul class="navbar-nav">
+                </f:then>
+                <f:else>
+                    <li><a href="{item.link}" id="nav-item-{item.data.uid}">{item.title}</a></li>
+                </f:else>
+            </f:if>
+        </f:for>
+    </f:if>
+</f:section>

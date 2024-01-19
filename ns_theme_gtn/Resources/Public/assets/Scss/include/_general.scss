@@ -1,0 +1,53 @@
+/*******************************************************************************
+* General
+*******************************************************************************/
+.site-main {
+  margin-top: 54px;
+  position: relative;
+}
+
+.no-scrollbar {
+  overflow: hidden;
+}
+
+@include media-breakpoint-up(lg) {
+  .site-main {
+    margin-top: 120px;
+    min-height: 600px;
+  }
+}
+
+.bg-img {
+  @include bg-img(center center, no-repeat, cover);
+}
+
+.bg-img--content {
+  margin: 15px 0;
+  padding: 50px;
+
+  p {
+    color: $white;
+    max-width: 40%;
+  }
+}
+
+.bg-primary {
+  background-color: $primary-color !important;
+}
+
+.bg-secondary {
+  background-color: $secondary-color;
+}
+
+.bg-gray {
+  background-color: $brand-color-gray;
+}
+
+.color-primary {
+  color: $primary-color;
+}
+
+.color-secondary {
+  color: $secondary-color;
+}
+

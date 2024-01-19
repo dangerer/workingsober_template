@@ -1,0 +1,31 @@
+/*******************************************************************************
+* Hero Banner
+*******************************************************************************/
+.hero-banner {
+  position: relative;
+
+  .hero-banner__img {
+    img {
+      min-height: 210px;
+      object-fit: cover;
+    }
+  }
+
+  .hero-banner__content {
+    @include align(center);
+    max-width: 220px;
+    width: 100%;
+
+    @include media-breakpoint-up(sm) {
+      max-width: 280px;
+    }
+    
+    @include media-breakpoint-up(md) {
+      max-width: 350px;
+    }
+    
+    @include media-breakpoint-up(lg) {
+      max-width: 600px;
+    }
+  }
+}

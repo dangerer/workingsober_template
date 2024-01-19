@@ -1,0 +1,33 @@
+<section class="iconteaser-section {f:if(condition:'{content.bgColor}' , then:'bg-primary')} {f:if(condition: data.space_before_class, then: 'frame-space-before-{data.space_before_class}')} {f:if(condition: data.space_after_class, then: 'frame-space-after-{data.space_after_class}')}">
+	<div class="container">
+		<f:if condition="{content.headline}">
+			<f:if condition="{content.headlineType}!=100">
+				<f:then>
+					<{content.headlineType} class="headline">{content.headline}</{content.headlineType}>
+				</f:then>
+				<f:else>
+					<h2 class="headline">{content.headline}</h2>
+				</f:else>
+			</f:if>
+		</f:if>
+		<f:if condition="{content.iconteaserItem}">
+				<f:for each="{content.iconteaserItem}" as="iconteaserItem">
+					<div class="icon-teaser">
+							<div class="icon-teaser__image">
+								<f:link.typolink parameter="{content.iconteaserItem.link}">
+									<f:if condition="{iconteaserItem.image}">
+									<f:image src="{iconteaserItem.image}" alt="{content.headline}" title="{content.headline}" />
+								</f:if>
+								</f:link.typolink>
+							</div>
+							<div class="icon-teaser__content">
+									<f:if condition="{iconteaserItem.textarea}">
+										<p>{iconteaserItem.textarea}</p>
+									</f:if>
+							</div>
+						</div>
+				</f:for>
+			</f:if>
+	</div>
+</section>
+

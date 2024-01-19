@@ -1,0 +1,145 @@
+/*******************************************************************************
+* Login and Forgot Password
+*******************************************************************************/
+.login-form-section {
+  background-color: $brand-color-gray;
+  padding: 40px 0;
+  position: relative;
+  width: 100%;
+
+  .login-form-block__info-icon {
+    margin-bottom: 30px;
+    max-width: 120px;
+  }
+
+  .btn-wrap {
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+
+    .btn { 
+      padding: 10px 15px;
+    }
+
+    .link-wrap {       
+      color: $forgot-link-color;
+      display: flex;
+      justify-content: end;
+      margin-left: 30px;
+      width: 100%;
+
+      a { 
+        @include font-size($font-sizes22);   
+        font-weight: $bold-weight;
+       
+        &:hover { 
+          color: $text-color;
+
+          text-decoration: none;
+        }
+      }
+    } 
+  }
+
+  label { 
+    @include font-size($font-sizes22);
+    padding-left: 12px;
+
+    input { 
+      margin-top: 20px;  
+    }
+  }
+
+  
+  .recovery-form-wrap {  
+    width: 100%;
+  }
+
+  .login-form-wrap {   
+    h3 {
+      @include font-size($font-sizes30);
+      background-color: $primary-color;
+      display: inline;
+      padding: 2px 6px;
+    }
+
+    p {
+      @include font-size($font-sizes22);
+      font-weight: $bold-weight;
+      margin-bottom: 40px;
+      margin-top: 5px;           
+    }
+
+    fieldset,
+    p { 
+      padding-left: 7px;
+    }
+  }
+
+  .forgot-password-link {
+    @include font-size($font-sizes22);    
+    color: $forgot-link-color;
+    font-weight: $bold-weight;
+
+    &:hover {  
+      color: $text-color;
+      text-decoration: none;
+    }
+  }
+
+  .password-recover-btn {        
+    .btn { 
+      width: 100%;
+    } 
+  }
+
+  @include media-breakpoint-up(sm) {
+    .btn-wrap { 
+      .forgot-password-link { 
+        margin-left: 50px;
+      }      
+    }
+  }
+  
+  @include media-breakpoint-up(md) {
+    padding-bottom: 60px;
+    padding-top: 60px;
+
+    .login-form-wrap { 
+      padding-left: 50px;
+      width: 90%;       
+    }
+
+    .recovery-form-wrap { 
+      width: 90%;
+    }
+
+    .link-wrap { 
+      text-align: right;
+    }
+  } 
+
+  @include media-breakpoint-up(lg) {
+    padding-bottom: 80px;
+    padding-top: 80px;
+
+    .login-form-block__info-icon {       
+      max-width: 250px;
+      
+      svg { 
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    .login-form-wrap { 
+      padding-left: 0;
+      width: 62%;
+
+      .form-control { 
+        padding: 20px;
+      }
+    }
+  }
+}
+

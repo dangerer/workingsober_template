@@ -1,0 +1,26 @@
+<div class="ns-backend-preview">
+	<h2><f:translate key="LLL:EXT:ns_theme_gtn/Resources/Private/Language/locallang_db.xlf:wizard.ns_textwithimage"/></h2>
+	<div class="m-auto">
+		<div class="container">
+
+			<div class="row d-flex flex-column-reverse flex-sm-column-reverse flex-lg-row">
+					<div class="col-md-6">
+						<f:if condition="flexformData.content">
+							<div class="textwithimage__content mt-4">
+								<f:format.raw>{flexformData.content}</f:format.raw>
+							</div>
+						</f:if>
+					</div>
+					<div class="col-md-4">
+						<f:if condition="image">
+							<div class="textwithimage__image mt-5">
+								<f:for each="{image}" as="Image" iteration="i">
+									<img src="{f:uri.image(image:'{Image}')}" alt="{Image.alternative}" title="{Image.title}">
+								</f:for>
+							</div>
+						</f:if>
+				</div>
+		</div>
+	</div>
+</div>
+</div>

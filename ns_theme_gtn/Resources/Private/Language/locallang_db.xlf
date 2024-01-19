@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-01-06T20:41:06Z" product-name="NITSANpageadds">
+		<header/>
+		<body>
+            <trans-unit id="palette.access">
+                <source>Access</source>
+            </trans-unit>
+            <trans-unit id="headline">
+                <source>Headline</source>
+            </trans-unit>
+
+            <trans-unit id="wizard.ns_teaserbox">
+                <source>Teaser Box</source>
+            </trans-unit>
+            <trans-unit id="wizard.ns_teaserbox.desc">
+                <source>Display Games Teasers With Details</source>
+            </trans-unit>
+
+			<trans-unit id="wizard.ns_textwithimage">
+                <source>Text With Image</source>
+            </trans-unit>
+            <trans-unit id="wizard.ns_textwithimage.desc">
+                <source>Display Image With detail </source>
+            </trans-unit>
+
+			<trans-unit id="wizard.ns_iconteaser">
+                <source>Text With Icons</source>
+            </trans-unit>
+            <trans-unit id="wizard.ns_iconteaser.desc">
+                <source>Display Icons With detail </source>
+            </trans-unit>
+
+			<trans-unit id="wizard.ns_herobanner">
+                <source>Hero Banner</source>
+            </trans-unit>
+            <trans-unit id="wizard.ns_herobanner.desc">
+                <source>Hero banner display the animated hero banner part.</source>
+            </trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,79 @@
+<header class="page-header">
+    <div class="header-main">
+        <div class="brand-logo">
+            <f:if condition="{settings.logo}">
+                <f:then>
+                    <f:link.page pageUid="{settings.rootpage}" title="GTN">
+                        <f:image src="{settings.logo}" class="logo" alt="GTN" title="GTN" />
+                    </f:link.page>
+                </f:then>
+                <f:else>
+                    <f:link.page pageUid="{settings.rootpage}" title="GTN">
+                        <span>GTN</span>
+                    </f:link.page>
+                </f:else>
+            </f:if>
+        </div>
+        <div class='header-nav'>
+            <div class="navigation">
+                <nav>
+                    <f:render section="MainMenu" arguments="{MainMenu: MainMenu}" />
+                </nav>
+            </div>
+            <div id="menuTrigger" class="menu-trigger">
+                <div class="bars"></div>
+                <div class="bars"></div>
+                <div class="bars"></div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<f:section name="MainMenu">
+    <f:if condition="{MainMenu}">
+        <ul class="nav-items">
+            <f:for each="{MainMenu}" as="item">
+                <li class="nav-item{f:if(condition: item.current, then:' active')}{f:if(condition: item.children, then:' has-sub')}">
+                    <a href="{item.link}" id="nav-item-{item.data.uid}" {f:if(condition: item.target,
+                        then: ' target="{item.target}"' )} title="{item.title}" {f:if(condition: item.children, then:'
+                        aria-haspopup="true" aria-expanded="false"')}>
+                        <span class="nav-link-text">{item.title}<f:if condition="{item.current}"><span class="visually-hidden">(current)</span></f:if></span>
+                    </a>
+                    <f:if condition="{item.children}">
+                        <ul aria-labelledby="nav-item-{item.data.uid}" class="sub-menu sub-menu--second">
+                            <f:for each="{item.children}" as="child">
+                                <li class="nav-item-second {f:if(condition: child.children, then:' has-sub')} {f:if(condition:
+                        child.active, then:' active')}">
+                        <a href="{child.link}" class="{f:if(condition: child.active, then:' active')}" {f:if(condition:
+                            child.target, then: ' target="{child.target}"' )} title="{child.title}"
+                            id="nav-item-{child.data.uid}">
+                            <span class="nav-link-text">{child.title}<f:if condition="{child.current}"> <span
+                                        class="visually-hidden">(current)</span></f:if></span>
+                        </a>
+                        <f:if condition="{child.children}">
+                            <ul aria-labelledby="nav-item-{child.data.uid}" class="sub-menu sub-menu--third">
+                                <f:for each="{child.children}" as="childItem">
+                                    <li class="{f:if(condition: childItem.active, then:' active')}">
+                                        <a href="{childItem.link}"
+                                            class="{f:if(condition: childItem.active, then:' active')}" {f:if(condition:
+                                            child.target, then: ' target="{childItem.target}"' )}
+                                            title="{childItem.title}">
+                                            <span class="nav-link-text">{childItem.title}<f:if
+                                                    condition="{childItem.current}"> <span
+                                                        class="visually-hidden">(current)</span></f:if></span>
+                                        </a>
+                                    </li>
+                                </f:for>
+                            </ul>
+                            <div class="nav-arrow"></div>
+                        </f:if>
+                </li>
+            </f:for>
+        </ul>
+        <div class="nav-arrow"></div>
+    </f:if>
+    </li>
+    </f:for>
+    </ul>
+    </f:if>
+</f:section>

@@ -1,0 +1,2 @@
+# Include the BackendLayouts
+@import 'EXT:ns_theme_gtn/Configuration/PageTSconfig/BackendLayouts/*.tsconfig'
