@@ -17,5 +17,10 @@ ns_theme_gtn {
             #cat = ns_theme_gtn/website/settings/03; type=string; label=Partials Path
             partialRootPath = EXT:ns_theme_gtn/Resources/Private/Partials/
         }
+
+        settings {
+            #cat = ns_basetheme/110/04; type=string; label=Login Page ID : Configure your page's link
+            page_id =
+        }
     }
 }

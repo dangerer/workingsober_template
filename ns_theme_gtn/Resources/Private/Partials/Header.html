@@ -4,20 +4,25 @@
             <f:if condition="{settings.logo}">
                 <f:then>
                     <f:link.page pageUid="{settings.rootpage}" title="GTN">
-                        <f:image src="{settings.logo}" class="logo" alt="GTN" title="GTN" />
+											<f:image src="{settings.logo}" class="logo" alt="GTN" title="GTN" />
                     </f:link.page>
                 </f:then>
                 <f:else>
                     <f:link.page pageUid="{settings.rootpage}" title="GTN">
-                        <span>GTN</span>
+                    	<span>GTN</span>
                     </f:link.page>
                 </f:else>
             </f:if>
         </div>
+        <f:if condition="{settings.childSettings.page_id}">
+            <f:link.typolink parameter="{settings.childSettings.page_id}" class="page-info">
+            	<svg viewBox="0 0 19 6" width="30" height="30" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-miterlimit:10;stroke-width:1.42px}.cls-2{stroke-width:0}</style></defs><path d="M6.43 3.01v1.51c0 .16-.14.28-.31.28h-.45c-.17 0-.31-.13-.31-.28V3.01c0-.16.14-.28.31-.28h.45c.17 0 .31.13.31.28" class="cls-2"/><path d="M2.58 2.73h9.63" class="cls-1"/><path d="M4.55 2.86v2c0 .21-.21.38-.47.38h-.69c-.26 0-.47-.17-.47-.38v-2c0-.21.21-.38.47-.38h.69c.26 0 .47.17.47.38" class="cls-2"/><path d="M14.41.77a2.01 2.01 0 110 4.02 2.01 2.01 0 010-4.02z" class="cls-1"/></svg>
+            </f:link.typolink>
+        </f:if>
         <div class='header-nav'>
             <div class="navigation">
                 <nav>
-                    <f:render section="MainMenu" arguments="{MainMenu: MainMenu}" />
+                  <f:render section="MainMenu" arguments="{MainMenu: MainMenu}" />
                 </nav>
             </div>
             <div id="menuTrigger" class="menu-trigger">
@@ -48,7 +53,7 @@
                             child.target, then: ' target="{child.target}"' )} title="{child.title}"
                             id="nav-item-{child.data.uid}">
                             <span class="nav-link-text">{child.title}<f:if condition="{child.current}"> <span
-                                        class="visually-hidden">(current)</span></f:if></span>
+                            class="visually-hidden">(current)</span></f:if></span>
                         </a>
                         <f:if condition="{child.children}">
                             <ul aria-labelledby="nav-item-{child.data.uid}" class="sub-menu sub-menu--third">

@@ -4,6 +4,7 @@ plugin {
         settings {
             favicon = {$ns_basetheme.website.settings.favicon}
             back_to_top = {$ns_basetheme.website.settings.back_to_top}
+            page_id = {$ns_theme_gtn.website.settings.page_id}
         }
     }
 }
@@ -14,10 +15,10 @@ page {
     // Setup favion
     shortcutIcon = {$ns_basetheme.website.settings.favicon}
 
-    // !!! Only change if it's different from from EXT:ns_basetheme
-    // meta {
-        // viewport = width=device-width,initial-scale=1, maximum-scale=1, user-scalable=no
-    // }
+    
+    meta {
+        viewport = width=device-width,initial-scale=1, maximum-scale=1, user-scalable=no
+    }
 
     // Initiate all the css-together
     includeCSS {

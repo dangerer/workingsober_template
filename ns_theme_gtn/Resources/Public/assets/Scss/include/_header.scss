@@ -64,8 +64,8 @@
         text-decoration: none;
       }
 
-      &:focus-visible {        
-        @include focus-states(after,$primary-color,4,8);
+      &:focus-visible {
+        @include focus-states(after, $primary-color, 4, 8);
       }
     }
 
@@ -78,24 +78,25 @@
 nav {
   width: 100%;
 
-  > ul {
-    > li {
+  >ul {
+    >li {
       border-bottom: 1px solid $secondary-color;
 
-      > a {
+      >a {
         @include font-size($font-sizes20);
         display: block;
         font-weight: $semibold-weight;
         padding: 10px 30px 10px 15px;
         position: relative;
+        text-transform: uppercase;
         z-index: 99;
       }
     }
   }
 }
 
-.nav-items > .active > a,
-.nav-items li:hover > a,
+.nav-items>.active>a,
+.nav-items li:hover>a,
 .nav-items a.active {
   color: $secondary-color;
   text-decoration: underline;
@@ -206,14 +207,14 @@ nav {
     a {
       @include font-size($font-sizes16);
 
-      &:focus-visible {        
-        @include focus-states(after,$primary-color,1,1);
+      &:focus-visible {
+        @include focus-states(after, $primary-color, 1, 1);
       }
     }
   }
 
   .has-sub {
-    > .nav-arrow {
+    >.nav-arrow {
       height: 42px;
       right: 10px;
 
@@ -227,15 +228,14 @@ nav {
     }
   }
 
-  .has-sub:hover > ul,
-  .active--secondmenu > ul {
+  .has-sub:hover>ul,
+  .active--secondmenu>ul {
     opacity: 1;
     pointer-events: auto;
-
     transform: translateY(0);
   }
 
-  li > a {
+  li>a {
     border-top: 1px solid $primary-color;
     display: block;
     padding: 8px 15px 8px 25px;
@@ -246,7 +246,7 @@ nav {
     }
   }
 
-  li li > a {
+  li li>a {
     padding-left: 35px;
 
     @include media-breakpoint-up(lg) {
@@ -276,13 +276,13 @@ nav {
   }
 }
 
-.has-sub--open >  .sub-menu {
+.has-sub--open>.sub-menu {
   max-height: 300px;
   opacity: 1;
   transition: all 0.3s ease-in-out 0s;
 }
 
-.has-sub--open > .nav-arrow {
+.has-sub--open>.nav-arrow {
   transform: rotate(180deg);
 
   @include media-breakpoint-up(lg) {
@@ -294,7 +294,7 @@ nav {
   align-items: center;
   display: flex;
   justify-content: space-between;
-  
+
   @include media-breakpoint-up(lg) {
     align-self: flex-end;
   }
@@ -330,7 +330,7 @@ nav {
     display: flex;
     overflow: visible;
 
-    > li {
+    >li {
       border: 0;
       margin-left: 20px;
       padding: 0 20px 15px;
@@ -341,13 +341,13 @@ nav {
         padding-left: 0;
       }
 
-      > a {
+      >a {
         padding: 0;
       }
     }
 
-    >.has-sub:hover > .sub-menu,
-    >.active--menu > .sub-menu {
+    >.has-sub:hover>.sub-menu,
+    >.active--menu>.sub-menu {
       opacity: 1;
       pointer-events: auto;
       transform: translateY(0);
@@ -360,7 +360,6 @@ nav {
     }
   }
 
-  
   .sub-menu {
     >a:focus-visible {
       .sub-menu--second & {
@@ -375,5 +374,15 @@ nav {
     img {
       max-width: 140px;
     }
+  }
+}
+
+.page-info {
+  position: absolute;
+  right: 115px;
+  top: 12px;
+
+  @include media-breakpoint-up(lg) {
+    right: 175px;
   }
 }
