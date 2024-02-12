@@ -1,0 +1,10 @@
+<div class="ns-backend-preview">
+  <f:if condition="{flexformData.image}">
+    <div class="w-75 m-auto">
+      <h2><f:translate key="LLL:EXT:ns_theme_gtn/Resources/Private/Language/locallang_db.xlf:wizard.ns_herobanner"/></h2>
+			<f:for each="{image}" as="Img" iteration="i">
+				<img src="{f:uri.image(image:'{Img}')}" alt="{Img.alternative}" title="Img.title">
+			</f:for>
+		</div>
+	</f:if>
+</div>
