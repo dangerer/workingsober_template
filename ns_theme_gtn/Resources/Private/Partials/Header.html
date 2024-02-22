@@ -16,7 +16,7 @@
         </div>
         <f:if condition="{settings.childSettings.page_id}">
             <f:link.typolink parameter="{settings.childSettings.page_id}" class="page-info">
-            	<svg viewBox="0 0 19 6" width="30" height="30" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-miterlimit:10;stroke-width:1.42px}.cls-2{stroke-width:0}</style></defs><path d="M6.43 3.01v1.51c0 .16-.14.28-.31.28h-.45c-.17 0-.31-.13-.31-.28V3.01c0-.16.14-.28.31-.28h.45c.17 0 .31.13.31.28" class="cls-2"/><path d="M2.58 2.73h9.63" class="cls-1"/><path d="M4.55 2.86v2c0 .21-.21.38-.47.38h-.69c-.26 0-.47-.17-.47-.38v-2c0-.21.21-.38.47-.38h.69c.26 0 .47.17.47.38" class="cls-2"/><path d="M14.41.77a2.01 2.01 0 110 4.02 2.01 2.01 0 010-4.02z" class="cls-1"/></svg>
+            	<svg viewBox="0 0 19 6" width="30" height="30" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-11{fill:none;stroke:#000;stroke-linecap:round;stroke-miterlimit:10;stroke-width:1.42px}.cls-2{stroke-width:0}</style></defs><path d="M6.43 3.01v1.51c0 .16-.14.28-.31.28h-.45c-.17 0-.31-.13-.31-.28V3.01c0-.16.14-.28.31-.28h.45c.17 0 .31.13.31.28" class="cls-2"/><path d="M2.58 2.73h9.63" class="cls-11"/><path d="M4.55 2.86v2c0 .21-.21.38-.47.38h-.69c-.26 0-.47-.17-.47-.38v-2c0-.21.21-.38.47-.38h.69c.26 0 .47.17.47.38" class="cls-2"/><path d="M14.41.77a2.01 2.01 0 110 4.02 2.01 2.01 0 010-4.02z" class="cls-11"/></svg>
             </f:link.typolink>
         </f:if>
         <div class='header-nav'>
@@ -35,6 +35,8 @@
 </header>
 
 <f:section name="MainMenu">
+
+
     <f:if condition="{MainMenu}">
         <ul class="nav-items">
             <f:for each="{MainMenu}" as="item">
@@ -81,4 +83,6 @@
     </f:for>
     </ul>
     </f:if>
+
+   
 </f:section>
