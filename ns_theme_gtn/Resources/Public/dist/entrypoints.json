@@ -9,11 +9,6 @@
       "js": [
         "/dist/JavaScript/app.js"
       ]
-    },
-    "Css/app": {
-      "css": [
-        "/dist/Css/app.css"
-      ]
     }
   }
 }
