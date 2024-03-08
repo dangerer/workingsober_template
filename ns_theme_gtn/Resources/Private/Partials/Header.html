@@ -1,5 +1,8 @@
+{namespace gtn=GtnEscapeGame\GtnEscapeGame\ViewHelpers}
+
+<f:variable name="escapeGameAuthData">{gtn:cookie(cookieIdentifier='gtn_escape_game_auth_token')}</f:variable>
+
 <header class="page-header">
-    <div class="empty-space"></div>
     <div class="header-main">
         <div class="brand-logo">
             <f:if condition="{settings.logo}">
@@ -20,21 +23,34 @@
             	<svg viewBox="0 0 19 6" width="30" height="30" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-11{fill:none;stroke:#000;stroke-linecap:round;stroke-miterlimit:10;stroke-width:1.42px}.cls-2{stroke-width:0}</style></defs><path d="M6.43 3.01v1.51c0 .16-.14.28-.31.28h-.45c-.17 0-.31-.13-.31-.28V3.01c0-.16.14-.28.31-.28h.45c.17 0 .31.13.31.28" class="cls-2"/><path d="M2.58 2.73h9.63" class="cls-11"/><path d="M4.55 2.86v2c0 .21-.21.38-.47.38h-.69c-.26 0-.47-.17-.47-.38v-2c0-.21.21-.38.47-.38h.69c.26 0 .47.17.47.38" class="cls-2"/><path d="M14.41.77a2.01 2.01 0 110 4.02 2.01 2.01 0 010-4.02z" class="cls-11"/></svg>
             </f:link.typolink>
         </f:if>
-        <div class='header-nav'>
-            <div class="navigation">
-                <nav>
-                  <f:render section="MainMenu" arguments="{MainMenu: MainMenu}" />
-                </nav>
-            </div>
-            <div id="menuTrigger" class="menu-trigger">
-                <div class="bars"></div>
-                <div class="bars"></div>
-                <div class="bars"></div>
+
+        <div class="avatar-wrapper">
+            <div id="Session-Users-Ajax"> </div>
+            <div id="exit-wrapper">
+                <f:link.page pageUid="40" id="exit-session" class="d-flex justify-content-center align-items-center d-block" >
+                    <svg fill="#000000" height="800px" width="800px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                         viewBox="0 0 490 490" xml:space="preserve">
+                <polygon points="456.851,0 245,212.564 33.149,0 0.708,32.337 212.669,245.004 0.708,457.678 33.149,490 245,277.443 456.851,490
+                    489.292,457.678 277.331,245.004 489.292,32.337 "/>
+                </svg>
+                </f:link.page>
             </div>
         </div>
+        <f:if condition="!{escapeGameAuthData} || {escapeGameAuthData.instanceId} < 0">
+            <div class='header-nav'>
+                <div class="navigation">
+                    <nav>
+                      <f:render section="MainMenu" arguments="{MainMenu: MainMenu}" />
+                    </nav>
+                </div>
+                <div id="menuTrigger" class="menu-trigger">
+                    <div class="bars"></div>
+                    <div class="bars"></div>
+                    <div class="bars"></div>
+                </div>
+            </div>
+        </f:if>
     </div>
-
-    <div class="empty-space"></div>
 
 </header>
 

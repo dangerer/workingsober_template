@@ -26,6 +26,10 @@ page {
         9901 >
         50 >
         80 = EXT:ns_theme_gtn/Resources/Public/dist/Css/app.css
+        90 = fileadmin/Komet2020/Resources/Public/StyleSheets/fontawesome.css
+        //needed solid.css for fontawesome font
+        91 = fileadmin/Komet2020/Resources/Public/StyleSheets/solid.css
+
     }
 
     // Initiate all the js-together
