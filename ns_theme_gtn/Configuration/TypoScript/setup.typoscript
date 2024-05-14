@@ -12,3 +12,15 @@
 
 # Includes EXT:FELogin
 @import 'EXT:ns_theme_gtn/Configuration/TypoScript/Extensions/Felogin/*.typoscript'
+
+// default/general configuration (will add 'children_<colPos>' variable to processedData for each colPos in container
+tt_content.b13-2cols-auto < lib.contentElement
+tt_content.b13-2cols-auto {
+    templateName = 2ColsAuto
+    templateRootPaths {
+        10 = fileadmin/Komet2020/Resources/Private/Container
+    }
+    dataProcessing {
+        100 = B13\Container\DataProcessing\ContainerProcessor
+    }
+}

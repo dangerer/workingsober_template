@@ -5,8 +5,17 @@
 
 <!--TYPO3SEARCH_begin-->
 <main class="site-main">
-
-    <div class="container pt-5 pb-5">
+    <f:if condition="{data.uid} == 1">
+        <section class="hero-banner  frame-space-after-medium" id="c97">
+            <div class="hero-banner__img">
+                <img src="/fileadmin/ns_theme_gtn/hero-banner/hero-banner-gif.gif" alt="Escape Games" title="Escape Games">
+            </div>
+            <div class="hero-banner__content">
+                <img src="/fileadmin/ns_theme_gtn/hero-banner/logo.svg" alt="Escape Games" title="Escape Games">
+            </div>
+        </section>
+    </f:if>
+    <div class="container pb-5">
         <f:render section="main" />
     </div>
 
