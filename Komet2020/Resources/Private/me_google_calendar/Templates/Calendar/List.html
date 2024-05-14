@@ -1,0 +1,17 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"
+	  xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
+
+<f:layout name="Default"/>
+
+<f:section name="main">
+	<f:flashMessages/>
+	<f:render partial="Calendar/Settings" arguments="{_all}"/>
+	<div id="{contentKey}_loading" class="fc-loading ui-widget ui-corner-all" style="display:none"></div>
+	<div id="{contentKey}_overlay" class="fc-overlay ui-widget-overlay" style="display:none"></div>
+	<div id="{contentKey}" class="fc-calendar"></div>
+	<div id="{contentKey}_dialog" class="fc-dialog" style="display:none"></div>
+	<div id="{contentKey}_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="calendarModal" aria-hidden="true"></div>
+</f:section>
+
+</html>

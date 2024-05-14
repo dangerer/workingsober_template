@@ -1,0 +1,44 @@
+.gtn-comet-grid .btn-clear {
+	border: none;
+	background-color: transparent;
+	align-self: flex-start;
+	padding-top: 1px;
+}
+
+.gtn-comet-grid .btn-grid-Action {
+	box-shadow: none;
+	margin: 0;
+	padding: 0 4px;
+	align-self: flex-start;
+	padding-top: 2px;
+	
+	width: 20px;
+	min-width: 20px;
+	max-width: 20px;
+}
+
+
+
+item-addon item-icon descriptor-collapse
+item-addon item-descriptor descriptor-collapse
+
+item-addon item-material
+item-addon item-menu dropdown-toggle
+
+addon
+
+
+item-addon item-icon descriptor-collapse
+item-addon addon-descriptor descriptor-collapse
+
+item-addon item-material
+item-addon addon-material
+
+item-addon item-menu dropdown-toggle
+item-addon addon-menu dropdown-toggle
+
+
+item-collapse btn-clear descriptor-collapse
+
+
+btn-grid-Action dropdown-toggle

@@ -1,0 +1,73 @@
+<header>
+	
+    <!-- Sidebar navigation -->
+    <div id="slide-out" class="side-nav fixed side-nav-comet">
+      <ul class="custom-scrollbar">
+        <!-- Logo -->
+        <li>
+          <div class="logo-wrapper waves-light">
+	          <f:format.raw>{comet_logo_text_white}</f:format.raw>
+          </div>
+        </li>
+        <!--/. Logo -->
+        <!-- Side navigation links -->
+        <li>
+          <ul class="collapsible collapsible-accordion">
+            <li><a class="collapsible-header waves-effect active" href="http://komet.gtn-solutions.com/index.php?id=11"><i class="fas gtnicon-gtn-dashboard-rounded"></i>
+              Dashboard</a>
+			 </li>
+			 <li><a class="collapsible-header waves-effect"><i class="fas gtnicon gtnicon-gtn-subjects"></i>
+              Themen</a>
+			 </li>
+			 <li><a class="collapsible-header waves-effect"><i class="fas fa-user-md"></i>
+              Berufsfelder</a>
+			 </li>
+			 <li><a class="collapsible-header waves-effect"><i class="fas fa-file-download"></i>
+              Export</a>
+			 </li>
+			 <li><a class="collapsible-header waves-effect"><i class="fas fa-exchange-alt"></i>
+              Verwandtschaft</a>
+			 </li>
+			 <li><a class="collapsible-header waves-effect"><i class="fas fa-file-import"></i>
+              Import</a>
+			 </li>
+			 <li><a class="collapsible-header waves-effect"><i class="fas fa-history"></i>
+              Protokoll</a>
+			 </li>
+			 <li><a class="collapsible-header waves-effect"><i class="fas fa-cog"></i>
+              Konfiguration</a>
+			 </li>
+			 <li><a class="collapsible-header waves-effect"><i class="fas fa-question-circle"></i>
+              Hilfe</a>
+			 </li>
+
+
+          </ul>
+        </li>
+        <!--/. Side navigation links -->
+      </ul>
+      <div class="sidenav-bg mask-strong"></div>
+    </div>
+    <!--/. Sidebar navigation -->
+	
+    <f:render partial="Navbar-Top" arguments="{_all}" />
+    
+</header>
+	
+<main class="maincontent">
+			
+  	<f:render section="content" />
+	
+	<footer id="Footer" class="backend-footer">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<f:format.raw>{navigation_footer}</f:format.raw>
+				</div>
+			</div>
+			
+			 
+		</div>
+	</footer>
+
+</main>

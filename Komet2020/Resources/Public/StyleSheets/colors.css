@@ -1,0 +1,133 @@
+
+.icon color blue grey {
+	color: rgba(69,90,100,1);
+	color: #455a64;
+	alt
+}
+
+hellgrau (ev btn). {
+	color: #687982;
+	color: rgba(104,121,130,1);
+}
+
+
+.Grün {
+	color: #709d25;
+	color: rgb(112,157,37);
+	color: rgba(112,157,37,0.3);
+}
+
+. Menu dunkelgraublau {
+	color: #3a4350;
+	color: rgb(58,67,80);
+	color: rgba(58,67,80,0.3);
+}
+
+
+    8px = 0.5333rem
+    9px = 0.6rem
+    10px = 0.6667rem
+    11px = 0.7333rem
+    12px = 0.8rem
+    13px = 0.8667rem
+    14px = 0.9333rem
+    15px = 1rem (base)
+    16px = 1.067rem
+    18px = 1.2rem
+    20px = 1.333rem
+    22px = 1.467rem
+    24px = 1.6rem
+    26px = 1.733rem
+    28px = 1.867rem
+    30px = 2rem
+    32px = 2.133rem
+    34px = 2.267rem
+    36px = 2.4rem
+    38px = 2.533rem
+    40px = 2.667rem
+    80px = 5.333rem
+    
+	
+	8px = 0.5714rem
+	9px = 0.6429rem
+	10px = 0.7143rem
+	11px = 0.7857rem
+	12px = 0.8571rem
+	13px = 0.9286rem
+	14px = 1rem (base)
+	15px = 1.071rem
+	16px = 1.143rem
+	18px = 1.286rem
+	20px = 1.429rem
+	22px = 1.571rem
+	24px = 1.714rem
+	26px = 1.857rem
+	28px = 2rem
+	30px = 2.143rem
+	32px = 2.286rem
+	34px = 2.429rem
+	36px = 2.571rem
+	38px = 2.714rem
+	40px = 2.857rem
+	80px = 5.714rem
+	
+	
+	
+	
+    8px = 0.5rem
+    9px = 0.5625rem
+    10px = 0.625rem
+    11px = 0.6875rem
+    12px = 0.75rem
+    13px = 0.8125rem
+    14px = 0.875rem
+    15px = 0.9375rem
+    16px = 1rem (base)
+    18px = 1.125rem
+    20px = 1.25rem
+    22px = 1.375rem
+    24px = 1.5rem
+    26px = 1.625rem
+    28px = 1.75rem
+    30px = 1.875rem
+    32px = 2rem
+    34px = 2.125rem
+    36px = 2.25rem
+    38px = 2.375rem
+    40px = 2.5rem
+    
+
+flex {
+	display: -ms-flexbox !important;
+	display: flex !important;
+	
+	-ms-flex-align: start !important;
+	align-items: flex-start;
+	
+	-ms-flex-align: center !important;
+	align-items: center !important;
+	
+	-ms-flex-pack: justify !important;
+	justify-content: space-between !important;
+	
+	-ms-flex-positive: 2 !important;
+	flex-grow: 2 !important;
+	
+	-ms-flex: 0 0 20%;
+	flex: 0 0 20%;
+	
+	-ms-flex-direction: column;
+	flex-direction: column;
+	
+	-ms-flex-wrap: wrap !important;
+	flex-wrap: nowrap !important;
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,4 @@
+.navbar, .topheader, #footer {display:none;}
+.maincontent,  body.comet-frontend main.maincontent, #page-33 .maincontent {padding-top:0;}
+
+footer#footer, #page-33 #footer, #page-33 footer {display:none;}

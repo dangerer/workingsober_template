@@ -1,0 +1,316 @@
+/* im CSS - Überschreiben der Typo3 Listen aus root.t3s */
+
+.no-liststyle {
+	list-style-type: none;
+	margin-left: -20px;
+}
+
+.no-liststyle i {
+	margin-right: 1em;
+}
+/* ENDE Überschreiben der Typo3 Listen aus root.t3s */
+
+/* #################### IMAGES RESPONSIVE ############ */
+div.csc-textpic-left .csc-textpic-imagewrap {
+    /* float: left; */
+    float: none;
+}
+
+div.csc-textpic-right .csc-textpic-imagewrap {
+    /* float: right; */
+    text-align: right !important;
+    float: none;
+}
+
+div.csc-textpic-right .csc-textpic-imagewrap .csc-textpic-image img {
+    text-align: right !important;
+    display: inline !important;
+}
+
+div.csc-textpic-intext-left .csc-textpic-imagewrap {
+    /* float: left; */
+     max-width: 60%;
+}
+
+div.csc-textpic-intext-right .csc-textpic-imagewrap {
+   /* float: right; */
+    max-width: 60%;
+}
+
+div.csc-textpic-intext-right .csc-textpic-imagewrap .csc-textpic-image  {
+ 
+}
+
+div.csc-textpic-center .csc-textpic-center-inner {
+    float: none !important;
+    position: static ;
+    right: 0;
+}
+
+div.csc-textpic-center .csc-textpic-center-outer {
+    float: none !important;
+    position: static;
+    right: 0;
+    text-align: center;
+}
+
+div.csc-textpic-center .csc-textpic-imagewrap img {
+	display: inline;
+}
+
+img, div.csc-textpic .csc-textpic-imagewrap img  {
+	height:auto;
+	display:block;
+	max-width:100% !important;
+}
+		
+DIV.csc-textpic-above DIV.csc-textpic-imagewrap,
+DIV.csc-textpic-below DIV.csc-textpic-imagewrap,
+DIV.csc-textpic DIV.csc-textpic-imagewrap UL LI,
+DIV.csc-textpic DIV.csc-textpic-imagewrap DL.csc-textpic-image {
+	float: none;
+}
+
+@media screen and (max-width: 600px) { 
+	div.csc-textpic-intext-left .csc-textpic-imagewrap {
+	   float: none;
+	}
+	
+	div.csc-textpic-intext-right .csc-textpic-imagewrap {
+	  float: none;
+	    max-width: 100%;
+	}
+	div.csc-textpic-intext-left .csc-textpic-imagewrap {
+	    /* float: left; */
+	     max-width: 100%;
+	}
+}
+
+/* Style for Imagerow right*/ 
+div.csc-textpic-right .csc-textpic-imagewrap .csc-textpic-imagerow {
+   float: right;
+}
+
+/* #################### END IMAGES RESPONSIVE ############ */
+
+/**
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    contenteditable attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that are clearfixed.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.cf {
+    *zoom: 1;
+}
+
+/* Custom container */
+
+html {
+	font-size: 15px;
+	min-height: 100%;
+    position: relative;
+}
+
+body {
+	-moz-hyphens: auto;
+    word-wrap: break-word;
+	/* Chrome Safari Mac */
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: none;
+    font-smoothing: antialiased;
+    /* Firefox Mac */
+    -moz-osx-font-smoothing: grayscale;
+	background-color: #f5f6f8;
+}
+
+b, strong {
+	font-weight: 500;
+}
+
+strong.strong400,
+b.strong400 {
+	font-weight: 400;
+}
+
+.btn {
+	font-weight: 500;
+	letter-spacing: 0.2px; 
+}
+
+
+.btn-comet {
+	background-color: #709d26;
+}
+
+main.maincontent {
+	padding-top: 57.16px;
+	fsdpadding-top: 0;
+	margin-right: 1%;
+	margin-left: 1%;
+}
+
+/* ### Comet Navbar Top ### */
+
+.navbar-comet-top {
+	background-color: #fff;
+	padding: 1rem 1rem;
+	-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.03), 0 2px 10px 0 rgba(0, 0, 0, 0.03);
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.03), 0 2px 10px 0 rgba(0, 0, 0, 0.03);
+}
+
+.navbar-comet-top .nav-item {
+	
+}
+
+.navbar-comet-top .nav-item .nav-link {
+	color: #212529;
+	color: #5a5a5a;
+	font-weight: 400;
+	border-left: 1px solid #bdbdbd;
+	padding: 0 1.2rem;
+	line-height: 1;
+}
+
+.navbar-comet-top .nav-item .nav-link:hover, 
+.navbar-comet-top .nav-item .nav-link:focus {
+	color: #212529;
+}
+
+.navbar-comet-top .nav-item.active .nav-link {
+	color: #212529;
+}
+
+.navbar-comet-top .nav-item:first-child .nav-link {
+	border-left: 0;
+}
+
+.navbar-comet-top .dn {
+	margin-left: 1.95rem;
+}
+
+/* ### Dropdown Item ### */
+
+.dropdown-item {
+	/* font-size: 14px; */
+}
+
+.dropdown-item:focus, 
+.dropdown-item:hover {
+	background-color: #4285f4;
+	background-color: rgba(58,67,80,0.10);
+	color: #fff;
+	color: #212529;
+}
+
+/* ### Dropdown Item ### */
+
+.tooltip-inner, .tooltip-arrow {
+	background-color: red;
+}
+
+.tooltip md-tooltip-email, .tooltip-arrow md-arrow, .tooltip-inner md-inner-email {
+	background-color: red;
+}
+
+/* ### context menu jquery ### */
+
+ul.context-menu-list {
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	border: 1px solid rgba(0,0,0,.10);
+	border-radius: 3.75px;
+	padding: 5px 0;
+}
+
+.context-menu-item {
+	padding: 2.25px 22.5px;
+	color: #212529;
+	font-weight: 400;
+	font-size: 14px;
+}
+
+.context-menu-item.context-menu-hover {
+	background-color: #4285f4;
+	background-color: rgba(58,67,80,0.15);
+	color: #212529;
+}
+
+.context-menu-separator {
+	padding: 0 22.5px;
+	margin: .3 0;
+}
+
+/* ### context menu jquery ### */
+
+.dropdown-content li > a, 
+.dropdown-content li > span {
+	color: #212529;	
+}
+
+@media (min-width: 576px) {
+
+}
+
+@media (max-width: 576px) {
+
+}
+
+/* Bootstrap Breakpoint MD */
+@media (min-width: 768px) {  
+
+}
+
+@media (max-width: 768px) {  
+
+}
+
+/* Bootstrap Breakpoint min MD max LG */
+@media (min-width: 768px) and (max-width: 991px) {  
+	
+}
+
+/* Bootstrap Breakpoint min MD max XL */
+@media (min-width: 768px) and (max-width: 1199px) {
+	
+}
+
+/* Bootstrap Breakpoint LG */
+@media (min-width: 992px) {
+
+
+}
+
+@media (max-width: 992px) {
+
+}
+
+/* Bootstrap Breakpoint min MD max XL */
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+
+/* Bootstrap Breakpoint XL */
+@media (min-width: 1200px) {
+
+}
+
+@media print {
+	
+}

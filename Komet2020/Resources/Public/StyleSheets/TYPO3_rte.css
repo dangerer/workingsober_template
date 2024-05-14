@@ -1,0 +1,41 @@
+@CHARSET "UTF-8";
+
+
+table, tr, td {
+	border: 1px dotted #ccc;
+}
+
+a.btn {
+	background-color: #455a64;
+	padding: 0.4rem 0.9rem;
+	border-radius: .25rem;
+	text-decoration: none;
+}
+
+p.text-center{
+	text-align: center;
+}
+
+p.text-right {
+	text-align: right;
+}
+
+a.btn-dark-green {
+	color: #ffffff;
+	background-color: #709d25;
+	padding: 0.4rem 0.9rem;
+	border-radius: .25rem;
+	text-decoration: none;
+}
+
+a.btn-primary {
+	color: #ffffff;
+	background-color: #4285f4;
+	padding: 0.4rem 0.9rem;
+	border-radius: .25rem;
+	text-decoration: none;
+}
+
+.small {
+	font-size: 0.9rem;
+}

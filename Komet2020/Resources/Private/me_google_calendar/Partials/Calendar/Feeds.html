@@ -1,0 +1,9 @@
+<f:for each="{calendars}" as="calendar" iteration="calendarIterator">
+    {
+	url:'<f:format.raw>{calendar.url}</f:format.raw>',
+	googleCalendarApiKey: '{calendar.googleCalendarApiKey}',
+	googleCalendarId: '{calendar.googleCalendarId}',
+    className: '{calendar.css}'
+    }
+	{f:if(condition:calendarIterator.isLast, then:'', else:',')}
+</f:for>

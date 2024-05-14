@@ -1,0 +1,65 @@
+<f:layout name="CometFrontend" />
+	
+<f:section name="content">
+<!-- SVG Sprite -->
+<svg width="0" height="0" class="hidden">
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="Organisationen">
+    <path d="M0 0h24v24H0V0z" fill="none"></path>
+    <path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="Privatpersonen">
+    <path d="M19 3.2c-3.6 0-6.6 2.7-7.6 6.3C10 7.3 7.6 5.8 5 5.8H2v.9c0 5 3.6 9.1 8 9.1h1.1v4.4c0 .3.3.6.6.6h.6c.3 0 .6-.3.6-.6v-6.9H14c4.4 0 8-4.1 8-9.1v-1h-3zm-9 10.7c-3.1 0-5.7-2.7-6.1-6.2h1c3.1 0 5.7 2.7 6.1 6.2h-1zm4-2.5h-1c.4-3.5 3-6.2 6.1-6.2h1c-.4 3.4-3 6.2-6.1 6.2z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="schulen">
+    <path d="M0 0h24v24H0V0z" fill="none"></path>
+    <path d="M5 13.2v4l7 3.8 7-3.8v-4L12 17l-7-3.8zM12 3L1 9l11 6 9-4.9V17h2V9L12 3z"></path>
+  </symbol>
+</svg>
+<!--TYPO3SEARCH_begin-->
+<!-- f:render partial="Modal_home_newComet" section="ModalNewComet" arguments="{_all}" / -->
+
+				<f:format.raw>{modalHomeOnLoad}</f:format.raw>
+
+				  <div class="view view-homepage" style="">
+				    <div class="mask rgba-gradient d-flex justify-content-md-center align-items-md-center">
+				      <div class="container-fluid">
+				        <div class="row">
+					        
+					        <div class="col-12 col-md-6 white-text text-center text-md-left mt-xl-5 mb-5 wow fadeInLeft col-homepage-txt" data-wow-delay="0.3s">
+					        	<f:format.raw>{content_1}</f:format.raw>
+<f:comment>
+					        	<f:format.raw>{btnCommunityScrollDown}</f:format.raw>
+</f:comment>
+					        	
+					        </div>
+					        
+					        <div class="col-12 col-md-6 col-xl-5 mt-xl-5 wow fadeInRight col-homepage-img" data-wow-delay="0.3s">
+						        <f:format.raw>{content_2}</f:format.raw>
+					        </div>
+
+				        </div>
+
+				        <div class="home-quicklinks-outer">
+					        <div class="home-quicklinks">
+						        <f:format.raw>{content_3}</f:format.raw>
+						        <f:format.raw>{content_4}</f:format.raw>
+						        <f:format.raw>{content_5}</f:format.raw>
+					        </div>
+				        </div>
+				      </div>
+				    </div>
+				    <f:comment><a class="home-down" href="#featuredGrid">
+						<i class="fas fa-arrow-down"></i>
+						<div><f:format.raw>{homearrowdowntxt}</f:format.raw></div>
+				    </a></f:comment>
+				  </div>
+				  
+</header>
+
+	
+
+
+	<!--TYPO3SEARCH_end-->
+
+
+</f:section>

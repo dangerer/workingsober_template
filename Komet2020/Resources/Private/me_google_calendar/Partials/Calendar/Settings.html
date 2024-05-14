@@ -1,0 +1,228 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"
+	  xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	  xmlns:megc="http://typo3.org/ns/MediaEssenz/MeGoogleCalendar/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
+<script type="text/javascript">
+var eventModal = function(event) {
+        var eventDialog = $('#{contentKey}_dialog'),
+            eventModal = $('#{contentKey}_modal'),
+            settings = window['{contentKey}_settings'],
+            eventDay = event.start.format("{settings.columnFormatDay}"),
+            eventStart = event.start.format("{settings.timeFormatGeneral}"),
+            eventEnd = event.end.format("{settings.timeFormatGeneral}"),
+            downloadIcal = <f:if condition="{settings.hideIcalDownloadButton}"><f:then>''</f:then><f:else>'<a href="{settings.eIdGetIcsUrl}' + event.ical + '" title="<f:translate key='event_download_ical_title' />" class="btn btn-default fc-icalbutton"><f:translate key="event_download_ical" /></a>'</f:else></f:if>,
+			addToGoogleCal = <f:if condition="{settings.hideAddtoGoogleCalendarButton}"><f:then>''</f:then><f:else>'<a href="' + event.url + '" target="googlecalendar" title="<f:translate key='event_add_to_google_title' />" class="btn btn-default fc-addtogooglebutton"><f:translate key="event_add_to_google" /></a>'</f:else></f:if>,
+        	eventDescription = '',
+            eventButtons = '',
+            eventLocation = '';
+        if (typeof event.location != 'undefined') {
+            eventLocation += '<dt><f:translate key="event_location" /></dt><dd>';
+            eventLocation += <f:if condition="{settings.noGoogleMapsLink}"><f:then>''</f:then><f:else>'<a href="http://maps.google.com/maps?q=' + $.URLEncode(event.location) + '" target="googlemaps" title="<f:translate key='event_location_google_maps_link_title' />">'</f:else></f:if>;
+            eventLocation += event.location;
+            eventLocation += <f:if condition="{settings.noGoogleMapsLink}"><f:then>''</f:then><f:else>'</a>'</f:else></f:if>;
+            eventLocation += '</dd>';
+        }
+        if (downloadIcal != '' || addToGoogleCal != '') {
+            eventButtons += '<div class="fc-buttons modal-footer">' + downloadIcal + addToGoogleCal + '</div>';
+        }
+        if (typeof event.description != 'undefined') {
+        	eventDescription += '<p class="fc-description">' + event.description + '</p>';
+		}
+        eventDescription += '<p><b><f:translate key="event_duration" /></b>:&nbsp' + eventDay + '&nbsp;-&nbsp;' + eventStart +  '&nbsp;Uhr</dd>' + eventLocation + '</p>';
+
+	// Bootstrap by default
+        if (typeof $().modal == 'function' || typeof $.ui === 'undefined') {
+            /* Bootstrap Modal */
+            eventModal.find('*').remove();
+            eventModal.append('' +
+                '<div class="modal-dialog modal-dialog-centered" role="document">' +
+                '<div class="modal-content modal-barbaraEvents">' +
+                '<div class="modal-header">' +
+                '<h4 class="modal-title" id="myModalLabel">' + event.title + '</h4>' +
+                '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+                '</div>' +
+                '<div class="modal-body">' +
+                eventDescription +
+                '</div>' +
+                eventButtons +
+                '</div>' +
+                '</div>');
+            eventModal.modal();
+
+            return false;
+
+        } else if (typeof $.ui === 'object') {
+            /* jQueryUi Dialog */
+            eventDialog.find('*').remove();
+            eventDialog.append(eventDescription + eventButtons)
+                .dialog({
+                    title: event.title,
+                    width: 500,
+                    modal: true
+                });
+            $('a.fc-icalbutton').button({ icons: {primary: 'ui-icon-circle-arrow-s'}});
+            $('a.fc-addtogooglebutton').button({ icons: {primary: 'ui-icon-circle-plus'}});
+            return false;
+        }
+	};
+	<f:comment>Do not remove this comment!</f:comment>
+    {contentKey}_settings = {};
+    {contentKey}_settings.locale = '{settings.language}';
+    {contentKey}_settings.theme = {settings.cssThemePath -> megc:JsBool()};
+    {contentKey}_settings.themeSystem = '{settings.themeSystem}';
+    <f:if condition="{settings.height} > 0"><f:then>{contentKey}_settings.height = '{settings.height}';</f:then></f:if>
+    {contentKey}_settings.aspectRatio = '{settings.aspectRatio}';
+    {contentKey}_settings.dayNames = ['<f:translate key="sunday" />','<f:translate key="monday" />','<f:translate key="tuesday" />','<f:translate key="wednesday" />','<f:translate key="thursday" />','<f:translate key="friday" />','<f:translate key="saturday" />'];
+    {contentKey}_settings.dayNamesShort = ['<f:translate key="sun" />','<f:translate key="mon" />','<f:translate key="tue" />','<f:translate key="wed" />','<f:translate key="thu" />','<f:translate key="fri" />','<f:translate key="sat" />'];
+    {contentKey}_settings.monthNames = ['<f:translate key="january" />','<f:translate key="february" />','<f:translate key="march" />','<f:translate key="april" />','<f:translate key="may" />','<f:translate key="june" />','<f:translate key="july" />','<f:translate key="august" />','<f:translate key="september" />','<f:translate key="october" />','<f:translate key="november" />','<f:translate key="december" />'];
+    {contentKey}_settings.monthNamesShort = ['<f:translate key="jan" />','<f:translate key="feb" />','<f:translate key="mar" />','<f:translate key="apr" />','<f:translate key="may_short" />','<f:translate key="jun" />','<f:translate key="jul" />','<f:translate key="aug" />','<f:translate key="sep" />','<f:translate key="oct" />','<f:translate key="nov" />','<f:translate key="dec" />'];
+    {contentKey}_settings.eventLimit = {settings.eventLimit -> megc:JsBool()};
+    {contentKey}_settings.columnHeader = !{settings.hideTitle -> megc:JsBool()};
+    <f:if condition="{settings.hideHeader}">
+		<f:then>{contentKey}_settings.header = false;</f:then>
+		<f:else>
+			{contentKey}_settings.header = {};
+			{contentKey}_settings.header.left = '{settings.headerLeft -> megc:FormatHeaderValue()}';
+			{contentKey}_settings.header.center = '{settings.headerCenter -> megc:FormatHeaderValue()}';
+			{contentKey}_settings.header.right = '{settings.headerRight -> megc:FormatHeaderValue()}';
+		</f:else>
+	</f:if>
+    <f:if condition="{settings.hideFooter}">
+		<f:then>{contentKey}_settings.footer = false;</f:then>
+		<f:else>
+			{contentKey}_settings.footer = {};
+			{contentKey}_settings.footer.left = '{settings.footerLeft -> megc:FormatHeaderValue()}';
+			{contentKey}_settings.footer.center = '{settings.footerCenter -> megc:FormatHeaderValue()}';
+			{contentKey}_settings.footer.right = '{settings.footerRight -> megc:FormatHeaderValue()}';
+		</f:else>
+	</f:if>
+    {contentKey}_settings.defaultView = '{settings.defaultView}';
+    {contentKey}_settings.weekends = {settings.weekends -> megc:JsBool()};
+    {contentKey}_settings.weekNumberCalculation = '{settings.weekNumberCalculation}';
+    {contentKey}_settings.weekNumbers = {settings.weekNumbers -> megc:JsBool()};
+    {contentKey}_settings.weekNumbersWithinDays = {settings.weekNumbersWithinDays -> megc:JsBool()};
+    {contentKey}_settings.allDaySlot = {settings.allDaySlot -> megc:JsBool()};
+    {contentKey}_settings.minTime = '{settings.minTime}';
+    {contentKey}_settings.maxTime = '{settings.maxTime}';
+    {contentKey}_settings.firstDay = '{settings.firstDay}';
+    {contentKey}_settings.timezone = <f:if condition="{settings.timeZone}"><f:then>'{settings.timeZone}'</f:then><f:else>false</f:else></f:if>;
+    {contentKey}_settings.titleFormat = '{settings.titleFormatMonth -> f:format.raw()}';
+    {contentKey}_settings.columnFormat = {};
+    {contentKey}_settings.timeFormat = '{settings.timeFormatGeneral}';
+    {contentKey}_settings.views = {};
+    {contentKey}_settings.views.month = {};
+    {contentKey}_settings.views.month.timeFormat = '{settings.timeFormatMonth -> f:format.raw()}';
+    {contentKey}_settings.views.month.columnFormat = '{settings.columnFormatMonth -> f:format.raw()}';
+    {contentKey}_settings.views.week = {};
+    {contentKey}_settings.views.week.timeFormat = '{settings.timeFormatWeek -> f:format.raw()}';
+    {contentKey}_settings.views.week.columnFormat = '{settings.columnFormatWeek -> f:format.raw()}';
+    {contentKey}_settings.views.day = {};
+    {contentKey}_settings.views.day.timeFormat = '{settings.timeFormatDay -> f:format.raw()}';
+    {contentKey}_settings.views.day.columnFormat = '{settings.columnFormatDay -> f:format.raw()}';
+    {contentKey}_settings.views.agenda = {};
+    {contentKey}_settings.views.agenda.timeFormat = '{settings.timeFormatAgenda -> f:format.raw()}';
+    {contentKey}_settings.views.gtnYearList = {};
+    {contentKey}_settings.views.gtnYearList.type = 'list';
+    {contentKey}_settings.views.gtnYearList.duration = { days: 500 }; // more than 365!
+    {contentKey}_settings.allDayText = '<f:translate key="alldaytext" />';
+    {contentKey}_settings.scrollTime = '{settings.scrollTime}';
+    {contentKey}_settings.buttonIcons = {};
+    {contentKey}_settings.buttonIcons.prev = 'left-single-arrow';
+	{contentKey}_settings.buttonIcons.next = 'right-single-arrow';
+	{contentKey}_settings.buttonIcons.prevYear = 'left-double-arrow';
+	{contentKey}_settings.buttonIcons.nextYear = 'right-double-arrow';
+    {contentKey}_settings.buttonText = {};
+    {contentKey}_settings.buttonText.today = '<f:translate key="buttontext_today" />';
+    {contentKey}_settings.buttonText.month = '<f:translate key="buttontext_month" />';
+    {contentKey}_settings.buttonText.week = '<f:translate key="buttontext_week" />';
+    {contentKey}_settings.buttonText.day = '<f:translate key="buttontext_day" />';
+    {contentKey}_settings.buttonText.list = '<f:translate key="buttontext_list" />';
+    {contentKey}_settings.eventClick = eventModal;
+    {contentKey}_settings.eventSources = [<f:render partial="Calendar/Feeds" arguments="{_all}"/>];
+    {contentKey}_settings.loading = function(bool) {
+        var key = '{contentKey}';
+        if (bool) {
+            $('#' + key + '_overlay').show();
+            $('#' + key + '_loading').show();
+        } else {
+            $('#' + key + '_loading').hide();
+            $('#' + key + '_overlay').hide();
+    	}
+    };
+// try this: https://github.com/fullcalendar/fullcalendar/issues/3340
+//    {contentKey}_settings.eventRender = function(view, element) {
+//	console.log(element);
+//    	date = new Date() //is today's date.
+//        if ((date - view.start) > 0) {
+//		$(element).remove(); 
+//	} else { 
+		//$(element).removeClass("fc-state-disabled"); 
+//	};
+//    };
+    var {contentKey}_eventCount = 0;
+//    {contentKey}_settings.eventOrder = 'title';
+    {contentKey}_settings.eventRender = function(event, element, view) {
+	// show only future events
+	var currTime = new Date();
+	currTime.setHours(0,0,0,0); // start of day
+	if (currTime > event.end) {
+		return false;
+	};
+//	console.log(event.title);
+//	console.log(event);
+	// only for HOME page 
+	if ($('body').attr('id') == 'page-1') {
+        	var gtn_limit = {settings.gtn_eventLimit};
+		if ({contentKey}_eventCount >= gtn_limit) {
+//				return false;//$(element).remove();
+		}
+		{contentKey}_eventCount = {contentKey}_eventCount + 1;
+	}
+	// Hide "end time"
+	// if it is not allDay
+	if (!event.allDay) {
+		var startTime = event.start.format("HH:mm");
+		$(element).find('.fc-list-item-time').html(startTime + ' Uhr');
+	}
+    };
+    {contentKey}_settings.eventAfterAllRender = function(view) {
+	// limit row count (eventLimit from fullcalendar is not working correct)
+	// only for HOME page 
+	/*if ($('body').attr('id') == 'page-1') {
+		var table = $(view.contentEl[0]).find('.fc-list-table');
+		var gtn_limit = {settings.gtn_eventLimit};
+		var count = 0;
+		$('tr', table).each(function() {		
+			if (count >= gtn_limit) {
+				$(this).remove();
+			}
+			if ($(this).hasClass('fc-list-item') ) {
+				count = count + 1;
+			} 
+		});
+	} /**/
+	// only for HOME page 
+	if ($('body').attr('id') == 'page-1') {
+		//  hide all after gtn_eventLimit
+        	var gtn_limit = {settings.gtn_eventLimit};
+		var currIndex = 0;
+		$('.fc-list-table .fc-list-item').each(function() {
+			if (currIndex >= gtn_limit) {
+				$(this).hide();
+			};
+			currIndex = currIndex + 1;
+		});
+		// hide all date markers after last visible event
+		$('.fc-list-table .fc-list-item:visible').last().nextAll('tr').hide();
+
+	}
+	// remove overflow property
+	view.contentEl.removeAttr('style');	                         	
+    };
+    {contentKey}_settings.windowResize = function(view) {
+	// dleete some styles after window resizing
+	view.contentEl.removeAttr('style');	                  
+    }
+
+</script>
+</html>

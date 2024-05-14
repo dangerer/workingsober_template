@@ -1,0 +1,468 @@
+
+/* #### #### */
+
+.btn.btn-sm {
+	font-size: .74rem;
+}
+
+.modal .bg-grey {
+	background-color: rgba(58,67,80,0.05);
+	margin-right: -1rem;
+	margin-left: -1rem;
+	margin-top: -1.0rem;
+	margin-bottom: -1.5rem;
+	padding: 1.5rem 1rem 1rem 1rem;
+}
+
+.modal .bg-grey-mb-1 {
+	margin-bottom: -1rem;
+}
+
+.side-nav-comet {
+	background-color: #334150;
+}
+
+.side-nav .logo-wrapper img {
+	
+}
+
+.side-nav .logo-wrapper img {
+	height: auto;
+	padding-top: 17px;
+	padding-right: 25px;
+	padding-bottom: 20%;
+	padding-left: 25px;
+}
+
+.side-nav .logo-wrapper {
+	height: 4.40rem;
+}
+
+.side-nav .collapsible {
+	margin-top: 2.5rem;
+}
+
+.side-nav .collapsible a {
+	margin-right: 10px;
+	margin-left: 10px;
+	font-size: .95rem;
+	font-weight: 400;
+	height: 38px;
+	line-height: 38px;
+}
+
+.side-nav .collapsible .fas, 
+.side-nav .collapsible .fab, 
+.side-nav .collapsible .far {
+	font-size: 1rem;	
+}
+
+.side-nav .collapsible > li a.collapsible-header.active {
+	background-color: #709d25;
+}
+
+.btn-dashboard-collapse {
+	margin: 0;
+	margin-top: 0 !important;
+}
+
+.side-nav.wide.slim {
+  width: 3.75rem !important;
+}
+
+/* #### Buttons #### */
+
+.btn-comet-round {
+	border: none;
+	margin-top: 14px;
+	/* width: 44px;
+	height: 44px; */
+	background-color: #fff !important;
+}
+
+.btn-comet-round i,
+.btn-comet-round i {
+	/* line-height: 44px; */
+	color: #212529;
+}
+
+.btn-dark-green {
+	background-color: #709d25 !important;
+}
+
+.btn-dark-green:hover,
+.btn-dark-green:focus {
+	background-color: #85b634 !important;
+}
+
+/* 
+.btn-comet-primary {
+	background-color: #709d25 !important;
+}
+
+.btn-comet-secondary {
+	background-color: #709d25 !important;
+}*/
+
+/* #### Buttons #### */
+
+/* #### Modal #### */
+
+#modal-grid-settings .modal-full-height,
+#modal-grid-settings-info .modal-full-height {
+	width: 500px;
+}
+
+.label-help {
+	display: -ms-flexbox !important;
+	display: flex !important;
+}
+
+.label-help > span {
+	display: block;
+	-ms-flex-positive: 2 !important;
+	flex-grow: 2 !important;
+}
+
+.label-help .fas,
+.label-btn-help .fas {
+	color: rgba(0,0,0,.5);
+}
+
+
+.label-btn-help {
+	display: -ms-flexbox !important;
+	display: flex !important;
+	-ms-flex-pack: justify !important;
+	justify-content: space-between !important;
+	-ms-flex-align: center !important;
+	align-items: center !important;
+}
+
+.popover-help {
+	cursor: pointer;
+}
+
+.popover-help:hover {
+	color: #212529;
+}
+
+.modal-footer-info {
+	-ms-flex-wrap: wrap !important;
+	flex-wrap: nowrap !important;
+	-ms-flex-wrap: nowrap;
+	-ms-flex-pack: justify !important;
+	justify-content: space-between !important;
+}
+
+.modal-footer-info .btn {
+	min-width: 20%;
+}
+
+.modal-footer-info p {
+	max-width: 60%;
+}
+
+.modal-divider {
+	border-top: 1px solid #dee2e6;
+	margin-left: -1rem;
+	margin-right: -1rem;
+	margin-bottom: 1rem;
+	margin-top: 1.5rem;
+}
+
+.modal-comet-tabs .modal-divider {
+	margin-left: -2rem;
+	margin-right: -2rem;
+}
+
+.modal-dialog-text-big p {
+	font-size: 1.1rem;
+	font-weight: 400;
+}
+
+.modal-comet-tabs {
+	
+}
+
+.modal-dialog.cascading-modal {
+	margin-top: 3.25rem;
+}
+
+/* #### Modal #### */
+
+/* #### Dropdown #### */
+
+.gtn-comet .dropdown-item:focus .fas, 
+.gtn-comet .dropdown-item:hover .fas {
+	color: #fff !important;
+}
+
+#gtn-comet .dropdown-item.disabled, .dropdown-item:disabled {
+	opacity: .8;
+}
+
+#gtn-comet:not(.editable) .dropdown-edit .dropdown-edit-delete {
+	pointer-events: none !important;
+	opacity: .65;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+#gtn-comet .dropdown-menu-small {
+	padding: 5px 0;
+}
+
+#gtn-comet .dropdown-menu-small .dropdown-item {
+	padding: 2.25px 22.5px;
+	font-size: 14px;
+}
+
+#gtn-comet .dropdown-menu-small .dropdown-divider {
+	margin: .3rem 0;
+}
+
+/* #### / Dropdown #### */
+
+/* #### Sharing Icons ##### */
+
+#gtn-comet .fas.comet-icon {
+	color: #709d25;
+}
+
+#gtn-comet .comet-disabled .fas.comet-icon {
+	color: #a3a3a3;
+}
+
+#gtn-comet .comet-disabled .fas.comet-icon-visible:before {
+	content: "\f070";
+}
+
+#gtn-comet .comet-disabled .fas.comet-icon-publish:before {
+	font-family: 'gtnicomoon' !important;
+	content: "\e905";
+	speak: never;
+	font-weight: normal;
+	text-transform: none;
+}
+
+#gtn-comet .comet-disabled .fas.comet-icon-questionaire:before {
+	font-family: 'gtnicomoon' !important;
+	content: "\e904";
+	speak: never;
+	font-weight: normal;
+	text-transform: none;
+}
+
+#gtn-comet .comet-disabled .fas.comet-icon-export:before {
+	font-family: 'gtnicomoon' !important;
+	content: "\e903";
+	speak: never;
+	font-weight: normal;
+	text-transform: none;
+}
+
+#gtn-comet .comet-disabled .fas.comet-icon-cooperation:before {
+	content: "\f973";
+}
+
+#gtn-comet .comet-disabled .fas.comet-icon-editable:before {
+	content: "\f023";
+	color: #CC0000;
+}
+
+/* #### / Sharing Icons ##### */
+
+#gtn-comet .comet-pagination {
+	margin-top: 3rem;
+}
+
+.pagination .page-item.active .page-link {
+	background-color: #709d25;
+}
+
+/* #### Chips #### */
+
+#gtn-comet .chip-comet {
+	background-color: rgba(58,67,80,0.7);
+	font-weight: 400;
+}
+
+
+#gtn-comet .grid-chips-small .chip-comet {
+	height: 25px;
+	line-height: 25px;
+}
+
+#gtn-comet .chip-comet .close {
+	font-size: 12px;
+	opacity: .5;
+	padding-left: 10px;
+}
+
+#gtn-comet .grid-chips-small .chip-comet .close {
+	font-size: 14px;
+	line-height: 25px;
+	opacity: .7;
+	padding-left: 8px;
+}
+
+#gtn-comet .chip-active-filter {
+	background-color: rgba(58,67,80,0.7);
+	background-color: rgba(48,55,82,0.7);
+	margin-right: .5rem;
+}
+
+#gtn-comet .chip-active-filter .close {
+	color: #fff;
+	text-shadow: none;
+}
+
+#gtn-comet .chip-editor {
+	background-color: #dee2e6;
+	margin-right: .5rem;
+}
+
+#gtn-comet .chip img {
+    float: left;
+    margin: 0 8px 0 -12px;
+}
+
+#gtn-comet .grid-chips-small .chip img  {
+    width: 25px;
+    height: 25px;
+}
+
+/* #### / Chips #### */
+
+/* #### Forms #### */
+
+label {
+	font-weight: 400;
+}
+
+#gtn-comet .grid-title {
+	font-size: 1.2rem;
+}
+
+#gtn-comet .grid-title:placeholder {
+	
+}
+
+
+#gtn-comet .col-dashboard-search .md-form label {
+    font-size: 1.2rem !important;
+    font-weight: 400;
+}
+
+.form-check-input[type="checkbox"]:checked + label::before, label.btn input[type="checkbox"]:checked + label::before {
+	border-right : 2px solid #709d25;
+	border-bottom: 2px solid #709d25;
+}
+
+.select-dropdown li img {
+	width: 25px;
+	height: 25px;
+}
+
+.legend-sm {
+	font-size: 1rem;
+	font-weight: 400;
+}
+
+.legend-collapse i {
+	float: right;
+	font-size: 1.1rem;
+}
+
+.legend-collapse:not(.collapsed) i.rotate-icon {
+	-webkit-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+
+.required {
+	color: #CC0000;
+}
+
+.invalid-feedback,
+.valid-feedback {
+	font-weight: 500;
+}
+
+/* Toogle Color */
+
+.switch label .lever {
+	height: .6375rem;
+	width: 1.5rem;
+}
+
+.switch label input[type="checkbox"]:checked + .lever::after { 
+	left: .9rem;
+}
+
+.switch label .lever::after { 
+	width: 1.0125rem;
+	height: 1.0125rem;
+}
+
+.switch label input[type="checkbox"]:checked + .lever::after {
+	background-color: rgba(112,157,37,1);
+}
+
+.switch label input[type="checkbox"]:checked + .lever {
+	background-color: rgba(112,157,37,0.3);
+}
+
+/* #### / Forms #### */
+
+@media (min-width: 576px) {
+
+}
+
+@media (max-width: 576px) {
+
+}
+
+/* Bootstrap Breakpoint MD */
+@media (min-width: 768px) {  
+
+}
+
+@media (max-width: 768px) {  
+
+}
+
+/* Bootstrap Breakpoint min MD max LG */
+@media (min-width: 768px) and (max-width: 991px) {  
+	
+}
+
+/* Bootstrap Breakpoint min MD max XL */
+@media (min-width: 768px) and (max-width: 1199px) {
+	
+}
+
+/* Bootstrap Breakpoint LG */
+@media (min-width: 992px) {
+
+
+}
+
+@media (max-width: 992px) {
+
+}
+
+/* Bootstrap Breakpoint min MD max XL */
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+
+/* Bootstrap Breakpoint XL */
+@media (min-width: 1200px) {
+
+}
+
+@media print {
+	
+}

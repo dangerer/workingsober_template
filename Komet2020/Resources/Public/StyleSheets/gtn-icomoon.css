@@ -1,0 +1,54 @@
+@font-face {
+  font-family: 'gtnicomoon';
+  src:  url('../Webfonts/gtn-icomoon.eot?5o1seg');
+  src:  url('../Webfonts/gtn-icomoon.eot?5o1seg#iefix') format('embedded-opentype'),
+    url('../Webfonts/gtn-icomoon.ttf?5o1seg') format('truetype'),
+    url('../Webfonts/gtn-icomoon.woff?5o1seg') format('woff'),
+    url('../Webfonts/gtn-icomoon.svg?5o1seg#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="gtnicon-"], [class*=" gtnicon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'gtnicomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.gtnicon-gtn-subjects:before {
+  content: "\e906";
+}
+.gtnicon-comet-icon-white:before {
+  content: "\e907";
+  color: #fff;
+}
+.gtnicon-gtn-dashboard:before {
+  content: "\e900";
+}
+.gtnicon-gtn-dashboard-rounded:before {
+  content: "\e901";
+}
+.gtnicon-gtn-export2-slash:before {
+  content: "\e902";
+}
+.gtnicon-gtn-export1-slash:before {
+  content: "\e903";
+}
+.gtnicon-gtn-pie-slash:before {
+  content: "\e904";
+}
+.gtnicon-gtn-golbe-slash:before {
+  content: "\e905";
+}
+
+/* <span class="gtnicon-gtn-dashboard-rounded"></span> */

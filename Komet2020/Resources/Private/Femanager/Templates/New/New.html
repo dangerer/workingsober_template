@@ -1,0 +1,120 @@
+{namespace femanager=In2code\Femanager\ViewHelpers}
+<f:layout name="Default" />
+
+	User / New
+		Available variables:
+			{user}
+			{allUserGroups}
+
+<f:section name="main">
+	<f:render partial="Misc/FlashMessages" arguments="{_all}" />
+	<f:render partial="Misc/FormErrors" arguments="{object:User}" />
+	<f:render partial="Misc/ResendConfirmation" arguments="{_all}" />
+	<div class="femanager_new">
+		<f:form
+				name="user"
+				object="{user}"
+				action="create"
+				enctype="multipart/form-data"
+				additionalAttributes="{data-femanager-plugin:data.uid}"
+				class="form-horizontal {f:if(condition:'{settings.new.validation._enable.client}',then:'feManagerValidation',else:'')}">
+			<fieldset>
+				<legend>
+<f:comment>					<f:translate key="titleCreateProfile" /></f:comment>
+				</legend>
+
+				<f:if condition="{settings.new.fields}">
+
+					<f:then>
+						<f:comment>
+							If some fields are selected in the flexform
+						</f:comment>
+						<f:for each="{femanager:misc.explode(string:'{settings.new.fields}')}" as="field">
+							<f:render partial="Fields/{femanager:misc.upper(string:'{field}')}" arguments="{_all}" />
+						</f:for>
+						<f:render partial="Fields/SubmitCreate" arguments="{_all}" />
+					</f:then>
+
+					<f:else>
+						<f:comment>
+							If no fields are selected in the flexform => show only needed for GTN!!!!!!!!!!
+						</f:comment>
+<ul class="stepper parallel stepper-register">
+	
+	<li class="step active">
+		<div class="step-title waves-effect waves-dark">{f:translate(key:'LLL:fileadmin/Komet2020/Resources/Private/Language/locallang.xml:profile_register_block1')}</div>
+		<div class="step-new-content">
+			<div class="row">
+				<div class="md-form col-12 ml-auto">
+						<f:render partial="Fields/Username" arguments="{_all}" />
+						<f:render partial="Fields/Email" arguments="{_all}" />
+				</div>
+		      	</div>
+			<div class="step-actions">
+				<button class="waves-effect waves-dark btn btn-sm btn-primary next-step">{f:translate(key:'LLL:fileadmin/Komet2020/Resources/Private/Language/locallang.xml:profile_next')}</button>
+			</div>
+			<!-- ###SUB_INCLUDED_FIELD_email### -->
+		</div>
+	</li>
+
+	<li class="step">
+		<div class="step-title waves-effect waves-dark">{f:translate(key:'LLL:fileadmin/Komet2020/Resources/Private/Language/locallang.xml:profile_register_block2')}</div>
+		<div class="step-new-content">
+			<!-- ###SUB_INCLUDED_FIELD_password### -->
+			<div class="row">
+				<div class="md-form col-12 ml-auto">
+
+						<f:render partial="Fields/Password" arguments="{_all}" />
+				</div>
+			</div>
+			<div class="step-actions">
+			        <button class="waves-effect waves-dark btn-sm btn btn-primary next-step">{f:translate(key:'LLL:fileadmin/Komet2020/Resources/Private/Language/locallang.xml:profile_next')}</button>
+			        <button class="waves-effect waves-dark btn-sm btn btn-clightgrey previous-step">{f:translate(key:'LLL:fileadmin/Komet2020/Resources/Private/Language/locallang.xml:profile_prev')}</button>
+			</div>
+		</div>
+	</li>
+
+
+	<li class="step">
+		<div class="step-title waves-effect waves-dark">{f:translate(key:'LLL:fileadmin/Komet2020/Resources/Private/Language/locallang.xml:profile_register_block3')}</div>
+		<div class="step-new-content">
+			<!-- ###SUB_INCLUDED_FIELD_first_name### -->
+			<div class="row">
+				<div class="md-form col-12 ml-auto">
+						<f:render partial="Fields/FirstName" arguments="{_all}" />
+						<f:render partial="Fields/LastName" arguments="{_all}" />
+						<f:render partial="Fields/Company" arguments="{_all}" />
+				</div>
+			</div>
+			<div class="step-actions">
+		        	<button class="waves-effect waves-dark btn-sm btn btn-primary next-step">{f:translate(key:'LLL:fileadmin/Komet2020/Resources/Private/Language/locallang.xml:profile_next')}</button>
+			        <button class="waves-effect waves-dark btn-sm btn btn-clightgrey previous-step">{f:translate(key:'LLL:fileadmin/Komet2020/Resources/Private/Language/locallang.xml:profile_prev')}</button>
+			</div>
+		</div>
+	</li>	
+
+	<li class="step">
+		<div class="step-title waves-effect waves-dark">{f:translate(key:'LLL:fileadmin/Komet2020/Resources/Private/Language/locallang.xml:profile_register_block4')}</div>
+		<div class="step-new-content">
+			<div class="row">
+				<div class="col-12 ml-auto">                                                                                                      
+						<f:render partial="Fields/Image" arguments="{_all}" />
+						<f:render partial="Fields/Terms" arguments="{_all}" />
+				</div>
+			</div>
+
+			<div class="step-actions">
+				<f:render partial="Fields/SubmitCreate" arguments="{_all}"/>
+				<button class="waves-effect waves-dark btn-sm btn btn-clightgrey previous-step">{f:translate(key:'LLL:fileadmin/Komet2020/Resources/Private/Language/locallang.xml:profile_prev')}</button>
+		    	</div>
+		</div>
+	</li>
+</ul>
+						
+					</f:else>
+
+				</f:if>
+			</fieldset>
+		</f:form>
+	</div>
+</f:section>

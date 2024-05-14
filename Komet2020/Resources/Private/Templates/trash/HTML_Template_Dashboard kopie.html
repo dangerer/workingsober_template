@@ -1,0 +1,240 @@
+<f:layout name="CometBackend" />
+	
+<f:section name="content">
+<!--TYPO3SEARCH_begin-->
+
+
+
+
+
+	<div class="container-fluid pt-4 pb-4">
+		<div class="row">
+			<div class="col-sm-12 maincol">
+					
+					
+<!-- Start Template Kompetenzraster -->
+
+<div id="gtn-comet" class="gtn-comet-dashboard">
+	
+	<form class="grids-search-form">
+		<div class="dashboard-search">
+			<div class="row">
+				<div class="col-sm-12 col-lg-6 col-dashboard-search">
+					
+						<div class="md-form">
+						  <input type="text" id="form1" class="form-control grids-search" value="" placeholder="">
+						  <label for="form1" >Suche</label><!-- if not empty set display none -->
+						</div>
+						<button class="btn-floating btn-light btn-sm btn-comet-round btn-search"><i class="fas fa-search"></i></button>
+						<button class="btn btn-dark-green btn-collapse-filter collapsed mb-4" type="button" data-toggle="collapse" data-target="#dashboardFilters"
+	    aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-sliders-v"></i> Eingrenzen</button>
+					
+				</div>
+				<div class="col-sm-12 col-lg-6 text-right col-dashboard-check pt-4">
+
+					<div class="form-check form-check-inline">
+					  <input type="checkbox" class="form-check-input" id="materialInline1">
+					  <label class="form-check-label" for="materialInline1">Meine Raster</label>
+					</div>
+					
+					<div class="form-check form-check-inline">
+					    <input type="checkbox" class="form-check-input" id="materialInline2">
+					    <label class="form-check-label" for="materialInline2">Für mich freigegeben</label>
+					</div>
+					
+					<div class="form-check form-check-inline">
+					    <input type="checkbox" class="form-check-input" id="materialInline3" checked>
+					    <label class="form-check-label" for="materialInline3">Freigegeben</label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="dashboard-filters">
+			<!-- button class="btn btn-primary btn-comet-primary btn-collapse-filter collapsed mb-4" type="button" data-toggle="collapse" data-target="#dashboardFilters"
+	    aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-sliders-h mr-1"></i> Eingrenzen</button --> 
+				
+			<div class="collapse card mb-3" id="dashboardFilters">
+			  <div class="card-body">
+				<div class="row">
+					  <div class="col-4">
+						  
+						  	<!-- Sortiert nach - Standard Select -->
+							<select class="mdb-select md-form">
+								<option value="" disabled selected>Sortiert nach</option>
+								<option value="1">Name</option>
+								<option value="2">Schularten</option>
+								<option value="3">Datum</option>
+								<option value="3">Fach</option>
+							</select>
+							
+					  </div>
+					  <div class="col-4">
+						  
+						  	<!-- Sortiert nach - Multi Select -->
+							<select class="mdb-select md-form" multiple searchable="Suche..">
+								<option value="" disabled selected>Ausbildungsbezug</option>
+								<option value="13">Allgemein bildende Schulen Sekundarstufe I</option>
+								<option value="1">Sekundarstufe I</option>
+								<option value="4">Sekundarstufe I</option>
+								<option value="5">Sekundarstufe I</option>
+								<option value="6">Sekundarstufe I</option>
+								<option value="7">Sekundarstufe I</option>
+								<option value="8">Sekundarstufe I</option>
+								<option value="9">Sekundarstufe I</option>
+								<option value="10">Sekundarstufe I</option>
+								<option value="15">Schulentwicklung</option>
+								<option value="18">Lehrkräfteaus- und -fortbildung</option>
+								<option value="16">Sekundarstufe I</option>
+								<option value="17">Tertiary education</option>
+								<option value="2">Overall education</option>
+								<option value="3">Sekundarstufe II</option>
+								<option value="14">Sekundarstufe II</option>
+								<option value="11">Sonderraster</option>
+								<option value="12">Vorwärts</option>
+							</select>
+							<button class="btn-save btn btn-primary btn-sm">Speichern</button>
+							
+					  </div>
+					  <div class="col-4">
+						  	
+							<!-- Sprache - Standard Select -->
+							<select class="mdb-select md-form">
+								<option value="" disabled selected>Sprache</option>
+								<option value="1">Deutsch</option>
+								<option value="2">Englisch</option>
+								<option value="3">Datum</option>
+							</select>
+							
+					  </div>
+				</div>
+			    <div class="row">
+				    <div class="col-4">
+					    
+						    <!-- Sortiert nach - Multi Select -->
+						    <select class="mdb-select md-form" multiple searchable="Suche..">
+								<option value="" disabled selected>Organisation</option>
+								<option value="1">Bundeszentrum eEducation Austria</option>
+								<option value="2">PH Oberösterreich</option>
+								<option value="3">GTN-Solutions</option>
+								<option value="4">LS Baden-Württemberg</option>
+								<option value="5">Frauenstiftung</option>
+								<option value="6">Arbeit Plus</option>
+							</select>
+							<button class="btn-save btn btn-primary btn-sm">Speichern</button>
+						
+				    </div>
+				    <div class="col-4">
+						    <select class="mdb-select md-form" multiple searchable="Suche..">
+							    <option value="" disabled selected>Material Typen</option>
+								<option value="" data-icon="https://lab1.gtn-solutions.com/fileadmin/Komet2020/Resources/Public/Images/icon_oer.png" class="rounded-circle">
+									OER Material</option>
+								<option value="" data-icon="https://lab1.gtn-solutions.com/fileadmin/Komet2020/Resources/Public/Images/icon_link.png" class="rounded-circle">
+									Material Typ 2</option>
+								<option value="" data-icon="https://lab1.gtn-solutions.com/fileadmin/Komet2020/Resources/Public/Images/icon_attachement.png" class="rounded-circle">
+							    	Material Typ 2</option>
+							</select>
+							<button class="btn-save btn btn-primary btn-sm">Speichern</button>
+				    </div>
+				    <div class="col-4">
+							
+
+
+				    </div>
+			    </div>
+			  </div>
+			</div>
+		</div>
+		<div class="dashboard-active-filters mt-4 grid-chips-small">
+			
+			<div class="chip white-text waves-effect chip-comet chip-active-filter">Sekundarstufe I <i class="close fas fa-times"title="Filter entfernen" ></i></div>
+			<div class="chip white-text waves-effect chip-comet chip-active-filter">Deutsch <i class="close fas fa-times"title="Filter entfernen" ></i></div>
+			
+		</div>
+	</form>
+	
+	<div class="dashboard-grids">
+		
+		<div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5">
+			
+			<f:render partial="Grid_Item_template_6" section="Grid-Item" arguments="{_all}" />
+					
+			<f:render partial="Grid_Item_template" section="Grid-Item" arguments="{_all}" />
+						
+			<f:render partial="Grid_Item_template_6" section="Grid-Item" arguments="{_all}" />
+						
+			<f:render partial="Grid_Item_template_3" section="Grid-Item" arguments="{_all}" />
+					
+			<f:render partial="Grid_Item_template_6" section="Grid-Item" arguments="{_all}" />
+						
+			<f:render partial="Grid_Item_template" section="Grid-Item" arguments="{_all}" />
+						
+			<f:render partial="Grid_Item_template" section="Grid-Item" arguments="{_all}" />
+						
+			<f:render partial="Grid_Item_template_3" section="Grid-Item" arguments="{_all}" />
+						
+			<f:render partial="Grid_Item_template_2" section="Grid-Item" arguments="{_all}" />
+						
+			<f:render partial="Grid_Item_template" section="Grid-Item" arguments="{_all}" />
+			
+			<f:render partial="Grid_Item_template_4" section="Grid-Item" arguments="{_all}" />
+			
+			<f:render partial="Grid_Item_template_2" section="Grid-Item" arguments="{_all}" />
+			
+			<f:render partial="Grid_Item_template_3" section="Grid-Item" arguments="{_all}" />
+			
+			<f:render partial="Grid_Item_template" section="Grid-Item" arguments="{_all}" />
+			
+			<f:render partial="Grid_Item_template_4" section="Grid-Item" arguments="{_all}" />
+		
+			
+			
+		</div><!-- grid row -->
+		
+		<div class="comet-pagination">
+			<nav aria-label="Page navigation example">
+			  <ul class="pagination justify-content-center">
+			    <li class="page-item disabled">
+			      <span class="page-link">Zurück</span>
+			    </li>
+			    <li class="page-item"><a class="page-link">1</a></li>
+			    <li class="page-item active">
+			      <span class="page-link">
+			        2
+			        <span class="sr-only">(current)</span>
+			      </span>
+			    </li>
+			    <li class="page-item"><a class="page-link">3</a></li>
+			    <li class="page-item">
+			      <a class="page-link">Weiter</a>
+			    </li>
+			  </ul>
+			</nav>
+		</div>
+		
+	</div><!-- / dashboard-grids -->
+	
+</div><!-- / gtn-comet-grid -->
+
+
+<!-- / Start Template Kompetenzraster -->				
+
+	<f:render partial="Modals_template" section="GridSettings" arguments="{_all}" />
+
+	<f:render partial="Modals_template" section="Delete" arguments="{_all}" />
+
+	<f:render partial="Modals_template" section="ChangeOwner" arguments="{_all}" />
+	
+	<f:render partial="Modals_template" section="ChangeOwnerConfirm" arguments="{_all}" />
+
+	<f:render partial="Modals_template" section="AddEditors" arguments="{_all}" />
+
+
+			</div>
+		</div>
+	</div><!--/.fluid-container-->
+
+	
+	<!--TYPO3SEARCH_end-->
+
+
+</f:section>

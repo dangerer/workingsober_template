@@ -1,0 +1,130 @@
+<f:comment>Layout Game Play</f:comment>
+<f:if condition="{data.layout}==4">
+	<f:then>
+		<header class="topheader header-play-game">
+
+			<div id="Session-Users-Ajax"> </div>
+			<f:link.page pageUid="40" id="exit-session" class="d-flex justify-content-center align-items-center d-block" >
+				<i class="fas fa-times" data-toggle="tooltip" data-placement="bottom" title="Exit the session"></i>
+			</f:link.page>
+		</header>
+			<main class="maincontent maincontent-play-game">
+
+		
+		
+			  <f:render section="content" />
+
+				<div class="modal fade" id="exitSessionPopUpModal" tabindex="-1" role="dialog" aria-labelledby="popUpModalCenterTitle" aria-hidden="true">
+					<div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="popUpModalLongTitle">Info</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body popUpInfo">
+								Spiel-Session wirklich verlassen?
+							</div>
+							<div class="modal-footer">
+								<f:link.page id="btn-clearSessionAndExit" pageUid="40" class="btn btn-dark btn-sm" >
+									Session verlassen
+								</f:link.page>
+
+								<a class="btn btn-lightgrey3 btn-sm" data-dismiss="modal">Schließen</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<f:asset.script identifier="modalExitSession">
+
+					document.addEventListener("DOMContentLoaded", function () {
+					   let btnGoBack = document.getElementById("exit-session");
+					   btnGoBack.addEventListener("click", function (event) {
+						  event.preventDefault();
+						  let popUpModal = $("#exitSessionPopUpModal");
+						  popUpModal.modal("show");
+					   });
+
+					   let exitBtn = document.getElementById('btn-clearSessionAndExit')
+
+					   if (exitBtn) {
+						  exitBtn.addEventListener('click', (e) => {
+							 e.preventDefault();
+							debugger
+							 let actionUrl = "https://working-sober.at/api/game/exitSession"
+								let xhttp = new XMLHttpRequest();
+
+								xhttp.open("GET", actionUrl, true)
+
+							 xhttp.onreadystatechange = function () {
+								if (xhttp.readyState === 4 && xhttp.status === 200) {
+								   let response = xhttp.responseText;
+								   let jsonResponce = JSON.parse(response);
+								   if (xhttp.status === 200) {
+									  window.location.href = document.getElementById("exit-session").getAttribute('href')
+								   }
+								}
+							 };
+							 xhttp.send();
+						  })
+					   }
+					});
+				</f:asset.script>
+		</main>
+		
+		<footer id="Footer" class="frontend-footer"
+			background-size: cover;'>
+			<div class="footer-copyright text-center py-3">
+				<f:format.raw>{navigation_footer}</f:format.raw>
+			</div>
+		</footer>
+	</f:then>
+	<f:else>
+		<header class="topheader">
+			<f:comment><h3>{data.layout}</h3></f:comment>
+			
+			<f:comment>Layout Homepage</f:comment>
+			<f:if condition="{data.layout}==1">
+		
+				<f:then>
+					 <f:render partial="Navbar-Top" arguments="{_all}" />
+				</f:then>
+		
+				<f:else>
+					 <f:render partial="Navbar-Top" arguments="{_all}" />
+		
+					 <f:comment><f:render partial="Session-Users" arguments="{_all}" /></f:comment>
+		
+					 <div id="Session-Users-Ajax"> </div>
+			</header>
+			<main class="maincontent">
+				</f:else>
+			</f:if>
+		
+		
+			  <f:render section="content" />
+		
+		</main>
+		
+		<footer id="Footer" class="frontend-footer" class="background-image" style='background: url("fileadmin/Komet2020/Resources/Public/Images/loginbg.jpg")no-repeat center center;
+			background-size: auto;
+			background-size: cover;'>
+			<div class="container-fluid footer-partner py-5 text-center">
+				<div class="row align-items-center justify-content-around">
+				<p style='font-family: "Roboto", sans-serif;font-size:4em;font-weight:bold'>WORKING SOBER</p>
+					<!--<div class="col-4 col-sm-3 col-md-3 col-lg-3">
+						<f:format.raw>{logo_footer_1}</f:format.raw>
+		
+					</div>
+					<div class="col-4 col-sm-3 col-md-3 col-lg-3">
+						<f:format.raw>{logo_footer_2}</f:format.raw>-->
+					</div>
+				</div>
+			</div>
+			<div class="footer-copyright text-center py-3">
+				<f:format.raw>{navigation_footer}</f:format.raw>
+			</div>
+		</footer>
+	</f:else>
+</f:if>

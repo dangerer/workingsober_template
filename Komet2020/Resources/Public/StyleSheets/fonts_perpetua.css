@@ -1,0 +1,32 @@
+@font-face {
+    font-family: 'Perpetua';
+    src: url('../Webfonts/Perpetua.woff2') format('woff2'),
+        url('../Webfonts/Perpetua.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Perpetua-italic';
+    src: url('../Webfonts/Perpetua-Italic.woff2') format('woff2'),
+        url('../Webfonts/Perpetua-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Perpetua-bolditalic';
+    src: url('../Webfonts/Perpetua-BoldItalic.woff2') format('woff2'),
+        url('../Webfonts/Perpetua-BoldItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Perpetua-bold';
+    src: url('../Webfonts/Perpetua-Bold.woff2') format('woff2'),
+        url('../Webfonts/Perpetua-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+

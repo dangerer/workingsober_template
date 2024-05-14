@@ -1,0 +1,403 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+	
+		<!-- ##### Element start ##### -->
+		<f:layout name="Default" />
+		
+		<f:section name="Header">			
+			<f:render section="Custom_Header{f:if(condition: '{data.layout} > 1', then: '{data.layout}')}" arguments="{_all}" />
+		</f:section>
+		<f:section name="Main">
+			<f:render section="Custom_Main{f:if(condition: '{data.layout} > 1', then: '{data.layout}')}" arguments="{_all}" />
+		</f:section>
+		
+		
+		<!-- ### LAYOUT 1 - DEFAULT LAYOUT ### -->
+		
+		<f:section name="Custom_Header">
+		
+			<f:if condition="{gallery.position.noWrap} != 1">
+				<f:render partial="Header/All" arguments="{_all}" />
+			</f:if>
+		
+		</f:section>
+		
+		<f:section name="Custom_Main">
+		
+			<div class="ce-textpic ce-{gallery.position.horizontal} ce-{gallery.position.vertical}{f:if(condition: gallery.position.noWrap, then: ' ce-nowrap')}">
+				<f:if condition="{gallery.position.vertical} != 'below'">
+					<f:render partial="Media/Gallery" arguments="{_all}" />
+				</f:if>
+		
+				<f:if condition="{data.bodytext}">
+					<f:then>
+						<div class="ce-bodytext">
+							<f:if condition="{gallery.position.noWrap}">
+								<f:render partial="Header/All" arguments="{_all}" />
+							</f:if>
+							<f:format.html>{data.bodytext}</f:format.html>
+						</div>
+					</f:then>
+					<f:else>
+						<f:if condition="{gallery.position.noWrap}">
+							<f:if condition="{data.header}">
+								<div class="ce-bodytext">
+									<f:render partial="Header/All" arguments="{_all}" />
+								</div>
+							</f:if>
+						</f:if>
+					</f:else>
+				</f:if>
+		
+				<f:if condition="{gallery.position.vertical} == 'below'">
+					<f:render partial="Media/Gallery" arguments="{_all}" />
+				</f:if>
+			</div>
+		
+		</f:section>
+		
+		<!-- ### LAYOUT 2 - HOMEPAGE INTRO ### -->
+		
+		<f:section name="Custom_Header2">
+		
+		
+		</f:section>
+		
+		<f:section name="Custom_Main2">
+
+				<h1 class="h1-responsive font-weight-bold mt-sm-5"><f:format.html>{data.header}</f:format.html></h1>
+				<h6 class="mb-4"><f:format.html>{data.subheader}</f:format.html></h6>
+				<f:format.html>{data.bodytext}</f:format.html>
+
+		</f:section>
+		
+		<!-- ### LAYOUT 3 - Blank Image ### -->
+		
+		<f:section name="Custom_Header3">
+		
+		
+		</f:section>
+		
+		<f:section name="Custom_Main3">
+				<f:render partial="Media/GalleryBlank" arguments="{_all}" />
+		</f:section>
+		
+		
+		
+		<!-- ### LAYOUT 5 - Grid Cards Schulentwicklung ### -->
+		
+		<f:section name="Custom_Header5">
+
+			
+			
+		</f:section>
+		
+		<f:section name="Custom_Main5">
+		
+			  <div class="col mb-4">
+			    <div class="card h-100">
+				    <div class="card-img-kometcard">
+						<f:render partial="Media/GalleryBlank" arguments="{_all}" />
+				    </div>
+			      <div class="card-body">
+			        <h5 class="card-title"><f:format.html>{data.header}</f:format.html></h5>
+			        <div class="card-text">
+			         	<f:format.html>{data.bodytext}</f:format.html>
+			        </div>
+			      </div>
+			       <f:link.typolink parameter="{data.header_link}" class="stretched-link"> </f:link.typolink>
+			    </div>
+			  </div>
+		
+		</f:section>	
+		
+		<!-- ### LAYOUT 6 - Quicklinks Schulen ### -->
+		
+		<f:section name="Custom_Header6">
+		</f:section>
+		
+		<f:section name="Custom_Main6">
+				<f:if condition="{data.header_link}">
+					<f:then>
+						<f:link.typolink parameter="{data.header_link}" class="quicklink-item typol">
+					        <svg class="iconHome">
+							  <use xlink:href="#Organisationen"></use>
+							</svg>
+							<h2><f:format.html>{data.header}</f:format.html></h2>
+							<div class="quicklink-body">
+								<f:format.html>{data.bodytext}</f:format.html>
+							</div>
+						</f:link.typolink>
+					</f:then>
+					<f:else>
+						<a href="" class="quicklink-item">
+							<svg class="iconHome">
+							  <use xlink:href="#Organisationen"></use>
+							</svg>
+							<h2><f:format.html>{data.header}</f:format.html></h2>
+							<div class="quicklink-body">
+								<f:format.html>{data.bodytext}</f:format.html>
+							</div>
+						</a>
+					</f:else>
+				</f:if>
+		</f:section>
+		
+		<!-- ### LAYOUT 7 - Quicklinks Schulen ### -->
+		
+		<f:section name="Custom_Header7">
+		</f:section>
+		
+		<f:section name="Custom_Main7">
+				<f:if condition="{data.header_link}">
+					<f:then>
+						<f:link.typolink parameter="{data.header_link}" class="quicklink-item typol">
+					        <svg class="iconHome">
+							  <use xlink:href="#schulen"></use>
+							</svg>
+							<h2><f:format.html>{data.header}</f:format.html></h2>
+							<div class="quicklink-body">
+								<f:format.html>{data.bodytext}</f:format.html>
+							</div>
+						</f:link.typolink>
+					</f:then>
+					<f:else>
+						<a href="" class="quicklink-item">
+							<svg class="iconHome">
+							  <use xlink:href="#schulen"></use>
+							</svg>
+							<h2><f:format.html>{data.header}</f:format.html></h2>
+							<div class="quicklink-body">
+								<f:format.html>{data.bodytext}</f:format.html>
+							</div>
+						</a>
+					</f:else>
+				</f:if>
+		</f:section>
+		
+		<!-- ### LAYOUT 8 - Quicklinks Schulen ### -->
+		
+		<f:section name="Custom_Header8">
+		</f:section>
+		
+		<f:section name="Custom_Main8">
+				<f:if condition="{data.header_link}">
+					<f:then>
+						<f:link.typolink parameter="{data.header_link}" class="quicklink-item typol">
+					        <svg class="iconHome">
+							  <use xlink:href="#Privatpersonen"></use>
+							</svg>
+							<h2><f:format.html>{data.header}</f:format.html></h2>
+							<div class="quicklink-body">
+								<f:format.html>{data.bodytext}</f:format.html>
+							</div>
+						</f:link.typolink>
+					</f:then>
+					<f:else>
+						<a href="" class="quicklink-item">
+							<svg class="iconHome">
+							  <use xlink:href="#Privatpersonen"></use>
+							</svg>
+							<h2><f:format.html>{data.header}</f:format.html></h2>
+							<div class="quicklink-body">
+								<f:format.html>{data.bodytext}</f:format.html>
+							</div>
+						</a>
+					</f:else>
+				</f:if>
+		</f:section>
+			
+		
+		<!-- ### LAYOUT 9 - App Card single app ### -->
+		
+		<f:section name="Custom_Header9">
+		
+		</f:section>
+		
+		<f:section name="Custom_Main9">
+		
+				<div class="card mb-3 card-apps" style="max-width: 540px">
+				  <div class="row g-0">
+				    <div class="col-md-4">
+				      <!--img
+				        src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg"
+				        alt="..."
+				        class="img-fluid"
+				      / --->
+				      <f:render partial="Media/GalleryBlank" arguments="{_all}" />
+				    </div>
+				    <div class="col-md-8">
+				      <div class="card-body">
+				        <h5 class="card-title"><f:format.html>{data.header}</f:format.html></h5>
+				        <div class="card-text">
+							<f:format.html>{data.bodytext}</f:format.html>
+				        </div>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+
+		</f:section>
+		
+		
+		<!-- ### LAYOUT 10 - App Card card group ### -->
+		
+		<f:section name="Custom_Header10">
+		
+		</f:section>
+		
+		<f:section name="Custom_Main10">
+		
+			<div class="col mb-4">
+				<div class="card mb-3 card-apps h-100" style="max-width: 540px">
+				  <div class="row g-0 justify-content-center">
+				    <div class="col-6 col-md-4">
+				      <!--img
+				        src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg"
+				        alt="..."
+				        class="img-fluid"
+				      / --->
+				      <f:render partial="Media/GalleryBlank" arguments="{_all}" />
+				    </div>
+				    <div class="col-12 col-md-8">
+				      <div class="card-body">
+				        <h5 class="card-title"><f:format.html>{data.header}</f:format.html></h5>
+				        <div class="card-text">
+							<f:format.html>{data.bodytext}</f:format.html>
+				        </div>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+			</div>
+
+		</f:section>					
+			
+
+		<!-- ### LAYOUT 11 - GRID CARD (linked by header_link)### -->
+		
+		<f:section name="Custom_Header11">
+
+			
+			
+		</f:section>
+		
+		<f:section name="Custom_Main11">
+			  <div class="col mb-4">
+			    <div class="card h-100">
+			<a href="{f:uri.typolink(parameter: data.header_link)}">
+				    <div class="card-img-kometcard">
+						<f:render partial="Media/GalleryBlank" arguments="{_all}" />
+				    </div>
+			      <div class="card-body">
+			        <h5 class="card-title"><f:format.html>{data.header}</f:format.html></h5>
+			        <div class="card-text">
+			         	<f:format.html>{data.bodytext}</f:format.html>
+			        </div>
+			      </div>
+			</a>
+			    </div>
+			  </div>
+		</f:section>
+
+
+		<!-- ### LAYOUT 14 - DEFAULT LAYOUT ### -->
+		
+		<f:section name="Custom_Header14">
+		
+		</f:section>
+		
+		<f:section name="Custom_Main14">
+		
+	<div class="modal fade top" id="modal-newcomet" tabindex="-1" role="dialog" aria-labelledby="modal-newcomet"
+	  aria-hidden="true">
+	  
+			  <div class="modal-dialog modal-lg modal-dialog-newcomet modal-side modal-top-right" role="document">
+			
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h4 class="modal-title w-100" id="myModalLabel">{data.header}</h4>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+				  	<f:format.html>{data.bodytext}</f:format.html>
+			      </div>
+			      <div class="modal-footer justify-content-center d-flex">
+				      <f:link.typolink parameter="{data.header_link}" class="btn btn-dark-green">
+				      	{data.header}
+				      </f:link.typolink>
+				      <button class="btn btn-primary" type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true"><f:cObject typoscriptObjectPath="lib.constants.close" /> </span>
+			        </button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		
+		</f:section>
+		
+		
+		<!-- ### LAYOUT 15 - Infobox Digiconcept (Card row) ### -->
+		
+		<f:section name="Custom_Header15">
+		</f:section>
+		
+		<f:section name="Custom_Main15">
+			  <div class="col mb-4">
+			    <div class="card h-100 card-infobox">
+			      <div class="card-body">
+			        <h5 class="card-title"><f:format.html>{data.header}</f:format.html></h5>
+			        <div class="card-text">
+			         	<f:format.html>{data.bodytext}</f:format.html>
+			        </div>
+			      </div>
+			    </div>
+			  </div>
+		</f:section>
+		
+		<!-- ### LAYOUT 16 - DEFAULT LAYOUT ### -->
+		
+		<f:section name="Custom_Header16">
+		
+			<f:if condition="{gallery.position.noWrap} != 1">
+				<f:render partial="Header/All" arguments="{_all}" />
+			</f:if>
+		
+		</f:section>
+		
+		<f:section name="Custom_Main16">
+		
+			<div class="ce-textpic ce-{gallery.position.horizontal} ce-{gallery.position.vertical}{f:if(condition: gallery.position.noWrap, then: ' ce-nowrap')}">
+				<f:if condition="{gallery.position.vertical} != 'below'">
+					<f:render partial="Media/Gallery" arguments="{_all}" />
+				</f:if>
+		
+				<f:if condition="{data.bodytext}">
+					<f:then>
+						<div class="ce-bodytext">
+							<f:if condition="{gallery.position.noWrap}">
+								<f:render partial="Header/All" arguments="{_all}" />
+							</f:if>
+							<f:format.html>{data.bodytext}</f:format.html>
+						</div>
+					</f:then>
+					<f:else>
+						<f:if condition="{gallery.position.noWrap}">
+							<f:if condition="{data.header}">
+								<div class="ce-bodytext">
+									<f:render partial="Header/All" arguments="{_all}" />
+								</div>
+							</f:if>
+						</f:if>
+					</f:else>
+				</f:if>
+		
+				<f:if condition="{gallery.position.vertical} == 'below'">
+					<f:render partial="Media/Gallery" arguments="{_all}" />
+				</f:if>
+			</div>
+		
+		</f:section>			
+		
+</html>

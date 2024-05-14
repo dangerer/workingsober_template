@@ -1,0 +1,1083 @@
+
+<f:section name="GridSettings">
+	<!-- Partial Modal Grid Settings -->	
+	<div class="modal fade right" id="modal-grid-settings" tabindex="-1" role="dialog" aria-labelledby="modal-grid-settings"
+	  aria-hidden="true">
+	  
+	  <div class="modal-dialog modal-full-height modal-right modal-dialog-grid-settings" role="document">
+	
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h4 class="modal-title w-100" id="myModalLabel">DigCompEdu - Facilitating Learners' Digital Competence</h4>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        	<form class="">
+		        	
+				  <div class="form-group">
+				    <label for="cometGridName" class="label-help">
+					    <span>Fach</span> 
+					    	<i class="fas fa-question-circle mr-2 popover-help" data-toggle="popover" title="Fach, z.B. Mathematik" data-content="Fach des Kompetenzrasters" ></i>
+					    </label>
+				    <input type="text" class="form-control" id="cometGridName" aria-describedby="cometGridName" placeholder="z.B. Mathematik">
+				  </div>
+				  
+				  <div class="form-group">
+				    <label for="cometGridAngebote" class="label-help">
+					    <span>Angebote <span class="required">*</span></span> 
+					    	<i class="fas fa-question-circle mr-2 popover-help" data-toggle="popover" title="Angebote" data-content="Die Ausbildungsbezug geben an, in welcher Bildungsebene die erfassten Bildungsstandards angesiedelt sind. Diese Metadaten sind dann erforderlich, wenn man Raster veröffentlichen möchte bzw. mit deren Arbeit in MOODLE."></i>
+					    </label>
+				    <select class="form-control" id="exampleFormControlSelect1" required>
+					    <option>Bitte auswählen</option>
+				      <option>Sekundarstufe 1</option>
+				      <option>2</option>
+				      <option>3</option>
+				      <option>4</option>
+				      <option>5</option>
+				    </select>
+				  </div>
+				  
+				  <div class="form-group">
+				    <label for="exampleInputEmail1" class="label-help">
+					    <span>Bildungsstandards <span class="required">*</span></span> 
+					    	<i class="fas fa-question-circle mr-2 popover-help" data-toggle="popover" title="Bildungsstandards" data-content="Hier erfolgt eine Zuteilung zu Schularten bzw. überfachlichen Kompetenzbereichen. Auch diese Metadaten sind lediglich für publizierte Raster relevant und dienen zur Orientierung für andere."></i>
+					    </label>
+				    <select class="form-control" id="exampleFormControlSelect1" required>
+					    <option>Bitte auswählen</option>
+				      <option>University</option>
+				      <option>2</option>
+				      <option>3</option>
+				      <option>4</option>
+				      <option>5</option>
+				    </select>
+				  </div>
+				  
+				  <div class="form-group">
+				    <label for="exampleInputEmail1" class="label-help">
+					    <span>Bildungsplanbezug, z.B. BW Bildungsplan Gymnasium 2006 <span class="required">*</span></span> 
+					    	<i class="fas fa-question-circle mr-2 popover-help" data-toggle="popover" title="Bildungsplanbezug, z.B. BW Bildungsplan Gymnasium 2006" data-content="Hier kann definiert werden, ob der freigegebene Bildungsstandard auf nationaler Ebene publiziert ist, es sich um institutionsspezifische bzw. Firmen-Standards handelt oder ein individueller Standard ist."></i>
+					    </label>
+				    <select class="form-control" id="exampleFormControlSelect1" required>
+				      <option>Bitte auswählen</option>
+				      <option>Nationaler Standard</option>
+				      <option>Standards von Institutionen</option>
+				      <option>Individuelle Standards</option>
+				    </select>
+				  </div>
+				  
+				  <div class="form-group">
+				    <label for="exampleInputEmail1" class="label-help">
+				    	<span>Klasse</span> 
+				    	<i class="fas fa-question-circle mr-2 popover-help" data-toggle="popover" title="Klasse, z.B. 5-6" data-content="Schulstufe, auf die sich der Kompetenzraster bezieht"></i>
+				    </label>
+				    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="z.B. 5-6">
+				  </div>
+				  
+				  <div class="form-group">
+				    <label for="exampleInputEmail1" class="label-help">
+					    <span>Beschreibung</span> 
+					    	<i class="fas fa-question-circle mr-2 popover-help" data-toggle="popover" title="Beschreibung" data-content="Hier können Zusatzbeschreibungen bzw. Referenzen zu anderen Ressourcen eingetragen werden."></i></label>
+				    </label>
+				    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+				  </div>
+				  
+				  <div class="custom-control custom-checkbox my-3 popover-help">
+					    <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
+					    <label class="custom-control-label label-help" for="defaultUnchecked">
+					    	<span>überfachlicher Raster</span>
+					    	<i class="fas fa-question-circle mr-2 popover-help" data-toggle="popover" title="überfachlicher Raster" data-content="Bei überfachlichen Rastern kann ein berechtigter Lehrer die Bewertungen der anderen Lehrer im Überblick sehen."></i>
+					    </label>
+				  </div>
+				  
+				  <div class="form-group">
+				    <label for="exampleInputEmail1" class="label-help">
+					    <span>Versionsnummer</span> 
+					    	
+				    </label>
+				    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="z.B. 1.0">
+				  </div>
+				  
+				  <div class="modal-divider">
+				  </div>
+				  
+				  <div class="bg-grey bg-grey-mb-1">  
+					  <div class="form-group">
+					    <label for="exampleInputEmail1" class="label-help">
+						    <span>Sprache</span> 
+						    	
+						    </label>
+					    <select class="form-control" id="exampleFormControlSelect1">
+					      <option>Bitte auswählen</option>
+					      <option>2</option>
+					      <option>3</option>
+					      <option>4</option>
+					      <option>5</option>
+					    </select>
+					  </div>
+					  
+					   <div class="input-group form-group mt-4">
+						  <div class="input-group-prepend">
+						    <span class="input-group-text" id="inputGroupFileAddon01" data-toggle="popover" title="Info Datei" data-content="Gibt es weitere erklärende Informationen (z.B. im pdf-Format) können diese hier hochgeladen werden. Diese Informationen werden dann in Kombination mit dem Modul exabis competencies im Titel des jeweiligen Bildungsstandards bereitgestellt.">
+						    Info Datei <i class="fas fa-question-circle ml-2 popover-help"></i></span>
+						  </div>
+						  <div class="custom-file">
+						    <input type="file" class="custom-file-input" id="inputGroupFile01"
+						      aria-describedby="inputGroupFileAddon01" lang="de">
+						    <label class="custom-file-label" for="inputGroupFile01">Datei auswählen</label>
+						  </div>
+					   </div>
+					  
+					  <div class="input-group form-group mt-4">
+						  <div class="input-group-prepend">
+						    <span class="input-group-text" id="inputGroupFileAddon01">
+						    Miniaturansicht  </span>
+						  </div>
+						  <div class="custom-file">
+						    <input type="file" class="custom-file-input" id="inputGroupFile01"
+						      aria-describedby="inputGroupFileAddon01" lang="de">
+						    <label class="custom-file-label" for="inputGroupFile01">Datei auswählen</label>
+						  </div>
+					  </div>
+					
+					   <div class="modal-divider">
+				 		</div>
+	
+					 	<div class="form-group small mb-0">
+						 	<p>Freigegeben zur Bearbeitung für</p>
+							<div class="grid-info-editors grid-chips-small">
+								<div class="chip chip-comet chip-editor">
+								  <img src="https://lab1.gtn-solutions.com/fileadmin/Komet2020/Resources/Public/Images/Andreas-Riepl.jpg" alt="Contact Person"> Andreas Riepl
+								</div>
+								<div class="chip chip-comet chip-editor">
+								  <img src="https://lab1.gtn-solutions.com/fileadmin/Komet2020/Resources/Public/Images/didi.jpg" alt="Contact Person"> Dietmar Angerer
+								</div>
+								<div class="chip chip-comet chip-editor">
+								  <img src="https://lab1.gtn-solutions.com/fileadmin/Komet2020/Resources/Public/Images/user_blank_small.jpg" alt="Contact Person"> John Doe
+								</div>
+								<div class="chip chip-comet chip-editor chip-add-editor" data-toggle="modal" data-target="#modal-add-editor">
+								  <i class="fas fa-plus"></i>
+								</div>
+							</div>
+					 	</div>
+					 	<div class="form-group small">
+							<p>
+							 erstellt am: 29. 04. 2020</br />
+							 zuletzt bearbeitet: 29. 04. 2020
+							 </p>
+							 <p>
+							 Urheber: Bundeszentrum eEducation Austria, Komet System, Huemerstr. 3-5, 4020 Linz, Austria, 
+							 <a href="mailto:">anna.portenkirchner@eeducation.at</a>
+							 </p>
+					 	</div>
+					 	<div class="form-group label-btn-help">
+					 		<button type="button" class="btn btn-primary btn-sm ml-0" data-toggle="modal" data-target="#modal-ChangeOwner" data-dismiss="modal">Eigentum des Rasters übertragen</button>
+					 		<i class="fas fa-question-circle mr-2 popover-help" data-toggle="popover" title="Wählen sie den neuen Eigentümer des Rasters" data-content="Übertragen sie die Rechte auf diesen Raster einem anderen Benutzer. Dieser Benutzer wird dann Besitzer dieses Rasters mit allen Rechten, sie selber verlieren die Rechte auf diesen Raster."></i>
+					 	</div>
+				 	</div>
+				 	
+	        	</form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-dark-green">Speichern</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- / Partial Modal Grid Settings -->
+</f:section>
+
+
+
+
+<f:section name="GridSettingsOnlyInfo">
+	<!-- Partial Modal Grid Settings -->	
+	<div class="modal fade right" id="modal-grid-settings-info" tabindex="-1" role="dialog" aria-labelledby="modal-grid-settings-info"
+	  aria-hidden="true">
+	  
+	  <div class="modal-dialog modal-full-height modal-right modal-dialog-grid-settings-info" role="document">
+	
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h4 class="modal-title w-100" id="myModalLabel">DigCompEdu - Facilitating Learners' Digital Competence</h4>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        	<form class="">
+		        	
+				  <div class="form-group">
+					    <strong>Fach: </strong> Mathematik 
+				  </div>
+				  
+				  <div class="form-group">
+					    <strong>Angebote: </strong> Sekundarstufe 1
+				  </div>
+				  
+				  <div class="form-group">
+					    <strong>Bildungsstandards: </strong> University
+				  </div>
+				  
+				  <div class="form-group">
+					    <strong>Bildungsplanbezug: </strong> Nationaler Standard
+				  </div>
+				  
+				  <div class="form-group">
+				    	<strong>Klasse: </strong> 5-6
+				  </div>
+				  
+				  <div class="form-group">
+					    <strong>Beschreibung:</strong> <br />
+					    	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu. 
+				  </div>
+				  
+				  <div class="form-group">
+					    <strong>überfachlicher Raster:</strong> Ja
+				  </div>
+				  
+				  <div class="form-group">
+				    	<strong>Versionsnummer:</strong>4.05
+					    	
+				    </label>
+				  </div>
+				  
+				  <div class="modal-divider">
+				  </div>
+				  
+				  <div class="bg-grey bg-grey-mb-1">  
+					  <div class="form-group">
+						    <strong>Sprache:</strong> Deutsch
+					  </div>
+					  
+					   <div class="form-group d-flex justify-content-between align-items-center">
+						    <div><strong>Info Datei:</strong> </div>
+						    <button type="button" class="btn btn-primary btn-sm ml-0">Dateiname.pdf</button>
+						  </label>
+					   </div>
+					
+					   <div class="modal-divider">
+				 		</div>
+	
+					 	<div class="form-group small mb-0">
+						 	<p>Bearbeiter</p>
+							<div class="grid-info-editors grid-chips-small">
+								<div class="chip chip-comet chip-editor">
+								  <img src="https://lab1.gtn-solutions.com/fileadmin/Komet2020/Resources/Public/Images/Andreas-Riepl.jpg" alt="Contact Person"> Andreas Riepl
+								</div>
+								<div class="chip chip-comet chip-editor">
+								  <img src="https://lab1.gtn-solutions.com/fileadmin/Komet2020/Resources/Public/Images/didi.jpg" alt="Contact Person"> Dietmar Angerer
+								</div>
+								<div class="chip chip-comet chip-editor">
+								  <img src="https://lab1.gtn-solutions.com/fileadmin/Komet2020/Resources/Public/Images/user_blank_small.jpg" alt="Contact Person"> John Doe
+								</div>
+							</div>
+					 	</div>
+					 	<div class="form-group small">
+							<p>
+							 erstellt am: 29. 04. 2020</br />
+							 zuletzt bearbeitet: 29. 04. 2020
+							 </p>
+							 <p>
+							 Urheber: Bundeszentrum eEducation Austria, Komet System, Huemerstr. 3-5, 4020 Linz, Austria, 
+							 <a href="mailto:">anna.portenkirchner@eeducation.at</a>
+							 </p>
+					 	</div>
+				 	</div>
+				 	
+	        	</form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-primary">Schliessen</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- / Partial Modal Grid Settings -->
+</f:section>
+
+
+
+<f:section name="ModalDescriptor">
+	<!-- Partial Modal Add Descriptor -->	
+	<div class="modal fade top" id="modal-descriptor" tabindex="-1" role="dialog" aria-labelledby="modal-descriptor"
+	  aria-hidden="true">
+	  
+	  <div class="modal-dialog modal-lg  modal-dialog-descriptor" role="document">
+	
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h4 class="modal-title w-100" id="myModalLabel">Kompetenz</h4>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+			  <form class="">
+				  
+				  <div class="form-group">
+				    <label for="exampleInputEmail1" class="label-help">
+					    <span>Name <span class="required">*</span></span> 
+					    	<i class="fas fa-question-circle mr-2" data-toggle="popover" title="Name der Kompetenz" data-content="Geben Sie hier die Bezeichnung der Kompetenz (Bildungsstandard) ein." data-placement="left"></i>
+					    </label>
+				    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+				  </div>
+				  
+				  <div class="modal-divider">
+				  </div>
+				  
+
+	
+				  <div class="form-group">
+					<label for="exampleInputEmail1" class="label-help">
+						<span>Niveau</span> 
+						<i class="fas fa-question-circle mr-2 popover-help" data-toggle="popover" title="Niveau" data-content="Der Schwierigkeitsgrad einer Kompetenz kann zusätzlich durch Niveaus gekennzeichnet werden. Niveaustufen können bei den Einstellungen im Benutzermenü angelegt werden." data-placement="left"></i>
+					</label>
+					<select class="custom-select" multiple>
+					      <option>Bitte auswählen</option>
+					      <option>G</option>
+					      <option>M</option>
+					      <option>E</option>
+					</select>
+				  </div>
+					  
+				  <div class="form-group">
+					<label for="exampleInputEmail1" class="label-help">
+						<span>Kompetenztiefe</span> 
+						<i class="fas fa-question-circle mr-2 popover-help" data-toggle="popover" title="Kompetenztiefe" data-content="Hier kann definiert werden, ob es sich bei der Kompetenz um eine Grundkompetenz (=unbedingt erforderlich um einen Bildungsstandard positiv zu erreichen) oder eine Erweiterte Kompetenz (=Erweiterungs- bzw. Spezialisierungsbereich) handelt." data-placement="left"></i>
+					</label>
+					<select class="form-control" id="exampleFormControlSelect1">
+					    <option>Bitte auswählen</option>
+					    <option>Grundkompetenz</option>
+					    <option>Erweiterte Kompetenz</option>
+					</select>
+				  </div>
+
+				  
+				  <div class="modal-divider">
+				  </div>
+				  
+				  <div class="form-group">
+					  <!-- legend class="legend-sm">Import von Teilkompetenzen aus CSV-Datei</legend -->
+					  <legend class="legend-sm legend-collapse collapsed" data-toggle="collapse" href="#modalDescriptorImport" role="button" aria-expanded="false" aria-controls="modalDescriptorImport">Import von Teilkompetenzen aus CSV-Datei<i class="fas fa-angle-down rotate-icon"></i></legend>
+				  </div>
+				  
+				  <div class="input-group form-group collapse" id="modalDescriptorImport">
+					  <div class="input-group-prepend">
+					    <span class="input-group-text" id="inputGroupFileAddon01" data-toggle="popover" title="CSV" data-content="Hochladen einer CSV-Datei mit Teilkompetenzen<br ></a>In der CSV-Datei steht pro Zeile eine Teilkompetenz, z.B.:<br />Teilkompetenz 1<br />Teilkompetenz 2<br />Teilkompetenz 3<br />Teilkompetenz 4<br /></br>">
+					    CSV:  <i class="fas fa-question-circle ml-2 popover-help"></i></span>
+					  </div>
+					  <div class="custom-file">
+					    <input type="file" class="custom-file-input" id="inputGroupFile01"
+					      aria-describedby="inputGroupFileAddon01">
+					    <label class="custom-file-label" for="inputGroupFile01">Datei auswählen</label>
+					  </div>
+				   </div>
+				  
+			  </form>
+	      </div>
+	      <div class="modal-footer justify-content-centerf d-flex modal-footer-info">
+		      <p class="flex-grow-1 small">Kurzanleitung: Hier tragen Sie die Kompetenzbeschreibungen ein und ordnen ihnen optional ein oder mehrere Niveaus zu.</p>
+	         <button type="button" class="btn btn-dark-green">Speichern</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- / Partial Modal Add Descriptor -->
+</f:section>
+
+
+
+<f:section name="ModalSubdescriptor">
+	<!-- Partial Modal Add Sub-Descriptor -->	
+	<div class="modal fade top" id="modal-subdescriptor" tabindex="-1" role="dialog" aria-labelledby="modal-subdescriptor"
+	  aria-hidden="true">
+	  
+	  <div class="modal-dialog modal-lg  modal-dialog-subdescriptor" role="document">
+	
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h4 class="modal-title w-100" id="myModalLabel">Teilkompetenz</h4>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+			  <form class="">
+				  
+				  <div class="form-group">
+				    <label for="exampleInputEmail1" class="label-help">
+					    <span>Name <span class="required">*</span></span> 
+					    	<i class="fas fa-question-circle mr-2" data-toggle="popover" title="Name der Teilkompetenz" data-content="Geben Sie hier die Bezeichnung der Kompetenz (Bildungsstandard) ein." data-placement="left"></i>
+					    </label>
+				    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+				  </div>
+				  
+				  <div class="modal-divider">
+				  </div>
+				  
+				  <div class="form-group">
+					<label for="exampleInputEmail1" class="label-help">
+						<span>Niveau</span> 
+						<i class="fas fa-question-circle mr-2 popover-help" data-toggle="popover" title="Niveau" data-content="Der Schwierigkeitsgrad einer Kompetenz kann zusätzlich durch Niveaus gekennzeichnet werden. Niveaustufen können bei den Einstellungen im Benutzermenü angelegt werden." data-placement="left"></i>
+					</label>
+					<select class="custom-select" multiple>
+					      <option>Bitte auswählen</option>
+					      <option>G</option>
+					      <option>M</option>
+					      <option>E</option>
+					</select>
+				  </div>
+					  
+				  <div class="form-group">
+					<label for="exampleInputEmail1" class="label-help">
+						<span>Kompetenztiefe</span> 
+						<i class="fas fa-question-circle mr-2 popover-help" data-toggle="popover" title="Kompetenztiefe" data-content="Hier kann definiert werden, ob es sich bei der Kompetenz um eine Grundkompetenz (=unbedingt erforderlich um einen Bildungsstandard positiv zu erreichen) oder eine Erweiterte Kompetenz (=Erweiterungs- bzw. Spezialisierungsbereich) handelt." data-placement="left"></i>
+					</label>
+					<select class="form-control" id="exampleFormControlSelect1">
+					    <option>Bitte auswählen</option>
+					    <option>Grundkompetenz</option>
+					    <option>Erweiterte Kompetenz</option>
+					</select>
+				  </div>
+
+
+				  
+			  </form>
+	      </div>
+	      <div class="modal-footer justify-content-centerf d-flex modal-footer-info">
+		      <p class="flex-grow-1 small">Kurzanleitung: Hier tragen Sie die Kompetenzbeschreibungen ein und ordnen ihnen optional ein oder mehrere Niveaus zu.</p>
+	         <button type="button" class="btn btn-dark-green">Speichern</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- / Partial Modal Add Sub-Descriptors -->
+</f:section>
+
+
+
+<f:section name="ModalMaterial">
+	<!-- Partial Modal Add Material -->	
+	<div class="modal fade top modal-comet-tabs" id="modal-material" tabindex="-1" role="dialog" aria-labelledby="modal-material"
+	  aria-hidden="true">
+
+	  <div class="modal-dialog modal-lg  modal-dialog-material cascading-modal" role="document">
+	
+	    <div class="modal-content">
+		    <form class="">
+			    <div class="modal-c-tabs">
+				    
+				    <!-- Nav tabs -->
+			        <ul class="nav nav-tabs md-tabs tabs-2 blue-grey darken-3" role="tablist">
+			          <li class="nav-item">
+			            <a class="nav-link active" data-toggle="tab" href="#panel_material" role="tab">
+			              Lernmaterial</a>
+			          </li>
+			          <li class="nav-item">
+			            <a class="nav-link" data-toggle="tab" href="#panel_task" role="tab">
+			              Lösung</a>
+			          </li>
+			          <li class="nav-item">
+			            <a class="nav-link" data-toggle="tab" href="#panel_description" role="tab">
+			              Kompetenzzuordnung</a>
+			          </li>
+			          <li class="nav-item">
+			            <a class="nav-link" data-toggle="tab" href="#panel_settings" role="tab">
+			              Erweitert</a>
+			          </li>
+			        </ul>
+			       
+					<div class="tab-content">
+						
+						
+					      <!-- div class="modal-header">
+					        <h4 class="modal-title w-100" id="myModalLabel">Lernmaterial</h4>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div -->
+					      
+					      <div class="tab-pane fade in show active" id="panel_material" role="tabpanel">
+					      	 
+						      <div class="modal-body">
+								 
+									  
+									  <div class="form-group mb-4">
+									    <label for="exampleInputEmail1" class="label-help">
+										    <span>Name <span class="required">*</span></span> 
+										    </label>
+									    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+									  </div>
+								
+									  
+									  
+									  <div class="input-group form-group">
+										  <div class="input-group-prepend">
+										    <span class="input-group-text" id="inputGroupFileAddon01" data-toggle="popover" title="Aufgabe" data-content="Hier kann die jeweilige Aufgabe/Ressource zu den Kompetenzen/Teilkompetenzen hochgeladen werden.">
+										    Aufgabe  <i class="fas fa-question-circle ml-2 popover-help"></i></span>
+										  </div>
+										  <div class="custom-file">
+										    <input type="file" class="custom-file-input" id="inputGroupFile01"
+										      aria-describedby="inputGroupFileAddon01">
+										    <label class="custom-file-label" for="inputGroupFile01">Datei auswählen</label>
+										  </div>
+									  </div>
+									  
+									  <div class="custom-control custom-checkbox my-3 popover-help">
+										    <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
+										    <label class="custom-control-label label-help" for="defaultUnchecked">
+										    	<span>diese Aufgabe ist eine Moodle Aktivität</span>
+										    	<i class="fas fa-question-circle mr-2 popover-help" data-toggle="popover" title="diese Aufgabe ist eine Moodle Aktivität" data-content="Die hochgeladene Datei ist eine in Moodle erstellte Aktivität. Beim Import in Moodle wird diese Datei wieder als Moodle Aktivität angelegt." data-placement="left"></i>
+										    </label>
+									  </div>
+									  
+									  <div class="form-group">
+									    <label for="exampleInputEmail1" class="label-help">
+										    <span>oder externern Link zur Aufgabe</span> 
+										    	<i class="fas fa-question-circle mr-2" data-toggle="popover" title="oder externern Link zur Aufgabe" data-content="Es ist nicht erforderlich Aufgabenstellungen in KOMET hochzuladen. Vielmehr kann es verwendet werden um Bildungsstandards mit Ressourcen zu verlinken, diese können an beliebiger Stelle im Web (Cloud-Services) liegen." data-placement="left"></i>
+										    </label>
+									    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+									  </div>
+									  
+									  
+									  <div class="form-group">
+									    <label for="exampleInputEmail1" class="label-help">
+										    <span>Beschreibung / Schulbuchverweis</span> 
+										    	<i class="fas fa-question-circle mr-2 popover-help" data-toggle="popover" title="Beschreibung / Schulbuchverweis" data-content="Hier können Zusatzbeschreibungen bzw. Referenzen zu anderen Ressourcen eingetragen werden."></i></label>
+									    </label>
+									    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+									  </div>
+									  
+									  
+									  <div class="modal-divider">
+									  </div>
+									  
+									  
+
+									  
+									  
+									  <div class="form-group">
+									    <label for="exampleInputEmail1" class="label-help">
+										    <span>Niveauzuordnung</span> 
+										    	<i class="fas fa-question-circle mr-2" data-toggle="popover" title="Niveauzuordnung" data-content="Die Taxonomie gibt den Schwierigkeitsgrad der Aufgabenstellung an" data-placement="left"></i>
+										    </label>
+										    <select class="custom-select" multiple>
+										      <option>Bitte auswählen</option>
+										      <option>J</option>
+										      <option>G</option>
+										      <option>M</option>
+										      <option>E</option>
+											</select>
+									  </div>
+								  
+						      </div>
+	
+					      
+					      </div><!-- / panel_material -->
+					      
+					      <div class="tab-pane fade" id="panel_task" role="tabpanel">
+						       <div class="modal-body">
+							      
+
+									  
+									  
+									  <div class="form-group">
+									    <label for="exampleInputEmail1" class="label-help">
+										    <span>Lösung</span> 
+										    	<i class="fas fa-question-circle mr-2" data-toggle="popover" title="Lösung" data-content="Hier können Informationen zu einer Musterlösung bereitgestellt werden." data-placement="left"></i>
+										    </label>
+									    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+									  </div>
+									  
+									  <div class="form-group">
+									    <label for="exampleInputEmail1" class="label-help">
+										    <span>oder externer Link zur Lösung</span> 
+										    	<i class="fas fa-question-circle mr-2" data-toggle="popover" title="oder externer Link zur Lösung" data-content="Es ist nicht erforderlich Aufgabenstellungen in KOMET hochzuladen. Vielmehr kann es verwendet werden um Bildungsstandards mit Ressourcen zu verlinken, diese können an beliebiger Stelle im Web (Cloud-Services) liegen." data-placement="left"></i>
+										    </label>
+									    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+									  </div>
+									  
+									  
+
+							      
+						       </div>
+					      </div><!-- / panel_task -->
+					      
+					      <div class="tab-pane fade" id="panel_description" role="tabpanel">
+						       <div class="modal-body">
+
+						       </div>
+					      </div><!-- / panel_description -->
+					      
+					      <div class="tab-pane fade" id="panel_settings" role="tabpanel">
+						       <div class="modal-body">
+
+
+
+									  <div class="form-group">
+									    <label for="exampleInputEmail1" class="label-help">
+										    <span>benötigte Zeit</span> 
+										    	<i class="fas fa-question-circle mr-2" data-toggle="popover" title="benötigte Zeit" data-content="Bitte verwenden sie das Format z.B. 1h30 (90 Minuten) oder 00h15 (15 Minuten). So kann die Zeit zu Berechnungen verwendet werden." data-placement="left"></i>
+										    </label>
+									    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+									  </div>
+									  
+									  <div class="form-group">
+									    <label for="exampleInputEmail1" class="label-help">
+										    <span>didaktische Hinweise</span> 
+										    	<i class="fas fa-question-circle mr-2" data-toggle="popover" title="didaktische Hinweise" data-content="Didaktische Hinweise zur Bearbeitung der Aufgabenstellung können hier erfasst werden" data-placement="left"></i>
+										    </label>
+									    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+									  </div>
+									  
+									  <div class="form-group">
+									    <label for="exampleInputEmail1" class="label-help">
+										    <span>externe URL</span> 
+										    	<i class="fas fa-question-circle mr-2" data-toggle="popover" title="externe URL" data-content="Hier können ergänzende Materialien bereitgestellt werden" data-placement="left"></i>
+										    </label>
+									    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+									  </div>
+									  
+									  <div class="form-group">
+										  Da sind zwei leere Felder im alten Komet: Sprache und Beispiel teilen mit
+									  </div>
+									  
+									  <div class="custom-control custom-checkbox my-3 popover-help">
+										    <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
+										    <label class="custom-control-label label-help" for="defaultUnchecked">
+										    	<span>Nicht für den freien Export</span>
+										    	
+										    </label>
+									  </div>
+									  
+									  <div class="form-group">
+									    <label for="exampleInputEmail1" class="label-help">
+										    <span>weitere Quellenangaben</span> 
+										    	
+										   </label>
+									    </label>
+									    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+									  </div>
+									  
+									  <div class="form-group mb-4">
+									    <label for="exampleInputEmail1" class="label-help">
+										    <span>Kürzel</span> 
+										    	<i class="fas fa-question-circle mr-2" data-toggle="popover" title="Kürzel, z.B. M" data-content="Hier kann eine Kurzbezeichnung erfasst werden." data-placement="left"></i>
+										    </label>
+									    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="zb. M">
+									  </div>
+
+
+									  <div class="input-group form-group">
+										  <div class="input-group-prepend">
+										    <span class="input-group-text" id="inputGroupFileAddon01" data-toggle="popover" title="Gesamtbeispiel" data-content="Eine Musterlösung (z.B. Gesamtbeispiel im zip-Format) kann hier hochgeladen werden">
+										    Gesamtbeispiel  <i class="fas fa-question-circle ml-2 popover-help"></i></span>
+										  </div>
+										  <div class="custom-file">
+										    <input type="file" class="custom-file-input" id="inputGroupFile01"
+										      aria-describedby="inputGroupFileAddon01">
+										    <label class="custom-file-label" for="inputGroupFile01">Datei auswählen</label>
+										  </div>
+									  </div>
+									  
+
+						       </div>
+					      </div><!-- / panel_settings -->
+			      
+					</div><!-- / tab-content -->
+					
+					<div class="modal-footer justify-content-centerf d-flex modal-footer-info">
+					 	<p class="flex-grow-1 small">Kurzanleitung: Erfassen Sie hier die Beispiele und ordnen Sie diese verschiedenen Teilkompetenzen und Kompetenzen zu. Hier können Sie auch die Taxonomie-Ebene festlegen. Dies hat Auswirkung bei der Beispielauswahl im Block.</p>
+					 	<button type="button" class="btn btn-primary" data-dismiss="modal">Abbrechen</button>
+					   <button type="button" class="btn btn-dark-green">Speichern</button>
+					</div>
+		      	</form>
+		    </div><!-- / modal-c-tabs -->
+	      
+	    </div><!-- / modal-content -->
+	    
+	  </div>
+	</div>
+	<!-- / Partial Modal Add Material -->
+</f:section>
+
+
+
+<f:section name="ModalTaxonomie">
+	  <!-- Partial Modal release for editing -->	
+	<div class="modal fade top" id="modal-taxonomie" tabindex="-1" role="dialog" aria-labelledby="modal-taxonomie"
+	  aria-hidden="true">
+	
+	  
+	  <div class="modal-dialog modal-lg  modal-dialog-taxonomie" role="document">
+	
+	
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h4 class="modal-title w-100" id="myModalLabel">Lernfortschritt</h4>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+
+
+				  <div class="form-group">
+				    <label for="exampleInputEmail1" class="label-help">
+					    <span>Spaltenbezeichnung <span class="required">*</span></span> 
+					    	<i class="fas fa-question-circle mr-2" data-toggle="popover" title="Name der Kompetenz" data-content="Geben Sie hier die Bezeichnung der Kompetenz (Bildungsstandard) ein." data-placement="left"></i>
+					    </label>
+				    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+				  </div>
+				  
+				  
+				  <div class="form-group">
+				    <label for="cometGridAngebote" class="label-help">
+					    <span>neue Spaltenbezeichnung</span> 
+					    	<i class="fas fa-question-circle mr-2 popover-help" data-toggle="popover" title="Angebote" data-content="Die Ausbildungsbezug geben an, in welcher Bildungsebene die erfassten Bildungsstandards angesiedelt sind. Diese Metadaten sind dann erforderlich, wenn man Raster veröffentlichen möchte bzw. mit deren Arbeit in MOODLE."></i>
+					    </label>
+				    <select class="form-control" id="exampleFormControlSelect1">
+					    <option>Bitte auswählen</option>
+				      <option>LFS 01</option>
+				      <option>LFS 02</option>
+				      <option>LFS 03</option>
+				    </select>
+				  </div>
+
+
+	      </div>
+	      <div class="modal-footer justify-content-centerf d-flex modal-footer-info">
+		      <p class="flex-grow-1 small"></p>
+	         <button type="button" class="btn btn-dark-green">Speichern</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- / Partial Modal release for editing -->
+</f:section>
+
+
+
+<f:section name="ModalTopic">
+	  <!-- Partial Modal release for editing -->	
+	<div class="modal fade top" id="modal-topic" tabindex="-1" role="dialog" aria-labelledby="modal-topic"
+	  aria-hidden="true">
+	
+	  
+	  <div class="modal-dialog modal-lg  modal-dialog-topic" role="document">
+	
+	
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h4 class="modal-title w-100" id="myModalLabel">Kompetenzbereich</h4>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+
+
+				  <div class="form-group">
+				    <label for="exampleInputEmail1" class="label-help">
+					    <span>Name <span class="required">*</span></span>
+					    </label>
+				    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+				  </div>
+				  
+				  <div class="form-group">
+				    <label for="exampleInputEmail1" class="label-help">
+					    <span>Lernwegliste</span> 
+					    	<i class="fas fa-question-circle mr-2" data-toggle="popover" title="Lernwegliste" data-content="Text fehlt" data-placement="left"></i>
+					    </label>
+				    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+				  </div>
+				  
+				  <div class="form-group">
+				    <label for="exampleInputEmail1" class="label-help">
+					    <span>Beschreibung</span> 
+					    	<i class="fas fa-question-circle mr-2 popover-help" data-toggle="popover" title="Beschreibung" data-content="Beschreibung des Themas" data-placement="left"></i></label>
+				    </label>
+				    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+				  </div>
+				  
+				  <div class="custom-control custom-checkbox my-3 popover-help">
+					    <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
+					    <label class="custom-control-label label-help" for="defaultUnchecked">
+					    	<span>In Zeile zusammenfassen</span>
+					    	<i class="fas fa-question-circle mr-2 popover-help" data-toggle="popover" title="In Zeile zusammenfassen" data-content="Hier können zur Darstellung eines Kompetenzrasters Felder horizontal kombiniert werden" data-placement="left"></i>
+					    </label>
+				  </div>
+				  
+				  <div class="modal-divider">
+				  </div>
+				  
+				  <div class="form-group">
+					  <!-- legend class="legend-sm">Import von Teilkompetenzen aus CSV-Datei</legend -->
+					  <legend class="legend-sm legend-collapse collapsed" data-toggle="collapse" href="#modalTopicImport" role="button" aria-expanded="false" aria-controls="modalTopicImport">Import von Kompetenzen aus CSV-Datei<i class="fas fa-angle-down rotate-icon"></i></legend>
+				  </div>
+				  
+				  <div class="input-group form-group collapse" id="modalTopicImport">
+					  <div class="input-group-prepend">
+					    <span class="input-group-text" id="inputGroupFileAddon01" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">
+					    CSV:  <i class="fas fa-question-circle ml-2 popover-help"></i></span>
+					  </div>
+					  <div class="custom-file">
+					    <input type="file" class="custom-file-input" id="inputGroupFile01"
+					      aria-describedby="inputGroupFileAddon01">
+					    <label class="custom-file-label" for="inputGroupFile01">Datei auswählen</label>
+					  </div>
+				   </div>
+
+	      </div>
+	      <div class="modal-footer justify-content-centerf d-flex modal-footer-info">
+		      <p class="flex-grow-1 small">Kurzanleitung: Legen Sie hier die Hauptkategorien der Kompetenzraster (z. B. Kompetenzbereiche) fest.</p>
+	         <button type="button" class="btn btn-dark-green">Speichern</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- / Partial Modal release for editing -->
+</f:section>
+
+
+
+<f:section name="AddEditors">
+	  <!-- Partial Modal release for editing -->	
+	<div class="modal fade top" id="modal-editors" tabindex="-1" role="dialog" aria-labelledby="modal-editors"
+	  aria-hidden="true">
+	
+	  
+	  <div class="modal-dialog modal-lg  modal-comet-release-editing" role="document">
+	
+	
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h4 class="modal-title w-100" id="myModalLabel">Raster zur Bearbeitung freigeben</h4>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+		  			<p><b class="strong400">Freigegeben zur Bearbeitung für</b></p>
+					<div class="grid-info-editors">
+						<div class="chip chip-comet chip-editor">
+						  <img src="https://lab1.gtn-solutions.com/fileadmin/Komet2020/Resources/Public/Images/Andreas-Riepl.jpg" alt="Contact Person"> Andreas Riepl <i title="Löschen" class="close fas fa-times"></i>
+						</div>
+						<div class="chip chip-comet chip-editor">
+						  <img src="https://lab1.gtn-solutions.com/fileadmin/Komet2020/Resources/Public/Images/didi.jpg" alt="Contact Person"> Dietmar Angerer <i title="Löschen" class="close fas fa-times"></i>
+						</div>
+						<div class="chip chip-comet chip-editor">
+						  <img src="https://lab1.gtn-solutions.com/fileadmin/Komet2020/Resources/Public/Images/user_blank_small.jpg" alt="Contact Person"> John Doe <i title="Löschen" class="close fas fa-times"></i>
+						</div>
+					</div>
+		
+				  <div class="form-group">
+				    <label for="cometGridAngebote" class="label-help d-nonef">
+					    <span>Weiteren Bearbeiter hinzufügen</span> 
+					</label>
+				    <select class="form-control" id="exampleFormControlSelect1">
+					    <option>Bitte Bearbeiter auswählen</option>
+				      <option>Sekundarstufe 1</option>
+				      <option>Max Mustermann</option>
+				      <option>Susi Sonnenschein</option>
+				      <option>Rudi Rabe</option>
+				      <option>Theodor Teekanne</option>
+				    </select>
+				  </div>
+				  <div class="form-group mb-0">
+				  	<button type="button" class="btn btn-dark-green btn-sm">hinzufügen</button>
+				  </div>
+				  
+	      </div>
+	      <div class="modal-footer justify-content-centerf d-flex modal-footer-info">
+		      <p class="flex-grow-1 small">Kurzanleitung: Hier fehlt noch eine Kurzanleitung.</p>
+	         <button type="button" class="btn btn-primary">Schliessen</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- / Partial Modal release for editing -->
+</f:section>
+
+
+
+<f:section name="ChangeOwner">
+	<!-- Partial Modal ChangeOwner -->	
+	<div class="modal fade top" id="modal-ChangeOwner" tabindex="-1" role="dialog" aria-labelledby="modal-ChangeOwner"
+	  aria-hidden="true">
+	
+	  
+	  <div class="modal-dialog modal-lg modal-change-owner" role="document">
+	
+	
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h4 class="modal-title w-100" id="myModalLabel">Eigentum des Rasters übertragen</h4>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+		  	 
+		  	 
+				  <div class="form-group">
+				    <label for="cometGridAngebote" class="label-help">
+					    <span>Wählen sie den neuen Eigentümer des Rasters <span class="required">*</span></span> 
+					    	<i class="fas fa-question-circle mr-2 popover-help" data-toggle="popover" title="Wählen sie den neuen Eigentümer des Rasters" data-content="Übertragen sie die Rechte auf diesen Raster einem anderen Benutzer. Dieser Benutzer wird dann Besitzer dieses Rasters mit allen Rechten, sie selber verlieren die Rechte auf diesen Raster."></i>
+					    </label>
+				    <select class="form-control" id="exampleFormControlSelect1" required>
+					    <option>Nichts ausgewählen</option>
+				      <option>Sekundarstufe 1</option>
+				      <option>Andreas Riepl</option>
+				      <option>Dietmar Angerer</option>
+				      <option>John Doe</option>
+				      <option>Dominik Brandtner</option>
+				    </select>
+				  </div>
+		  	 
+		  	 
+	      </div>
+	      <div class="modal-footer justify-content-centerf d-flex modal-footer-info">
+		      <p class="flex-grow-2 small">Kurzanleitung: Übertragen sie die Rechte auf diesen Raster einem anderen Benutzer. Dieser Benutzer wird dann Besitzer dieses Rasters mit allen Rechten, sie selber verlieren die Rechte auf diesen Raster.</p>
+	         <button type="button" class="btn btn-dark-green" data-toggle="modal" data-target="#modal-ChangeOwnerConfirm" data-dismiss="modal">Rechte übertragen</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- / Partial Modal ChangeOwner -->	
+</f:section>
+
+
+
+<f:section name="ChangeOwnerConfirm">
+	<!-- Partial Modal ChangeOwnerConfirm -->	
+	<div class="modal fade top" id="modal-ChangeOwnerConfirm" tabindex="-1" role="dialog" aria-labelledby="modal-ChangeOwnerConfirm"
+	  aria-hidden="true">
+	
+	  
+	  <div class="modal-dialog modal-change-owner-confirm modal-dialog-text-big" role="document">
+	
+	
+	    <div class="modal-content">
+		    
+	      <div class="modal-header">
+	        <h4 class="modal-title w-100" id="myModalLabel">Eigentum des Rasters übertragen</h4>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      
+	      <div class="modal-body">
+			      <p class="pt-3 pr-3">Wollen Sie wirklich den Eigentümer des Rasters übertragen?</p>
+		  
+	      </div>
+	      <div class="modal-footer justify-content-end d-flex">
+			      <button type="button" class="btn btn-primary" data-dismiss="modal">Abbrechen</button>
+			      <button type="button" class="btn btn-dark-green">Bestätigen</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- / Partial Modal ChangeOwnerConfirm -->
+</f:section>
+
+
+
+<f:section name="Delete">
+	<!-- Partial Modal Delete -->	
+	<div class="modal fade top" id="modal-delete" tabindex="-1" role="dialog" aria-labelledby="modal-delete"
+	  aria-hidden="true">
+	
+	  
+	  <div class="modal-dialog modal-dialog-delete modal-dialog-text-big" role="document">
+	
+	
+	    <div class="modal-content">
+		    
+	      <div class="modal-header">
+	        <h4 class="modal-title w-100" id="myModalLabel">Löschen</h4>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      
+	      <div class="modal-body">
+			      <p class="pt-3 pr-3">Es werden alle abhängigen Teilkompetenzen und Materialien auch gelöscht. Wollen Sie wirklich löschen?</p>
+		  
+	      </div>
+	      <div class="modal-footer justify-content-end d-flex">
+			      <button type="button" class="btn btn-primary" data-dismiss="modal">Abbrechen</button>
+			      <button type="button" class="btn btn-dark-green">Löschen</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- / Partial Modal Delete -->
+</f:section>
+
+
+<f:section name="DeleteModalTop">
+	<!-- Partial Modal Delete -->	
+	<div class="modal fade top" id="modal-delete" tabindex="-1" role="dialog" aria-labelledby="modal-delete"
+	  aria-hidden="true">
+	
+	  
+	  <div class="modal-dialog modal-frame modal-top modal-notify modal-dialog-delete modal-dialog-text-big" role="document">
+	
+	
+	    <div class="modal-content">
+	  
+	      <div class="modal-body">
+		      <div class="row d-flex justify-content-center align-items-center">
+			      <p class="pt-3 pr-3">Es werden alle abhängigen Teilkompetenzen und Materialien auch gelöscht. Wollen Sie wirklich löschen?</p>
+			      <button type="button" class="btn btn-primary" data-dismiss="modal">Abbrechen</button>
+			      <button type="button" class="btn btn-dark-green">Löschen</button>
+		      </div>
+		  
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- / Partial Modal Delete -->
+</f:section>
+
+
+<!-- f:section name="CopyCompetence">
+	
+	<div class="modal fade top" id="modal-copy-competence" tabindex="-1" role="dialog" aria-labelledby="modal-delete"
+	  aria-hidden="true">
+	  <div class="modal-dialog modal-lgf modal-dialog-copy-competence" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h4 class="modal-title w-100" id="myModalLabel">Kompetenz kopieren</h4>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+		  		  <div class="form-group">
+			  			<p>Wollen sie auch alle abhängigen Teilkompetenzen und Materialien kopieren?</p>
+		  		  </div>
+				  <div class="custom-control custom-checkbox my-3 popover-help">
+					    <input type="checkbox" class="custom-control-input" id="defaultUnchecked" checked>
+					    <label class="custom-control-label label-help" for="defaultUnchecked">
+					    	<span>Teilkompetenzen kopieren</span>
+					    </label>
+				  </div>
+				  <div class="custom-control custom-checkbox my-3 popover-help">
+					    <input type="checkbox" class="custom-control-input" id="defaultUnchecked" checked>
+					    <label class="custom-control-label label-help" for="defaultUnchecked">
+					    	<span>Materialien kopieren</span>
+					    </label>
+				  </div>
+	      </div>
+	      <div class="modal-footer justify-content-end d-flex">
+			      <button type="button" class="btn btn-dark-green">Kopieren</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+</f:section -->

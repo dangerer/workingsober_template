@@ -1,0 +1,140 @@
+/* ### Login Page ### */
+
+html,
+body, 
+.view {
+	height: 100vh;
+}
+
+.intro-login {
+	background: url("../Images/loginbg.jpg")no-repeat center center;
+    background-size: auto;
+    background-size: cover;
+}
+
+.card .md-form label {
+	font-weight: 400;
+}
+
+.card-login .frame-type-header {
+	padding: 1rem;
+	margin-top: -3.13rem;
+	margin-bottom: 1.5rem;
+	color: #fff;
+	text-align: center;
+	border-radius: .125rem;
+	-webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+	box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+	background-color: #37474f !important;
+}
+
+.card-login .frame-type-header h3 {
+	font-weight: 300;
+	display: inline-block;
+}
+
+/*.card-login .frame-type-header h3:before {
+	background-image: url("../Images/comet_symbol_white.png");
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 25px 25px;
+	height: 25px;
+	min-width: 25px;
+	width: 25px;
+	display: block;
+	color: transparent;
+}*/
+
+.card-login .frame-type-header h3:before {
+	font-family: 'gtnicomoon' !important;
+	content: "\e907";
+	speak: never;
+	font-weight: normal;
+	text-transform: none;
+	padding-right: .5rem;
+	font-size: 1.75rem;
+}
+
+.card-login p.login-footer-divider {
+	border-top: 1px solid rgba(0,0,0,0.1);
+	padding-top: 1.25rem;
+	margin-top: 1.25rem;
+	margin-bottom: .5rem !important;
+}
+
+.card-login .frame {
+	text-align: center;
+}
+
+.login-page .view .mask {
+	background-color: rgba(58,67,80,0.3);
+	background-color: rgba(38,50,56,0.4);
+	NObackground-color: rgba(0,0,0,0.3);
+	
+	background: -moz-linear-gradient(45deg, rgba(66,133,244, 0.4), rgba(112,157,37, 0.4) 100%);
+    background: -webkit-linear-gradient(45deg, rgba(66,133,244, 0.4), rgba(112,157,37, 0.4) 100%);
+    background: -webkit-gradient(linear, 45deg, from(rgba(66,133,244, 0.4)), to(rgba(54, 198, 0, 0.4)));
+    background: -o-linear-gradient(45deg, rgba(66,133,244, 0.4), rgba(112,157,37, 0.4) 100%);
+    background: linear-gradient(to 45deg, rgba(66,133,244, 0.4), rgba(112,157,37, 0.4) 100%);
+}
+
+.login-page .card .btn {
+	font-size: .86rem;
+}
+
+.col-login {
+	max-width: 450px;
+}
+
+@media (min-width: 576px) {
+
+}
+
+@media (max-width: 576px) {
+
+}
+
+/* Bootstrap Breakpoint MD */
+@media (min-width: 768px) {  
+
+}
+
+@media (max-width: 768px) {  
+
+}
+
+/* Bootstrap Breakpoint min MD max LG */
+@media (min-width: 768px) and (max-width: 991px) {  
+	
+}
+
+/* Bootstrap Breakpoint min MD max XL */
+@media (min-width: 768px) and (max-width: 1199px) {
+	
+}
+
+/* Bootstrap Breakpoint LG */
+@media (min-width: 992px) {
+	.col-login {
+		max-width: 500px;
+	}
+}
+
+@media (max-width: 992px) {
+
+}
+
+/* Bootstrap Breakpoint min MD max XL */
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+
+/* Bootstrap Breakpoint XL */
+@media (min-width: 1200px) {
+
+}
+
+@media print {
+	
+}
+

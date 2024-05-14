@@ -1,0 +1,46 @@
+{namespace exa=Gtn\GtnExabiscompetences\ViewHelpers}
+
+<header>
+    <!-- Sidebar navigation -->
+    <div id="slide-out" class="side-nav fixed side-nav-comet">
+      <ul class="custom-scrollbar">
+        <!-- Logo -->
+        <li>
+          <div class="logo-wrapper waves-light">
+	          <f:format.raw>{comet_logo_text_white}</f:format.raw>
+          </div>
+        </li>
+        <!--/. Logo -->
+        <!-- Side navigation links -->
+        <li>
+
+			<exa:kometMainMenu />
+
+        </li>
+        <!--/. Side navigation links -->
+      </ul>
+      <div class="sidenav-bg mask-strong"></div>
+    </div>
+    <!--/. Sidebar navigation -->
+	
+    <f:render partial="Navbar-Top" arguments="{_all}" />
+    
+</header>
+	
+<main class="maincontent">
+
+  	<f:render section="content" />
+	
+	<footer id="Footer" class="backend-footer">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<f:format.raw>{navigation_footer}</f:format.raw>
+				</div>
+			</div>
+			
+			 
+		</div>
+	</footer>
+
+</main>

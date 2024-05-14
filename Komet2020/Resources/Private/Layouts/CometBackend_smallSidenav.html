@@ -1,0 +1,109 @@
+<header>
+	
+    <!-- Sidebar navigation -->
+    <div id="slide-out" class="side-nav side wide slim fixed side-nav-comet">
+      <ul class="custom-scrollbar">
+        <!-- Logo -->
+        <li>
+          <div class="logo-wrapper waves-light">
+	          <f:format.raw>{comet_dashboard_logo}</f:format.raw>
+          </div>
+        </li>
+        <!--/. Logo -->
+        <!-- Side navigation links -->
+        <li>
+          <ul class="collapsible collapsible-accordion">
+            <li>
+            	<a class="collapsible-header waves-effect active">
+	            	<span class="sv-slim"><i class="fas gtnicon-gtn-dashboard-rounded"></i></span>
+					<span class="sv-normal">Dashboard</span>
+				</a>
+			 </li>
+			 <li>
+			 	<a class="collapsible-header waves-effect">
+				 	<span class="sv-slim"><i class="fas gtnicon gtnicon-gtn-subjects"></i></span>
+				 	<span class="sv-normal">Themen</span>
+              	</a>
+			 </li>
+			 <li>
+			 	<a class="collapsible-header waves-effect">
+				 	<span class="sv-slim"><i class="fas fa-user-md"></i></span>
+				 	<span class="sv-normal">Berufsfelder</span>
+              	</a>
+			 </li>
+			 <li>
+			 	<a class="collapsible-header waves-effect">
+				 	<span class="sv-slim"><i class="fas fa-file-download"></i></span>
+				 	<span class="sv-normal">Export</span>
+              	</a>
+			 </li>
+			 <li>
+			 	<a class="collapsible-header waves-effect">
+				 	<span class="sv-slim"><i class="fas fa-exchange-alt"></i></span>
+				 	<span class="sv-normal">Verwandtschaft</span>
+              	</a>
+			 </li>
+			 <li>
+			 	<a class="collapsible-header waves-effect">
+				 	<span class="sv-slim"><i class="fas fa-file-import"></i></span>
+				 	<span class="sv-normal">Import</span>
+              	</a>
+			 </li>
+			 <li>
+			 	<a class="collapsible-header waves-effect">
+				 	<span class="sv-slim"><i class="fas fa-history"></i></span>
+				 	<span class="sv-normal">Protokoll</span>
+              	</a>
+			 </li>
+			 <li>
+			 	<a class="collapsible-header waves-effect">
+				 	<span class="sv-slim"><i class="fas fa-cog"></i></span>
+				 	<span class="sv-normal">Konfiguration</span>
+              	</a>
+			 </li>
+			 <li>
+			 	<a class="collapsible-header waves-effect">
+				 	<span class="sv-slim"><i class="fas fa-question-circle"></i></span>
+				 	<span class="sv-normal">Hilfe</span>
+              	</a>
+			 </li>
+
+
+          </ul>
+        </li>
+        <!--/. Side navigation links -->
+      </ul>
+      <div class="sidenav-bg mask-strong"></div>
+    </div>
+    <!--/. Sidebar navigation -->
+	
+    <!-- Navbar -->
+    <nav class="navbar navbar-comet-top fixed-top navbar-toggleable-md navbar-expand-lg double-nav">
+      <!-- SideNav slide-out button -->
+      <div class="float-left">
+        <a data-activates="slide-out" class="button-collapse"><i class="fa fa-bars"></i></a>
+      </div>
+      <!-- Breadcrumb-->
+      <div class="dn mr-auto">
+	      <button class="btn-floating btn-default btn-sm btn-comet-round btn-dashboard-collapse <!-- button-collapse-->" data-activates="slide-out"><i class="fas fa-ellipsis-v"></i></button>
+        <!-- p>Komet</p -->
+      </div>
+      <ul class="nav navbar-nav nav-flex-icons ml-auto">
+        <f:format.raw>{navigation_comet_top}</f:format.raw>
+      </ul>
+    </nav>
+    <!-- /.Navbar -->
+</header>
+	
+<main class="maincontent">
+			
+  	<f:render section="content" />
+						
+</main>
+
+	
+<!-- footer id="Footer">
+	<div class="container-fluid">
+		Footer
+	</div>
+</footer -->

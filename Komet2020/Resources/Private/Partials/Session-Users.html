@@ -1,0 +1,53 @@
+
+
+<div id="session-users" class="pt-2 pb-1 px-2 scale-me">
+	<div class="d-flex justify-content-center align-items-end flex-row">
+		<div class="s-user px-2" data-toggle="tooltip" data-placement="bottom" title="Carmen Bär 123fff">
+			<img src="https://working-sober.at/fileadmin/Komet2020/Resources/Public/Images/user_1.png" alt="" class="s-user-pic" >
+		</div>
+		<div class="s-user px-2" data-toggle="tooltip" data-placement="bottom" title="Drac Ulla 888">
+			<img src="https://working-sober.at/fileadmin/Komet2020/Resources/Public/Images/user_2.png" alt="" class="s-user-pic" />
+		</div>
+		<div class="s-user px-2" data-toggle="tooltip" data-placement="bottom" title="Carmen Bär">
+			<img src="https://working-sober.at/fileadmin/Komet2020/Resources/Public/Images/user_1.png" alt="" class="s-user-pic" />
+		</div>
+		<div class="s-user px-2" data-toggle="tooltip" data-placement="bottom" title="Carmen Bär">
+			<img src="https://working-sober.at/fileadmin/Komet2020/Resources/Public/Images/user_3.png" alt="" class="s-user-pic" />
+		</div>
+		<div class="s-user px-2" data-toggle="tooltip" data-placement="bottom" title="Drac Ulla">
+			<img src="https://working-sober.at/fileadmin/Komet2020/Resources/Public/Images/user_2.png" alt="" class="s-user-pic" />
+		</div>
+		<div class="s-user px-2" data-toggle="tooltip" data-placement="bottom" title="Anna Teekanne">
+			<img src="https://working-sober.at/fileadmin/Komet2020/Resources/Public/Images/user_1.png" alt="" class="s-user-pic" />
+		</div>
+		<div class="s-user px-2" data-toggle="tooltip" data-placement="bottom" title="Rudi Rüssel">
+			<img src="https://working-sober.at/fileadmin/Komet2020/Resources/Public/Images/user_3.png" alt="" class="s-user-pic" />
+		</div>
+		<div class="s-user px-2" data-toggle="tooltip" data-placement="bottom" title="Carmen Bärr">
+			<img src="https://working-sober.at/fileadmin/Komet2020/Resources/Public/Images/user_2.png" alt="" class="s-user-pic" />
+		</div>
+		<div class="s-user px-2" data-toggle="tooltip" data-placement="bottom" title="Drac Ulla">
+			<img src="https://working-sober.at/fileadmin/Komet2020/Resources/Public/Images/user_1.png" alt="" class="s-user-pic" />
+		</div>
+	</div>
+</div>
+
+<script>
+	$(function () {
+	   $('[data-toggle="tooltip"]').tooltip()
+	 });
+	 const scaleElement = document.querySelector('.scale-me');
+	 
+	 let timeout; // Verweise auf den Timeout
+	 
+	 scaleElement.addEventListener('mouseenter', () => {
+	   clearTimeout(timeout);
+	   scaleElement.style.transform = 'scale(1.15)'; 
+	 });
+	 
+	 scaleElement.addEventListener('mouseleave', () => {
+	   timeout = setTimeout(() => {
+		 scaleElement.style.transform = 'scale(1)'; 
+	   }, 1000); 
+	 });
+</script>

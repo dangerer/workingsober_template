@@ -1,0 +1,586 @@
+<f:layout name="CometBackend" />
+	
+<f:section name="content">
+<!--TYPO3SEARCH_begin-->
+
+
+
+
+
+	<div class="container-fluid pt-4 pb-4">
+		<div class="row">
+			<div class="col-sm-12 maincol">
+					
+					
+<!-- Start Template Kompetenzraster -->
+
+<div id="gtn-comet" class="gtn-comet-grid editable"> <!--  !!!! class .table-editable only when grid is editable for the user. Also remove classes context-menu-...  !!!! -->
+	
+	<div class="grid-header">
+		<div class="row">
+			<div class="col-sm-8 grid-header-ctn">
+				<form class="grid-title-form">
+					<div class="md-form">
+					  <input type="text" id="form1" class="form-control grid-title" value="DigCompEdu - Facilitating Learners' Digital Competence" placeholder="Neuer Kompetenzraster">
+					  <label for="form1" style="display:none;">Neuer Kompetenzraster</label><!-- if not empty set display none -->
+					</div>
+				</form>
+				
+				  <button class="btn-floating btn-light btn-sm btn-comet-round btn-grid-settings" data-toggle="modal" data-target="#modal-grid-settings"><i class="fas fa-cog"></i></button>
+				  
+				  <button class="btn-floating btn-light btn-sm btn-comet-round btn-grid-settings btn-grid-settings-info" data-toggle="modal" data-target="#modal-grid-settings-info"><i class="fas fa-info"></i></button>
+				  
+				  <button class="btn-floating btn-light btn-sm btn-comet-round" type="button" id="dropdownMenu1" data-toggle="dropdown"
+				    aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></button>
+				  <div class="dropdown-menu dropdown-edit dropdown-menu-right">
+					<!-- a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-grid-settings"><i class="fas fa-cog mr-1"></i> Einstellungen</a>
+				    <div class="dropdown-divider"></div -->
+				    <a class="dropdown-item" href="#">Kompetenzraster kopieren</a>
+				    <a class="dropdown-item" href="#">Kopieren nur mit Materialienbearbeitung</a>
+				    <a class="dropdown-item dropdown-edit-delete" href="#">Löschen</a>
+				    <div class="dropdown-divider"></div>
+				    <a class="dropdown-item" href="#">Liste der Materialien anzeigen</a>
+				    <a class="dropdown-item" href="#">XML-Export</a>
+				    <a class="dropdown-item" href="#">PDF Ansicht</a>
+				    
+				  </div>
+				  
+			</div>
+			<div class="col-sm-4 text-right">	
+				
+				  <button class="btn btn-primary dropdown-toggle btn-comet btn-dropdown-sharing" type="button" id="dropdownMenu1" data-toggle="dropdown"
+				    aria-haspopup="true" aria-expanded="false"><i class="fas fa-lock mr-1"></i> Freigeben</button>
+				  <div class="dropdown-menu dropdown-sharing dropdown-menu-right">
+				    <a class="dropdown-item comet-disabled-NOT disabled" href="#"><i class="fas fa-eye fa-fw mr-1 comet-icon comet-icon-visible"></i> 
+					    Freigabe stoppen <!-- Raster Freigeben -->
+					</a><!-- Veröffentlichen -->
+				    <a class="dropdown-item comet-disabled-NOT" href="#"><i class="fas fa-globe-americas fa-fw mr-1 comet-icon comet-icon-publish"></i> 
+					    Veröffentlichung stoppen <!-- Veröffentlichen -->
+					</a>
+				    <div class="dropdown-divider"></div>
+				    <a class="dropdown-item comet-disabled-NOT" href="#"><i class="fas fa-chart-pie fa-fw mr-1 comet-icon comet-icon-questionaire"></i> 
+					    Selbsteinschätzung deaktivieren <!-- Selbsteinschätzung aktivieren -->
+					</a>
+				    <a class="dropdown-item comet-disabled-NOT" href="#"><i class="fas fa-file-download fa-fw mr-1 comet-icon comet-icon-export"></i> 
+					    Export deaktivieren <!-- Export aktivieren -->
+					</a>
+				    <div class="dropdown-divider"></div>
+				    <a class="dropdown-item" data-toggle="modal" data-target="#modal-editors"><i class="fas fa-users fa-fw mr-1 comet-icon comet-icon-cooperation"></i> 
+					     Zur Bearbeitung freigeben
+					</a>
+				  </div>
+				  <!--  Dropdown Item: if option is active: add class="sharing-active", if option is not avialable add class="disabled" -->
+				
+			</div>
+		</div>
+	</div>
+	
+
+	<table class="table-grid z-depth-1"> 
+		
+			<tr>
+				<td class="empty-cell">
+					
+				</td>
+				<th scope="col" class="taxonomy-cell context-menu-taxonomy" width="42%">
+					<div class="taxonomy">
+						Basic
+					</div>
+
+				</th>
+				<th scope="col" class="taxonomy-cell context-menu-taxonomy"  width="42%">
+					<div class="taxonomy">
+						Intermediate
+					</div>
+
+				</th>
+				<td rowspan="3" class="table-add add-col material-tooltip-email" data-toggle="modal" data-target="#modal-taxonomie">
+					<i class="fas fa-plus"></i>
+				</td>
+			</tr>
+
+		
+			<tr>
+				<th scope="row" class="topic-cell context-menu-topic">
+					<div class="topic ">
+						2.1 Selecting digital resources
+					</div>
+
+				</th>
+				<td class="descriptors-cell">
+					
+					<!-- descriptors -->
+					<div class="descriptors">
+						
+						<!-- descriptor-item -->
+						<div class="descriptor-item">
+							<div class="item-addon addon-descriptor"><i class="fas fa-caret-down"></i></div>
+							
+							<div class="descriptor context-menu-descriptor">To incorporate learning activities, assignments and assessments which require learners to effectively and responsibly use digital technologies for communication, collaboration and civic participation.</div>
+					
+						</div>
+						<!-- / descriptor-item -->
+						
+						<!-- descriptor-item -->
+						<div class="descriptor-item">
+							<div class="item-addon addon-descriptor descriptor-collapse" data-toggle="collapse" data-target="#desc-id-101"
+    aria-expanded="false" aria-controls="desc-id-101"><i class="fas fa-caret-down"></i></div>
+    
+							<div class="descriptor context-menu-descriptor">To incorporate learning activities, assignments and assessments which require learners to effectively and responsibly use digital technologies for communication, collaboration and civic participation.</div>
+							
+						</div>
+						<!-- / descriptor-item -->
+						
+						<div class="collapse multi-collapse collapse-descriptor show" id="desc-id-101">
+							
+							<div class="sub-descriptors">
+								
+								<!-- sub-descriptor-item -->
+								<div class="sub-descriptor-item">
+									<div class="item-addon addon-descriptor descriptor-collapse" data-toggle="collapse" data-target="#sub-desc-id-110"
+	    aria-expanded="false" aria-controls="sub-desc-id-110"><i class="fas fa-caret-down"></i></div>
+	    
+									<div class="sub-descriptor context-menu-sub-descriptor">which require learners to effectively and responsibly use digital technologies technologies</div>
+									
+								</div>
+								<!-- / sub-descriptor-item -->
+								
+								<div class="collapse multi-collapse collapse-sub-descriptor show" id="sub-desc-id-110">
+									
+									<div class="materials">
+										
+										<!-- material-item -->
+										<div class="material-item">
+											<div class="item-addon addon-material"><i class="fas fa-file-alt icon-material"></i></div>
+											
+											<div class="material context-menu-material">which require learners to effectively and responsibly use digital technologies</div>
+											
+										</div>
+										<!-- / material-item -->
+										
+									</div><!-- / materials -->
+								
+								</div><!-- / collapse-sub-descriptor -->
+								
+								<!-- sub-descriptor-item -->
+								<div class="sub-descriptor-item">
+									<div class="item-addon addon-descriptor"><i class="fas fa-caret-down"></i></div>
+	    
+									<div class="sub-descriptor context-menu-sub-descriptor">which require learners to effectively and responsibly use digital technologies</div>
+									
+								</div>
+								<!-- / sub-descriptor-item -->
+								
+								
+							</div><!-- / sub-descriptors -->
+							
+						</div><!-- / collapse-descriptor -->
+						
+					</div>
+					<!-- / descriptors -->
+					
+					
+				</td>
+				<td class="descriptors-cell">
+					
+					<!-- descriptors -->
+					<div class="descriptors">
+						
+						<!-- descriptor-item -->
+						<div class="descriptor-item">
+							<div class="item-addon addon-descriptor"><i class="fas fa-caret-down"></i></div>
+							
+							<div class="descriptor context-menu-descriptor">To incorporate learning activities, assignments and assessments which require learners to effectively and responsibly use digital technologies for communication, collaboration and civic participation.</div>
+					
+						</div>
+						<!-- / descriptor-item -->
+						
+						<!-- descriptor-item -->
+						<div class="descriptor-item">
+							<div class="item-addon addon-descriptor descriptor-collapse" data-toggle="collapse" data-target="#desc-id-102"
+    aria-expanded="false" aria-controls="desc-id-102"><i class="fas fa-caret-down"></i></div>
+    
+							<div class="descriptor context-menu-descriptor">To incorporate learning activities, assignments and assessments which require learners to effectively and responsibly use digital technologies for communication, collaboration and civic participation.</div>
+							
+						</div>
+						<!-- / descriptor-item -->
+						
+						<div class="collapse multi-collapse collapse-descriptor show" id="desc-id-102">
+							
+							<div class="sub-descriptors">
+								
+								<!-- sub-descriptor-item -->
+								<div class="sub-descriptor-item">
+									<div class="item-addon addon-descriptor descriptor-collapse" data-toggle="collapse" data-target="#sub-desc-id-111"
+	    aria-expanded="false" aria-controls="sub-desc-id-111"><i class="fas fa-caret-down"></i></div>
+	    
+									<div class="sub-descriptor context-menu-sub-descriptor">which require learners to effectively and responsibly use digital technologies technologies</div>
+									
+								</div>
+								<!-- / sub-descriptor-item -->
+								
+								<div class="collapse multi-collapse collapse-sub-descriptor show" id="sub-desc-id-111">
+									
+									<div class="materials">
+										
+										<!-- material-item -->
+										<div class="material-item">
+											<div class="item-addon addon-material"><i class="fas fa-file-alt icon-material"></i></div>
+											
+											<div class="material context-menu-material">which require learners to effectively and responsibly use digital technologies</div>
+											
+										</div>
+										<!-- / material-item -->
+										
+									</div><!-- / materials -->
+								
+								</div><!-- / collapse-sub-descriptor -->
+								
+								<!-- sub-descriptor-item -->
+								<div class="sub-descriptor-item">
+									<div class="item-addon addon-descriptor"><i class="fas fa-caret-down"></i></div>
+	    
+									<div class="sub-descriptor context-menu-sub-descriptor">which require learners to effectively and responsibly use digital technologies</div>
+									
+								</div>
+								<!-- / sub-descriptor-item -->
+								
+								
+							</div><!-- / sub-descriptors -->
+							
+						</div><!-- / collapse-descriptor -->
+						
+					</div>
+					<!-- / descriptors -->
+					
+					
+				</td>
+			</tr>
+			<tr>
+				<th scope="row" class="topic-cell context-menu-topic">
+					<div class="topic">
+						2.2 Creating and modifying digital resources
+					</div>
+				</th>
+				<td class="descriptors-cell">
+
+
+					<!-- descriptors -->
+					<div class="descriptors">
+						
+						<!-- descriptor-item -->
+						<div class="descriptor-item">
+							<div class="item-addon addon-descriptor"><i class="fas fa-caret-down"></i></div>
+							
+							<div class="descriptor context-menu-descriptor">To incorporate learning activities, assignments and assessments which require learners to effectively and responsibly use digital technologies for communication, collaboration and civic participation.</div>
+					
+						</div>
+						<!-- / descriptor-item -->
+						
+						<!-- descriptor-item -->
+						<div class="descriptor-item">
+							<div class="item-addon addon-descriptor descriptor-collapse" data-toggle="collapse" data-target="#desc-id-103"
+    aria-expanded="false" aria-controls="desc-id-103"><i class="fas fa-caret-down"></i></div>
+    
+							<div class="descriptor context-menu-descriptor">To incorporate learning activities, assignments and assessments which require learners to effectively and responsibly use digital technologies for communication, collaboration and civic participation.</div>
+							
+						</div>
+						<!-- / descriptor-item -->
+						
+						<div class="collapse multi-collapse collapse-descriptor show" id="desc-id-103">
+							
+							<div class="materials">
+								<!-- material-item -->
+								<div class="material-item">
+									<div class="item-addon addon-material"><i class="fas fa-file-alt icon-material"></i></div>
+											
+									<div class="material context-menu-material">Digital technologies</div>
+											
+								</div>
+								<!-- / material-item -->
+							</div>
+						
+							<div class="sub-descriptors">
+
+								
+								<!-- sub-descriptor-item -->
+								<div class="sub-descriptor-item">
+									<div class="item-addon addon-descriptor descriptor-collapse" data-toggle="collapse" data-target="#sub-desc-id-112"
+	    aria-expanded="false" aria-controls="sub-desc-id-112"><i class="fas fa-caret-down"></i></div>
+	    
+									<div class="sub-descriptor context-menu-sub-descriptor">which require learners to effectively and responsibly use digital technologies technologies</div>
+									
+								</div>
+								<!-- / sub-descriptor-item -->
+								
+								
+								<div class="collapse multi-collapse collapse-sub-descriptor show" id="sub-desc-id-112">
+										
+									<div class="materials">
+										
+										<!-- material-item -->
+										<div class="material-item">
+											<div class="item-addon addon-material"><i class="fas fa-file-alt icon-material"></i></div>
+											
+											<div class="material context-menu-material">Digital technologies</div>
+											
+										</div>
+										<!-- / material-item -->
+										
+										<!-- material-item -->
+										<div class="material-item">
+											<div class="item-addon addon-material"><i class="fas fa-file-alt icon-material"></i></div>
+											
+											<div class="material context-menu-material">which require learners to effectively and responsibly use digital technologies</div>
+											
+										</div>
+										<!-- / material-item -->
+										
+										<!-- material-item -->
+										<div class="material-item">
+											<div class="item-addon addon-material"><i class="fas fa-file-alt icon-material"></i></div>
+											
+											<div class="material context-menu-material">which require learners to effectively and responsibly use digital technologies</div>
+											
+										</div>
+										<!-- / material-item -->
+										
+									</div><!-- / materials -->
+								</div><!-- / collapse-sub-descriptor -->
+								
+								<!-- sub-descriptor-item -->
+								<div class="sub-descriptor-item">
+									<div class="item-addon addon-descriptor"><i class="fas fa-caret-down"></i></div>
+	    
+									<div class="sub-descriptor context-menu-sub-descriptor">which require learners to effectively and responsibly use digital technologies</div>
+									
+								</div>
+								<!-- / sub-descriptor-item -->
+								
+								
+							</div><!-- / sub-descriptors -->
+						</div><!-- / collapse-descriptor -->
+						
+					</div>
+					<!-- / descriptors -->
+
+				</td>
+				<td class="descriptors-cell">
+
+
+					<!-- descriptors -->
+					<div class="descriptors">
+						
+						<!-- descriptor-item -->
+						<div class="descriptor-item">
+							<div class="item-addon addon-descriptor"><i class="fas fa-caret-down"></i></div>
+							
+							<div class="descriptor context-menu-descriptor">To incorporate learning activities, assignments and assessments which require learners to articulate information needs; to find information and resources in digital environments; to organise, process, analyse and interpret information; and to compare and critically evaluate the credibility and reliability of information and their sources.</div>
+					
+						</div>
+						<!-- / descriptor-item -->
+						
+						<!-- descriptor-item -->
+						<div class="descriptor-item">
+							<div class="item-addon addon-descriptor descriptor-collapse" data-toggle="collapse" data-target="#desc-id-104"
+    aria-expanded="false" aria-controls="desc-id-104"><i class="fas fa-caret-down"></i></div>
+    
+							<div class="descriptor context-menu-descriptor">To teach learners how copyright and licenses apply to digital content, how to reference sources and attribute licenses.</div>
+							
+						</div>
+						<!-- / descriptor-item -->
+						
+						<div class="collapse multi-collapse collapse-descriptor show" id="desc-id-104">
+							
+							<div class="materials">
+								
+								<div class="dropzone dropzone-material dropzone-before"></div>
+								
+								<!-- material-item -->
+								<div class="material-item dragging">
+									<div class="item-addon addon-material"><i class="fas fa-file-alt icon-material"></i></div>
+											
+									<div class="material context-menu-material">Digital technologies</div>
+											
+								</div>
+								<!-- / material-item -->
+								
+								<div class="dropzone dropzone-material dropzone-after"></div>
+								
+							</div>
+							
+							<div class="sub-descriptors">
+								
+								<!-- sub-descriptor-item -->
+								<div class="sub-descriptor-item">
+									<div class="item-addon addon-descriptor descriptor-collapse collapsed" data-toggle="collapse" data-target="#sub-desc-id-113"
+	    aria-expanded="false" aria-controls="sub-desc-id-113"><i class="fas fa-caret-down"></i></div>
+	    
+									<div class="sub-descriptor context-menu-sub-descriptor">To enhance the diversity and suitability of assessment formats and approaches.</div>
+									
+								</div>
+								<!-- / sub-descriptor-item -->
+								
+								<div class="collapse multi-collapse collapse-sub-descriptor show" id="sub-desc-id-113">
+									
+									<div class="materials drag-parent">
+										
+										<div class="dropzone dropzone-material dropzone-before"></div>
+										
+										<!-- material-item -->
+										<div class="material-item dragging">
+											<div class="item-addon addon-material"><i class="fas fa-file-alt icon-material"></i></div>
+											
+											<div class="material context-menu-material">Check out Creative Commons for your licensing models </div>
+											
+										</div>
+										<!-- / material-item -->
+										
+										<div class="dropzone dropzone-material dropzone-after"></div>
+										
+									</div><!-- / materials -->
+								
+								</div><!-- / collapse-sub-descriptor -->
+								
+								<div class="dropzone dropzone-sub-descriptor dropzone-before"></div>
+								
+								<!-- sub-descriptor-item -->
+								<div class="sub-descriptor-item dragging">
+									<div class="item-addon addon-descriptor"><i class="fas fa-caret-down"></i></div>
+	    
+									<div class="sub-descriptor context-menu-sub-descriptor">which require learners to effectively and responsibly use digital technologies</div>
+									
+								</div>
+								<!-- / sub-descriptor-item -->
+								
+								<div class="dropzone dropzone-sub-descriptor dropzone-after"></div>
+								
+								<!-- sub-descriptor-item -->
+								<div class="sub-descriptor-item">
+									<div class="item-addon addon-descriptor"><i class="fas fa-caret-down"></i></div>
+	    
+									<div class="sub-descriptor context-menu-sub-descriptor">To use digital technologies to provide targeted and timely feedback to learners.</div>
+									
+								</div>
+								<!-- / sub-descriptor-item -->
+								
+								
+							</div><!-- / sub-descriptors -->
+						
+						</div><!-- / collapse-descriptor -->
+						
+						<!-- descriptor-item -->
+						<div class="descriptor-item">
+							<div class="item-addon addon-descriptor"><i class="fas fa-caret-down"></i></div>
+    
+							<div class="descriptor context-menu-descriptor">How to reference sources and attribute licenses.</div>
+							
+						</div>
+						<!-- / descriptor-item -->
+						
+						<div class="dropzone dropzone-descriptor dropzone-before"></div>
+						
+						<!-- descriptor-item -->
+						<div class="descriptor-item dragging">
+							<div class="item-addon addon-descriptor"><i class="fas fa-caret-down"></i></div>
+    
+							<div class="descriptor context-menu-descriptor">Apply to digital content, how to reference sources and attribute licenses.</div>
+							
+						</div>
+						<!-- / descriptor-item -->
+						
+						<div class="dropzone dropzone-descriptor dropzone-after"></div>
+						
+						<!-- descriptor-item -->
+						<div class="descriptor-item">
+							<div class="item-addon addon-descriptor"><i class="fas fa-caret-down"></i></div>
+    
+							<div class="descriptor context-menu-descriptor">To teach learners how copyright and licenses apply to digital content, how to reference sources and attribute licenses.</div>
+							
+						</div>
+						<!-- / descriptor-item -->
+						
+					</div>
+					<!-- / descriptors -->
+
+
+
+				</td>
+			</tr>
+			<tr class="table-add-row">
+				<td colspan="3" class="table-add add-row material-tooltip-email"data-toggle="modal" data-target="#modal-topic">
+					<i class="fas fa-plus"></i>
+				</td>
+				<td></td>
+			</tr>
+		
+	</table>
+	
+	<div class="grid-footer">
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="grid-info-author">
+						<p class="small">
+						 erstellt am: 29. 04. 2020</br />
+						 zuletzt bearbeitet: 29. 04. 2020
+						 </p>
+						 <p class="small">
+						 Urheber: Bundeszentrum eEducation Austria, Komet System, Huemerstr. 3-5, 4020 Linz, Austria, 
+						 <br /><a href="mailto:">anna.portenkirchner@eeducation.at</a>
+						 </p>
+				</div>
+			</div>
+			<div class="col-sm-6 text-right grid-info-sharing">
+				    <p>Freigegeben <!-- Privat -->
+					    <span class="comet-disabled-NOT"><i class="fas fa-eye mr-1 material-tooltip-email comet-icon comet-icon-visible"></i></span>
+				    </p>
+				     <p>Veröffentlicht <!-- Nicht veröffentlicht-->
+					     <span class="comet-disabled-NOT"><i class="fas fa-globe-americas mr-1 material-tooltip-email comet-icon comet-icon-publish"></i></span>
+				     </p>
+				     <p>Selbsteinschätzung aktiviert <!-- Selbsteinschätzung deaktiviert-->
+					     <span class="comet-disabled-NOT"><i class="fas fa-chart-pie mr-1 material-tooltip-email comet-icon comet-icon-cooperation"></i></span>
+				     </p>
+			</div>
+		</div>
+	</div>
+	
+	<f:render partial="Modals_template" section="GridSettings" arguments="{_all}" />
+	
+	<f:render partial="Modals_template" section="GridSettingsOnlyInfo" arguments="{_all}" />
+	
+	<f:render partial="Modals_template" section="ModalSubdescriptor" arguments="{_all}" />
+	
+	<f:render partial="Modals_template" section="ModalDescriptor" arguments="{_all}" />
+	
+	<f:render partial="Modals_template" section="ModalMaterial" arguments="{_all}" />
+	
+	<f:render partial="Modals_template" section="Delete" arguments="{_all}" />
+	
+	<f:render partial="Modals_template" section="AddEditors" arguments="{_all}" />
+	
+	<f:render partial="Modals_template" section="ChangeOwner" arguments="{_all}" />
+	
+	<f:render partial="Modals_template" section="ChangeOwnerConfirm" arguments="{_all}" />
+	
+	<f:render partial="Modals_template" section="ModalTaxonomie" arguments="{_all}" />
+	
+	<f:render partial="Modals_template" section="ModalTopic" arguments="{_all}" />
+	
+	
+</div><!-- / gtn-comet-grid -->
+
+
+<!-- / Start Template Kompetenzraster -->				
+
+
+
+
+			</div>
+		</div>
+	</div><!--/.fluid-container-->
+
+	
+	<!--TYPO3SEARCH_end-->
+
+
+</f:section>
