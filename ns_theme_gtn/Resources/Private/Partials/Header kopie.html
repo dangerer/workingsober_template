@@ -5,7 +5,7 @@
     <f:variable name="isAuthenticated" value="1" />
 </f:security.ifAuthenticated>
 
-<f:if condition="{data.uid} != 40 && {data.uid} != 43 && {data.uid} != 21 && {data.uid} != 29">
+<f:if condition="{data.uid} != 40 && {data.uid} != 43 && {data.uid} != 21">
     <f:then>
         <header class="page-header{f:if(condition: '{data.uid} != 1 && {data.uid} != 43 && {data.uid} != 40', then:' h-box-shadow')}">
             <div class="header-main">
@@ -44,36 +44,26 @@
                         </f:if>
                     </f:else>
                 </f:security.ifAuthenticated>
-                <f:if condition="{data.uid} == 1 || {data.uid} == 62 || {data.uid} == 17">
-                    <f:then>
-                        
-                    </f:then>
-                    <f:else>
-                        <f:comment>
-                        <div class="avatar-wrapper">
-                            <div id="Session-Users-Ajax"> </div>
-                            <f:if condition="({data.uid} == 40 || {data.uid} == 43) && {escapeGameAuthData.instanceId} >= 0">
-                                <div id="exit-wrapper">
-                                    <f:link.page pageUid="40" id="exit-session" class="d-flex justify-content-center align-items-center d-block" >
-                                        <svg fill="#000000" height="800px" width="800px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                             viewBox="0 0 490 490" xml:space="preserve">
-                                    <polygon points="456.851,0 245,212.564 33.149,0 0.708,32.337 212.669,245.004 0.708,457.678 33.149,490 245,277.443 456.851,490
-                                        489.292,457.678 277.331,245.004 489.292,32.337 "/>
-                                    </svg>
-                                    </f:link.page>
-                                </div>
-                            </f:if>
+                <div class="avatar-wrapper">
+                    <div id="Session-Users-Ajax"> </div>
+                    <f:if condition="({data.uid} == 40 || {data.uid} == 43) && {escapeGameAuthData.instanceId} >= 0">
+                        <div id="exit-wrapper">
+                            <f:link.page pageUid="40" id="exit-session" class="d-flex justify-content-center align-items-center d-block" >
+                                <svg fill="#000000" height="800px" width="800px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                     viewBox="0 0 490 490" xml:space="preserve">
+                            <polygon points="456.851,0 245,212.564 33.149,0 0.708,32.337 212.669,245.004 0.708,457.678 33.149,490 245,277.443 456.851,490
+                                489.292,457.678 277.331,245.004 489.292,32.337 "/>
+                            </svg>
+                            </f:link.page>
                         </div>
-                        </f:comment>
-                    </f:else>
-                </f:if>
-                
+                    </f:if>
+                </div>
         
                
                     <div class='header-nav'>
                         <div class="navigation">
                             <nav>
-                              <f:render section="MainMenu" arguments="{MainMenu: MainMenu, uid: data.uid}" />
+                              <f:render section="MainMenu" arguments="{MainMenu: MainMenu}" />
                             </nav>
                         </div>
                         
@@ -148,7 +138,7 @@
 
             <f:for each="{MainMenu}" as="item">
 
-                   <li class="nav-item-intern nav-item{f:if(condition: item.current, then:' active')}{f:if(condition: item.children, then:' has-sub')}">
+                   <li class="nav-item{f:if(condition: item.current, then:' active')}{f:if(condition: item.children, then:' has-sub')}">
                     <a href="{item.link}" id="nav-item-{item.data.uid}" {f:if(condition: item.target,
                         then: ' target="{item.target}"' )} title="{item.title}" {f:if(condition: item.children, then:'
                         aria-haspopup="true" aria-expanded="false"')}>
@@ -186,7 +176,6 @@
             </f:for>
         </ul>
         <div class="nav-arrow"></div>
-
     </f:if>
     </li>
     </f:for>
@@ -194,7 +183,7 @@
                 </f:then>
                 <f:else>
                 
-                    <f:if condition="{uid} == 62 || {uid} == 17">
+                    <f:if condition="{data.uid} == 62 || {data.uid} == 17">
                         <f:then>
                             <li class="nav-item">
                                 <a id="nav-item-{item.data.uid}" href="https://working-sober.at/#c124" title="{item.title}">
@@ -240,51 +229,6 @@
                             </li>
                         </f:else>
                     </f:if>
-
-<script>
-
-function scrollToElement(id) {
-        const targetElement = document.getElementById(id);
-        const offset = 145; // top offset
-        const elementPosition = targetElement.getBoundingClientRect().top;
-        const offsetPosition = elementPosition - offset;
-
-        window.scrollBy({
-            top: offsetPosition,
-            behavior: 'smooth'
-        });
-}
-
-document.querySelectorAll('.header-nav .nav-item a').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-		const href = this.getAttribute('href');
-		const targetId = href.substring(href.indexOf('#') + 1);
-		const targetElement = document.getElementById(targetId);
-		if (targetElement) {
-			e.preventDefault();
-			scrollToElement(targetId);            
-		} else {
-			if (window.location.search !== '') {
-				// go to home page if the href has parameters
-				window.location.href = '/#'+targetId;
-			}
-		}
-        });
-});
-
-// right after page load
-// TODO: working for non all cases....
-document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-        const hash = window.location.hash;
-        if (hash) {
-            const targetId = hash.substring(1);
-            scrollToElement(targetId);
-        }
-    }, 0);
-});
-
-</script>
                 
 
                 </f:else>

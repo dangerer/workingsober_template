@@ -234,27 +234,7 @@ page {
              
              7 = TEXT
              7.value = fileadmin/Komet2020/Resources/Private/Templates/Comet_Fe_Register.html
-             
-#             11 = TEXT
-#             11.value = fileadmin/Komet2020/Resources/Private/Templates/HTML_Template_actionList.html
-             
-#             12 = TEXT
-#             12.value = fileadmin/Komet2020/Resources/Private/Templates/PDCA_tiles.html
-             
-#             13 = TEXT
-#             13.value = fileadmin/Komet2020/Resources/Private/Templates/apps.html
-             
-#             14 = TEXT
-#             14.value = fileadmin/Komet2020/Resources/Private/Templates/HTML_Template_actionListneu.html
-             
-#             15 = TEXT
-#             15.value = fileadmin/Komet2020/Resources/Private/Templates/QuestionnaireStart.html
-             
-#             16 = TEXT
-#             16.value = fileadmin/Komet2020/Resources/Private/Templates/1columnFullwidth.html
-             
-#             17 = TEXT
-#             17.value = fileadmin/Komet2020/Resources/Private/Templates/DigiconceptStart.html
+          
              
              }
     

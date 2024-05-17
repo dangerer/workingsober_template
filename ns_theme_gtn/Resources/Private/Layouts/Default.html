@@ -15,7 +15,7 @@
             </div>
         </section>
     </f:if>
-    <div class="container pb-5">
+    <div class="container pb-5 {f:if(condition: '{data.uid} != 1 && {data.uid} != 43 && {data.uid} != 40 && {data.uid} != 21 && {data.uid} != 29', then:'mt-5 pt-3')}">
         <f:render section="main" />
     </div>
 

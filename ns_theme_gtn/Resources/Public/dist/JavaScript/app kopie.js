@@ -329,7 +329,6 @@ document.querySelectorAll('.goto-top').forEach(function ($el) {
 
 /***/ }),
 
-
 /***/ "./node_modules/vanilla-lazyload/dist/lazyload.min.js":
 /*!************************************************************!*\
   !*** ./node_modules/vanilla-lazyload/dist/lazyload.min.js ***!

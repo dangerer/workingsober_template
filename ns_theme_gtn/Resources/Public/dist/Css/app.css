@@ -12162,17 +12162,17 @@ b {
 /* Code for Firefox */
 :-moz-selection {
   background: #fff100;
-  color: #fff;
+  color: #000;
 }
 
 ::-moz-selection {
   background: #fff100;
-  color: #fff;
+  color: #000;
 }
 
 ::selection {
   background: #fff100;
-  color: #fff;
+  color: #000;
 }
 
 /****************************************************************************
