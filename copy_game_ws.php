@@ -2,7 +2,7 @@
 			
 				
 // Verbindung zur Datenbank herstellen
-$mysqli = new mysqli("localhost", "dbu_dev-working-sober-at", "vwsZAXB5R.64K5kb", "db_dev-working-sober-at");
+$mysqli = new mysqli('localhost', '', '', 'db_dev-working-sober-at');
 if ($mysqli->connect_error) {
     die("Verbindung fehlgeschlagen: " . $mysqli->connect_error);
 }
