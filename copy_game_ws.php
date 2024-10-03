@@ -137,6 +137,49 @@ $stmt_update_game->bind_param("si", $new_rooms_list, $new_game_id);
 $stmt_update_game->execute();
 $stmt_update_game->close();
 
+// sys_file_reference nachziehen
+
+
+// Datensätze aus `sys_file_reference` mit `uid_foreign = $old_game_id` abrufen
+$file_ref_query = "SELECT * FROM sys_file_reference WHERE hidden=0 and deleted=0 AND uid_foreign = ?";
+$stmt = $mysqli->prepare($file_ref_query);
+$stmt->bind_param("i", $old_game_id);
+$stmt->execute();
+$file_ref_result = $stmt->get_result();
+
+// Datensätze kopieren und `uid_foreign` anpassen
+while ($file_ref = $file_ref_result->fetch_assoc()) {
+    // Die Spalten außer `uid` vorbereiten
+    $columns = array_keys($file_ref);
+    $columns_str = implode(", ", array_filter($columns, function($col) {
+        return $col !== 'uid'; // Primärschlüssel ausschließen
+    }));
+    $placeholders = implode(", ", array_fill(0, count($columns) - 1, '?'));
+
+    // `uid_foreign` auf die neue Spiel-UID setzen
+    $file_ref['uid_foreign'] = $new_game_id;
+
+    // Werte für die Bindung vorbereiten
+    $params = array_values(array_filter($file_ref, function($key) {
+        return $key !== 'uid';
+    }, ARRAY_FILTER_USE_KEY));
+
+    // INSERT-Query für `sys_file_reference` vorbereiten
+    $insert_file_ref_query = "INSERT INTO sys_file_reference ($columns_str) VALUES ($placeholders)";
+    $stmt_insert_file_ref = $mysqli->prepare($insert_file_ref_query);
+
+    // Dynamische Parameterbindung
+    $types = str_repeat("s", count($params));
+    $stmt_insert_file_ref->bind_param($types, ...$params);
+    $stmt_insert_file_ref->execute();
+    $stmt_insert_file_ref->close();
+}
+
+
+
+
+
+
 // Verbindung schließen
 $mysqli->close();
 
