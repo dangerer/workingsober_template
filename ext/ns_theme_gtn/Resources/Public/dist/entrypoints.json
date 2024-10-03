@@ -1,0 +1,19 @@
+{
+  "entrypoints": {
+    "JavaScript/vendor": {
+      "js": [
+        "/dist/JavaScript/vendor.js"
+      ]
+    },
+    "JavaScript/app": {
+      "js": [
+        "/dist/JavaScript/app.js"
+      ]
+    },
+    "Css/app": {
+      "css": [
+        "/dist/Css/app.css"
+      ]
+    }
+  }
+}

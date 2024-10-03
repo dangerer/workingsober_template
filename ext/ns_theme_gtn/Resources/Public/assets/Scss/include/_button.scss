@@ -1,0 +1,50 @@
+/*******************************************************************************
+* Button
+*******************************************************************************/
+.btn {
+  @include font-size($font-sizes20);
+  @include transition(all, 0.2s, ease, 0s);
+  @include inline-block();
+  background-color: $primary-color;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  color: $secondary-color;
+  font-weight: $semibold-weight;
+  margin: 0;
+  outline: 0;
+  padding: 8px 15px;
+  text-transform: uppercase;
+  white-space: normal;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: $secondary-color;
+    box-shadow: none;
+    color: $white;
+    outline: none;
+    text-decoration: none;
+  }
+
+  &:focus-visible {        
+    @include focus-states(after,$secondary-color,8,8);
+  }
+}
+
+.btn.btn-secondary {
+  background-color: $secondary-color;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: $primary-color;
+    color: $white;
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  .btn {
+    padding: 9px 25px;
+  }
+}

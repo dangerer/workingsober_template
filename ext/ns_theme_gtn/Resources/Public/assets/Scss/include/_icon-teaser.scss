@@ -1,0 +1,29 @@
+.icon-teaser {
+  display: flex;
+  padding: 10px;
+  padding-left: 0;
+}
+
+.icon-teaser__image {
+  max-width: 70px;
+}
+
+.icon-teaser__content {
+  padding-left: 15px;
+  width: 85%;
+
+  p {
+    @include font-size($font-sizes24);
+    font-weight: $bold-weight;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .icon-teaser__image {
+    max-width: 100px;
+  }
+    
+  .icon-teaser__content {
+    width: 70%;
+  }
+}

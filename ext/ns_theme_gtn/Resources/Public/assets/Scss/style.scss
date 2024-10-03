@@ -1,0 +1,43 @@
+//* This is the main application stylesheet. It should include or import all
+//* custom and vendor stylesheets.
+
+//****************************************************************************
+//  Include our own variables and the ones that override the Bootstrap variables
+//  Always include this file first
+//***************************************************************************/
+@import './base/variables';
+
+//****************************************************************************
+//  Include a custom build of the Twitter Bootstrap SCSS files.
+//***************************************************************************/
+// @import 'aos/dist/aos.css';
+@import 'bootstrap/scss/bootstrap';
+// @import '@fancyapps/ui/dist/fancybox.css';
+// @import 'flickity/dist/flickity.min.css';
+// @import '~@nitsantechnologies/vanilla-site-speed-booster/main.css';
+
+
+//****************************************************************************
+//  Include base styles
+//***************************************************************************/
+@import 'mixins/mixins';
+@import 'base/font-size';
+@import 'base/typography';
+
+//****************************************************************************
+//  Include our custom styles
+//***************************************************************************/
+@import 'include/header';
+@import 'include/footer';
+@import 'include/content-section';
+@import 'include/general';
+@import 'include/button';
+@import 'include/form';
+@import 'include/cms';
+@import 'include/spacing';
+@import 'include/goto-top';
+@import 'include/teaser-box';
+@import 'include/text-with-image';
+@import 'include/icon-teaser';
+@import 'include/hero-banner';
+@import 'include/login-form';

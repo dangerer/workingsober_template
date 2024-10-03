@@ -1,0 +1,130 @@
+/****************************************************************************
+  Typography
+***************************************************************************/
+@font-face {
+  font-display: swap;
+  font-family: 'AcuminPro';
+  font-weight: 400;
+  src: url('../../Fonts/acuminPro/AcuminPro-Regular.woff2') format('woff2'),
+    url('../../Fonts/acuminPro/AcuminPro-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'AcuminPro';
+  font-weight: 500;
+  src: url('../../Fonts/acuminPro/AcuminPro-Medium.woff2') format('woff2'),
+    url('../../Fonts/acuminPro/AcuminPro-Medium.woff') format('woff');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'AcuminPro';
+  font-weight: 600;
+  src: url('../../Fonts/acuminPro/AcuminPro-Semibold.woff2') format('woff2'),
+    url('../../Fonts/acuminPro/AcuminPro-Semibold.woff') format('woff');
+}
+
+body {
+  @include font-size($font-sizes16);
+}
+
+.container {
+  max-width: 1300px;
+}
+
+p {
+  margin-bottom: 15px;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+figure {
+  margin: 0 0 15px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/****************************************************************************
+  Links
+ ***************************************************************************/
+a {
+  @include transition(all, 0.2s, ease, 0s);
+  color: inherit;
+  outline: none;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: inherit;
+    text-decoration: underline;
+  }
+
+  &:focus-visible {        
+    @include focus-states(after,$primary-color,8,8);
+  }
+
+  span {
+    @include transition(all, 0.2s, ease, 0s);
+  }
+}
+
+strong,
+b {
+  font-weight: $semibold-weight;
+}
+
+/* Code for Firefox */
+:-moz-selection {
+  background: $brand-color;
+  color: $white;
+}
+
+::selection {
+  background: $brand-color;
+  color: $white;
+}
+
+/****************************************************************************
+  Headings
+ ***************************************************************************/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-weight: $semibold-weight;
+}
+
+h1 {
+  @include font-size($font-sizes48);
+}
+
+h2 {
+  @include font-size($font-sizes36);
+}
+
+h3 {
+  @include font-size($font-sizes24);
+}
+
+h4 {
+  @include font-size($font-sizes20);
+}
+
+h5 {
+  @include font-size($font-sizes18);
+}

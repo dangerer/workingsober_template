@@ -1,0 +1,18 @@
+.textwithimage-section {
+  h2 {
+    color: $text-color;
+    margin-bottom: 20px;
+  }
+  
+  .textwithimage__content {
+    margin-bottom: 60px;
+    margin-top: 30px;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .textwithimage__content {
+    width: 80%;
+  }
+}
+

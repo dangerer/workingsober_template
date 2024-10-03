@@ -1,0 +1,304 @@
+{namespace gtn=GtnEscapeGame\GtnEscapeGame\ViewHelpers}
+
+<f:variable name="escapeGameAuthData">{gtn:cookie(cookieIdentifier='gtn_escape_game_auth_token')}</f:variable>
+<f:security.ifAuthenticated>
+    <f:variable name="isAuthenticated" value="1" />
+</f:security.ifAuthenticated>
+
+<f:if condition="{data.uid} != 40 && {data.uid} != 43 && {data.uid} != 21 && {data.uid} != 29">
+    <f:then>
+        <header class="page-header{f:if(condition: '{data.uid} != 1 && {data.uid} != 43 && {data.uid} != 40', then:' h-box-shadow')}">
+            <div class="header-main">
+                <div class="brand-logo">
+                    <f:if condition="{settings.logo}">
+                        <f:then>
+                            <f:link.page pageUid="1" title="GTN">
+                                <f:if condition="{data.uid} != 1">
+                                    <f:then>
+                                        <f:image src="{settings.logo}" height="120" class="logo 123" alt="GTN" title="GTN"  />
+                                    </f:then>
+                                    <f:else>
+                                        <f:image src="{settings.logo}" class="logo" alt="GTN 123" title="GTN"  />
+                                    </f:else>
+                                </f:if>
+                            </f:link.page>
+                        </f:then>
+                        <f:else>
+                            <f:link.page pageUid="1" title="GTN">
+                                <span>GTN</span>
+                            </f:link.page>
+                        </f:else>
+                    </f:if>
+                </div>
+                <f:security.ifAuthenticated>
+                    <f:then>
+                        <f:link.typolink parameter="1" additionalParams="&logintype=logout" class="page-info logout">
+                            <?xml version="1.0" encoding="iso-8859-1"?><svg fill="#000000" height="23" width="23"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 	 viewBox="0 0 384.971 384.971" xml:space="preserve"><g>	<g id="Sign_Out">		<path d="M180.455,360.91H24.061V24.061h156.394c6.641,0,12.03-5.39,12.03-12.03s-5.39-12.03-12.03-12.03H12.03			C5.39,0.001,0,5.39,0,12.031V372.94c0,6.641,5.39,12.03,12.03,12.03h168.424c6.641,0,12.03-5.39,12.03-12.03			C192.485,366.299,187.095,360.91,180.455,360.91z"/>		<path d="M381.481,184.088l-83.009-84.2c-4.704-4.752-12.319-4.74-17.011,0c-4.704,4.74-4.704,12.439,0,17.179l62.558,63.46H96.279			c-6.641,0-12.03,5.438-12.03,12.151c0,6.713,5.39,12.151,12.03,12.151h247.74l-62.558,63.46c-4.704,4.752-4.704,12.439,0,17.179			c4.704,4.752,12.319,4.752,17.011,0l82.997-84.2C386.113,196.588,386.161,188.756,381.481,184.088z"/>	</g>	<g>	</g>	<g>	</g>	<g>	</g>	<g>	</g>	<g>	</g>	<g>	</g></g></svg>
+                        </f:link.typolink>
+                    </f:then>
+                    <f:else>
+                        <f:comment>
+                        <f:if condition="{settings.childSettings.page_id} && (!{escapeGameAuthData} || {escapeGameAuthData.instanceId} < 0)">
+                        </f:if>
+                        </f:comment>
+                            <f:link.typolink parameter="{settings.childSettings.page_id}" class="page-info evLogin">
+                                <svg viewBox="0 0 19 6" width="30" height="30" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-11{fill:none;stroke:#000;stroke-linecap:round;stroke-miterlimit:10;stroke-width:1.42px}.cls-2{stroke-width:0}</style></defs><path d="M6.43 3.01v1.51c0 .16-.14.28-.31.28h-.45c-.17 0-.31-.13-.31-.28V3.01c0-.16.14-.28.31-.28h.45c.17 0 .31.13.31.28" class="cls-2"/><path d="M2.58 2.73h9.63" class="cls-11"/><path d="M4.55 2.86v2c0 .21-.21.38-.47.38h-.69c-.26 0-.47-.17-.47-.38v-2c0-.21.21-.38.47-.38h.69c.26 0 .47.17.47.38" class="cls-2"/><path d="M14.41.77a2.01 2.01 0 110 4.02 2.01 2.01 0 010-4.02z" class="cls-11"/></svg>
+                            </f:link.typolink>
+                        
+                    </f:else>
+                </f:security.ifAuthenticated>
+                <f:if condition="{data.uid} == 1 || {data.uid} == 62 || {data.uid} == 17">
+                    <f:then>
+                        
+                    </f:then>
+                    <f:else>
+                        <f:comment>
+                        <div class="avatar-wrapper">
+                            <div id="Session-Users-Ajax"> </div>
+                            <f:if condition="({data.uid} == 40 || {data.uid} == 43) && {escapeGameAuthData.instanceId} >= 0">
+                                <div id="exit-wrapper">
+                                    <f:link.page pageUid="40" id="exit-session" class="d-flex justify-content-center align-items-center d-block" >
+                                        <svg fill="#000000" height="800px" width="800px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                             viewBox="0 0 490 490" xml:space="preserve">
+                                    <polygon points="456.851,0 245,212.564 33.149,0 0.708,32.337 212.669,245.004 0.708,457.678 33.149,490 245,277.443 456.851,490
+                                        489.292,457.678 277.331,245.004 489.292,32.337 "/>
+                                    </svg>
+                                    </f:link.page>
+                                </div>
+                            </f:if>
+                        </div>
+                        </f:comment>
+                    </f:else>
+                </f:if>
+                
+        
+               
+                    <div class='header-nav'>
+                        <div class="navigation">
+                            <nav>
+                              <f:render section="MainMenu" arguments="{MainMenu: MainMenu, uid: data.uid}" />
+                            </nav>
+                        </div>
+                        
+                        <f:if condition="{data.uid} == 1 || {data.uid} == 62 || {data.uid} == 17">
+                            <f:then>
+                            
+                            </f:then>
+                            <f:else>
+                                <div id="menuTrigger" class="menu-trigger">
+                                    <div class="bars"></div>
+                                    <div class="bars"></div>
+                                    <div class="bars"></div>
+                                </div>
+                            </f:else>
+                        </f:if>
+                        
+                        
+                    </div>
+               
+            </div>
+        
+        </header>
+    </f:then>
+    <f:else>
+        
+        
+        <header class="page-header page-header-game">
+            <div class="header-main">
+                
+                <div class="avatar-wrapper">
+                    <div id="Session-Users-Ajax"> </div>
+                    <f:if condition="({data.uid} == 40 || {data.uid} == 43) && {escapeGameAuthData.instanceId} >= 0">
+                        <div id="exit-wrapper">
+                            <f:link.page pageUid="40" id="exit-session" class="d-flex justify-content-center align-items-center d-block" >
+                                <svg fill="#000000" height="800px" width="800px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                     viewBox="0 0 490 490" xml:space="preserve">
+                            <polygon points="456.851,0 245,212.564 33.149,0 0.708,32.337 212.669,245.004 0.708,457.678 33.149,490 245,277.443 456.851,490
+                                489.292,457.678 277.331,245.004 489.292,32.337 "/>
+                            </svg>
+                            </f:link.page>
+                        </div>
+                    </f:if>
+                </div>
+            </div>
+        
+        </header>
+        
+        
+    </f:else>
+</f:if>
+
+
+
+
+
+<f:section name="MainMenu">
+
+
+    <f:if condition="{MainMenu}">
+        <ul class="nav-items">
+
+            <f:security.ifAuthenticated>
+                <f:variable name="isAuthenticated" value="1" />
+            </f:security.ifAuthenticated>
+
+            <f:if condition="{isAuthenticated}">
+
+                <f:then>
+
+
+
+
+            <f:for each="{MainMenu}" as="item">
+
+                   <li class="nav-item-intern nav-item{f:if(condition: item.current, then:' active')}{f:if(condition: item.children, then:' has-sub')}">
+                    <a href="{item.link}" id="nav-item-{item.data.uid}" {f:if(condition: item.target,
+                        then: ' target="{item.target}"' )} title="{item.title}" {f:if(condition: item.children, then:'
+                        aria-haspopup="true" aria-expanded="false"')}>
+                        <span class="nav-link-text">{item.title}<f:if condition="{item.current}"><span class="visually-hidden">(current)</span></f:if></span>
+                    </a>
+                    <f:if condition="{item.children}">
+                        <ul aria-labelledby="nav-item-{item.data.uid}" class="sub-menu sub-menu--second">
+                            <f:for each="{item.children}" as="child">
+                                <li class="nav-item-second {f:if(condition: child.children, then:' has-sub')} {f:if(condition:
+                        child.active, then:' active')}">
+                        <a href="{child.link}" class="{f:if(condition: child.active, then:' active')}" {f:if(condition:
+                            child.target, then: ' target="{child.target}"' )} title="{child.title}"
+                            id="nav-item-{child.data.uid}">
+                            <span class="nav-link-text">{child.title}<f:if condition="{child.current}"> <span
+                            class="visually-hidden">(current)</span></f:if></span>
+                        </a>
+                        <f:if condition="{child.children}">
+                            <ul aria-labelledby="nav-item-{child.data.uid}" class="sub-menu sub-menu--third">
+                                <f:for each="{child.children}" as="childItem">
+                                    <li class="{f:if(condition: childItem.active, then:' active')}">
+                                        <a href="{childItem.link}"
+                                            class="{f:if(condition: childItem.active, then:' active')}" {f:if(condition:
+                                            child.target, then: ' target="{childItem.target}"' )}
+                                            title="{childItem.title}">
+                                            <span class="nav-link-text">{childItem.title}<f:if
+                                                    condition="{childItem.current}"> <span
+                                                        class="visually-hidden">(current)</span></f:if></span>
+                                        </a>
+                                    </li>
+                                </f:for>
+                            </ul>
+                            <div class="nav-arrow"></div>
+                        </f:if>
+                </li>
+            </f:for>
+        </ul>
+        <div class="nav-arrow"></div>
+
+    </f:if>
+    </li>
+    </f:for>
+
+                </f:then>
+                <f:else>
+                
+                    <f:if condition="{uid} == 62 || {uid} == 17">
+                        <f:then>
+                            <li class="nav-item">
+                                <a id="nav-item-{item.data.uid}" href="https://working-sober.at/#c124" title="{item.title}">
+                                    <span class="nav-link-text">Escape Games</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="nav-item-{item.data.uid}" href="https://working-sober.at/#c103" title="{item.title}">
+                                    <span class="nav-link-text">So Funktioniert's</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="nav-item-{item.data.uid}" href="https://working-sober.at/#c104" title="{item.title}">
+                                    <span class="nav-link-text">Über Living Sober</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="nav-item-{item.data.uid}" href="https://working-sober.at/#c107" title="{item.title}">
+                                    <span class="nav-link-text">Kontakt</span>
+                                </a>
+                            </li>
+                        </f:then>
+                        <f:else>
+                            <li class="nav-item">
+                                <a id="nav-item-{item.data.uid}" href="#c124" title="{item.title}">
+                                    <span class="nav-link-text">Escape Games</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="nav-item-{item.data.uid}" href="#c103" title="{item.title}">
+                                    <span class="nav-link-text">So Funktioniert's</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="nav-item-{item.data.uid}" href="#c104" title="{item.title}">
+                                    <span class="nav-link-text">Über Living Sober</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="nav-item-{item.data.uid}" href="#c107" title="{item.title}">
+                                    <span class="nav-link-text">Kontakt</span>
+                                </a>
+                            </li>
+                        </f:else>
+                    </f:if>
+
+<script>
+
+function scrollToElement(id) {
+        const targetElement = document.getElementById(id);
+        const offset = 145; // top offset
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition - offset;
+
+        window.scrollBy({
+            top: offsetPosition,
+            behavior: 'smooth'
+        });
+}
+
+document.querySelectorAll('.header-nav .nav-item a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+		const href = this.getAttribute('href');
+		const targetId = href.substring(href.indexOf('#') + 1);
+		const targetElement = document.getElementById(targetId);
+		if (targetElement) {
+			e.preventDefault();
+			scrollToElement(targetId);            
+		} else {
+			if (window.location.search !== '') {
+				// go to home page if the href has parameters
+				window.location.href = '/#'+targetId;
+			}
+		}
+        });
+});
+
+// right after page load
+// TODO: working for non all cases....
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        const hash = window.location.hash;
+        if (hash) {
+            const targetId = hash.substring(1);
+            scrollToElement(targetId);
+        }
+    }, 0);
+});
+
+</script>
+                
+
+                </f:else>
+            </f:if>
+
+
+    </ul>
+    </f:if>
+</f:section>
+
+<f:section name="SessionUsersHeader">
+
+  
+</f:section>

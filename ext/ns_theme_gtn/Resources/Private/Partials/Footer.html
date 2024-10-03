@@ -1,0 +1,145 @@
+<!-- Footer -->
+<f:if condition="{data.uid} != 40 && {data.uid} != 43 && {data.uid} != 21  && {data.uid} != 29">
+    <f:then>
+        <footer class="page-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <f:if condition="{f:cObject(typoscriptObjectPath: 'lib.footerContent')}">
+                            <div class="page-footer__text-block">
+                                <f:cObject typoscriptObjectPath="lib.footerContent"/>
+                            </div>
+                        </f:if>
+                    </div>
+                </div>
+                <div class="page-footer__bottom">
+                    <div class="row align-items-end">
+                        <div class="col-md-7 col-lg-8 d-flex justify-content-center justify-content-md-start flex-column flex-sm-row align-items-center">
+                            <f:if condition="{f:cObject(typoscriptObjectPath: 'lib.footerContent2')}">
+                               <f:comment><f:cObject typoscriptObjectPath="lib.footerContent2"/></f:comment>
+                                
+                                <img class="image-embed-item me-sm-5 mb-5 mb-sm-0" src="/fileadmin/ns_theme_gtn/images/LehrerInnenbildung_A4_de_rgb.svg" width="201" height="59" loading="lazy" alt="">
+                                
+                                <img class="image-embed-item me-sm-5 mb-5 mb-sm-0" src="/fileadmin/ns_theme_gtn/images/aklogo.png" width="74" height="59" loading="lazy" alt="">
+                                
+                                <img class="image-embed-item me-sm-5" src="/fileadmin/ns_theme_gtn/images/CEL_Logo_schwarz_orange.svg" width="228" height="59" loading="lazy" alt="">
+                                
+                                
+                            </f:if>
+                        </div>
+                        <div class="col-md-5 col-lg-4 text-md-end">
+                            <f:if condition="{FooterMenu}">
+                                <ul class="page-footer__menu d-flex justify-content-center justify-content-md-start mt-5 mt-md-0">
+                                    <f:render section="FooterMenu" arguments="{FooterMenu: FooterMenu}" />
+                                </ul>
+                            </f:if>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </f:then>
+    <f:else>
+        <footer class="page-footer page-footer-game">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-between align-items-center">
+                        <div class="brand-logo">
+                            <f:if condition="{settings.logo}">
+                                <f:then>
+                                    <f:link.page pageUid="1" title="GTN">
+                                        <f:if condition="{data.uid} != 1">
+                                            <f:then>
+                                                <f:image src="{settings.logo}" height="120" class="logo" alt="GTN" title="GTN"  />
+                                            </f:then>
+                                            <f:else>
+                                                <f:image src="{settings.logo}" class="logo" alt="GTN" title="GTN"  />
+                                            </f:else>
+                                        </f:if>
+                                    </f:link.page>
+                                </f:then>
+                                <f:else>
+                                    <f:link.page pageUid="1" title="GTN">
+                                        <span>GTN</span>
+                                    </f:link.page>
+                                </f:else>
+                            </f:if>
+                        </div>
+                        <div class="auth">
+                            <f:security.ifAuthenticated>
+                                <f:then>
+                                    <f:link.typolink parameter="1" additionalParams="&logintype=logout" class="page-info">
+                                        <?xml version="1.0" encoding="iso-8859-1"?><svg fill="#000000" height="23" width="23"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 	 viewBox="0 0 384.971 384.971" xml:space="preserve"><g>	<g id="Sign_Out">		<path d="M180.455,360.91H24.061V24.061h156.394c6.641,0,12.03-5.39,12.03-12.03s-5.39-12.03-12.03-12.03H12.03			C5.39,0.001,0,5.39,0,12.031V372.94c0,6.641,5.39,12.03,12.03,12.03h168.424c6.641,0,12.03-5.39,12.03-12.03			C192.485,366.299,187.095,360.91,180.455,360.91z"/>		<path d="M381.481,184.088l-83.009-84.2c-4.704-4.752-12.319-4.74-17.011,0c-4.704,4.74-4.704,12.439,0,17.179l62.558,63.46H96.279			c-6.641,0-12.03,5.438-12.03,12.151c0,6.713,5.39,12.151,12.03,12.151h247.74l-62.558,63.46c-4.704,4.752-4.704,12.439,0,17.179			c4.704,4.752,12.319,4.752,17.011,0l82.997-84.2C386.113,196.588,386.161,188.756,381.481,184.088z"/>	</g>	<g>	</g>	<g>	</g>	<g>	</g>	<g>	</g>	<g>	</g>	<g>	</g></g></svg>
+                                    </f:link.typolink>
+                                </f:then>
+                                <f:else>
+                                    <f:if condition="{settings.childSettings.page_id} && (!{escapeGameAuthData} || {escapeGameAuthData.instanceId} < 0)">
+                                        <f:link.typolink parameter="{settings.childSettings.page_id}" class="page-info">
+                                            <svg viewBox="0 0 19 6" width="30" height="30" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-11{fill:none;stroke:#000;stroke-linecap:round;stroke-miterlimit:10;stroke-width:1.42px}.cls-2{stroke-width:0}</style></defs><path d="M6.43 3.01v1.51c0 .16-.14.28-.31.28h-.45c-.17 0-.31-.13-.31-.28V3.01c0-.16.14-.28.31-.28h.45c.17 0 .31.13.31.28" class="cls-2"/><path d="M2.58 2.73h9.63" class="cls-11"/><path d="M4.55 2.86v2c0 .21-.21.38-.47.38h-.69c-.26 0-.47-.17-.47-.38v-2c0-.21.21-.38.47-.38h.69c.26 0 .47.17.47.38" class="cls-2"/><path d="M14.41.77a2.01 2.01 0 110 4.02 2.01 2.01 0 010-4.02z" class="cls-11"/></svg>
+                                        </f:link.typolink>
+                                    </f:if>
+                                </f:else>
+                            </f:security.ifAuthenticated>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </f:else>
+</f:if>
+
+
+<f:if condition="{settings.childSettings.back_to_top}">
+    <a href="javascript:;" class="goto-top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="20" viewBox="0 0 9.515 5.605"><path d="M2070.667,110.667,2075,115l-4.333,4.333" transform="translate(-110.242 2075.848) rotate(-90)" fill="none" stroke="#fff" stroke-width="1.2"/></svg>
+    </a>
+</f:if>
+
+<f:section name="FooterMenu">
+    <f:if condition="{FooterMenu}">
+        <f:for each="{FooterMenu}" as="item">
+            <f:if condition="{item.spacer}">
+                <f:then>
+                    </ul>
+                    <ul class="navbar-nav">
+                </f:then>
+                <f:else>
+                    <li><a href="{item.link}" id="nav-item-{item.data.uid}">{item.title}</a></li>
+                </f:else>
+            </f:if>
+        </f:for>
+    </f:if>
+</f:section>
+    <script>
+const resizable = document.getElementById('map-container');
+
+let initialWidth, initialHeight, initialDistance;
+
+const getDistance = (touch1, touch2) => {
+    const dx = touch2.clientX - touch1.clientX;
+    const dy = touch2.clientY - touch1.clientY;
+    return Math.sqrt(dx * dx + dy * dy);
+};
+
+const onTouchStart = (event) => {
+    if (event.touches.length === 2) {
+        initialWidth = resizable.offsetWidth;
+        initialHeight = resizable.offsetHeight;
+        initialDistance = getDistance(event.touches[0], event.touches[1]);
+    }
+};
+
+const onTouchMove = (event) => {
+    if (event.touches.length === 2) {
+        const currentDistance = getDistance(event.touches[0], event.touches[1]);
+        const scale = currentDistance / initialDistance;
+        resizable.style.width = `${initialWidth * scale}px`;
+        resizable.style.height = `${initialHeight * scale}px`;
+    }
+};
+
+if (resizable) {
+    resizable.addEventListener('touchstart', onTouchStart);
+    resizable.addEventListener('touchmove', onTouchMove);
+}
+</script>

@@ -1,0 +1,84 @@
+{namespace v = FluidTYPO3\Vhs\ViewHelpers}
+
+<!-- Header -->
+<f:render partial="Header" arguments="{_all}" />
+
+<!--TYPO3SEARCH_begin-->
+<main class="site-main">
+    <f:if condition="{data.uid} == 1">
+        <section class="hero-banner  frame-space-after-medium" id="c97">
+            <div class="hero-banner__img">
+                <img src="/fileadmin/ns_theme_gtn/hero-banner/hero-banner-gif.gif" alt="Escape Games" title="Escape Games">
+            </div>
+            <div class="hero-banner__content">
+                <img src="/fileadmin/ns_theme_gtn/hero-banner/logo.svg" alt="Escape Games" title="Escape Games">
+            </div>
+        </section>
+    </f:if>
+    <div class="container pb-5 {f:if(condition: '{data.uid} != 1 && {data.uid} != 43 && {data.uid} != 40 && {data.uid} != 21 && {data.uid} != 29', then:'mt-5 pt-3')}">
+        <f:render section="main" />
+    </div>
+
+    <div class="modal fade" id="exitSessionPopUpModal" tabindex="-1" role="dialog" aria-labelledby="popUpModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="popUpModalLongTitle">Info</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body popUpInfo">
+                    Spiel-Session wirklich verlassen?
+                </div>
+                <div class="modal-footer">
+                    <f:link.page id="btn-clearSessionAndExit" pageUid="40" class="btn btn-dark btn-sm m-1" >
+                        Session verlassen
+                    </f:link.page>
+
+                    <a class="btn btn-lightgrey3 btn-sm" data-bs-dismiss="modal">Schließen</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <f:asset.script identifier="modalExitSession">
+
+        document.addEventListener("DOMContentLoaded", function () {
+        let btnGoBack = document.getElementById("exit-session");
+        if (btnGoBack) {
+            btnGoBack.addEventListener("click", function (event) {
+                event.preventDefault();
+                let popUpModal = $("#exitSessionPopUpModal");
+                popUpModal.modal("show");
+            });
+        }
+
+        let exitBtn = document.getElementById('btn-clearSessionAndExit')
+
+        if (exitBtn) {
+        exitBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        let actionUrl = "https://working-sober.at/api/game/exitSession"
+        let xhttp = new XMLHttpRequest();
+
+        xhttp.open("GET", actionUrl, true)
+        xhttp.onreadystatechange = function () {
+        if (xhttp.readyState === 4 && xhttp.status === 200) {
+        let response = xhttp.responseText;
+        let jsonResponce = JSON.parse(response);
+        if (xhttp.status === 200) {
+        window.location.href = document.getElementById("exit-session").getAttribute('href')
+        }
+        }
+        };
+        xhttp.send();
+        })
+        }
+        });
+    </f:asset.script>
+</main>
+<!--TYPO3SEARCH_end-->
+
+<!-- Footer -->
+<f:render partial="Footer" arguments="{_all}" />

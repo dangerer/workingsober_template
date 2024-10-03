@@ -1,0 +1,141 @@
+/*******************************************************************************
+* Footer
+*******************************************************************************/
+.page-footer {
+  background-color: $primary-color;
+  padding: 50px 0 25px;
+
+  a {
+    color: $secondary-color;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      color: rgba($secondary-color, 0.6);
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    padding-bottom: 40px;
+    padding-top: 60px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    padding-bottom: 60px;
+    padding-top: 80px;
+  }
+}
+
+.page-footer__menu {
+  flex-wrap: wrap;
+  margin-bottom: 0;
+  margin-top: 10px;
+
+  li {
+    margin-bottom: 7px;
+
+    &:not(:last-child) {
+      margin-right: 15px;
+
+      @include media-breakpoint-up(lg) {
+        margin-right: 20px;
+      }
+
+      @include media-breakpoint-up(xl) {
+        margin-right: 30px;
+      }
+    }
+  }
+
+  a {
+    @include font-size($font-sizes20);
+    font-weight: $semibold-weight;
+    text-transform: uppercase;
+  }
+
+  @include media-breakpoint-up(md) {
+    justify-content: flex-end;
+    margin-top: 0;
+  }
+}
+
+.page-footer__logo {
+  @include inline-block();
+  margin-bottom: 15px;
+  max-width: 130px;
+  vertical-align: middle;
+
+  span {
+    @include font-size($font-sizes36);
+    font-weight: $bold-weight;
+  }
+}
+
+.page-footer__social {
+  li:not(:last-child) {
+    margin-right: 15px;
+  }
+
+  a {
+    align-items: center;
+    display: flex;
+    height: 30px;
+
+    svg path {
+      @include transition(all, 0.2s, ease, 0s);
+    }
+
+    &:hover {
+      path {
+        fill: $secondary-color;
+      }
+    }
+  }
+}
+
+.page-footer__text-block {
+  color: $secondary-color;
+
+  * {
+    color: inherit;
+  }
+}
+
+.page-footer__bottom {
+  margin-top: 30px;
+
+  .ce-gallery .ce-row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .ce-image {
+    .image-embed-item {
+      margin-bottom: 0;
+    }
+
+    img {
+      max-width: 130px;
+
+      @include media-breakpoint-up(sm) {
+        max-width: 180px;
+      }
+
+      @include media-breakpoint-up(md) {
+        max-width: 200px;
+      }
+
+      @include media-breakpoint-up(lg) {
+        max-width: 220px;
+      }
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    margin-top: 60px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    margin-top: 100px;
+  }
+}

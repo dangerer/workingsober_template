@@ -1,0 +1,46 @@
+.headline {
+  margin-bottom: 30px;
+}
+
+.teaser-box-section {
+  .headline,
+  h3 {
+    color: $secondary-color;
+  }
+
+  h3 {
+    background-color: $primary-color;
+    display: inline;
+    padding: 0 6px;
+  }
+
+  .teaser-box__image {
+    margin-bottom: 30px;
+  }
+
+  .teaser-box {
+    margin-bottom: 30px;
+  }
+
+  .teaser-box__content {
+    h4 {
+      padding: 0 6px;
+      width: 95%;
+    }
+
+    a {
+      display: inline-block;
+             
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.teaser-box-section.bg-primary {
+  .teaser-item-headline {
+    background-color: $text-color;
+    color: $white-color;
+  }
+}
