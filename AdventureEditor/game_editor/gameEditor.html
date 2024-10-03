@@ -1,0 +1,143 @@
+<!doctype html>
+
+<html lang="de">
+
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">-->
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="gameEditor.css">
+		 <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+		 <link rel="stylesheet" href="./css/jquery-ui.css">
+		  <script src="js/jquery-1.9.1.min.js"></script>
+		 <script src="js/jquery-ui.js"></script>
+		 <script src="js/jquery-ui-touch.js"></script>
+		 <script src="js/domjson.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/22.4.15/i18next.min.js" integrity="sha512-fDt50cr//jIKim9lb8ly/E4obyrGx7hIK0irvSAg0X7awULsliT1Q8GYVqkfeovyWX3arQoLn6MOmjNKqD8MZA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest/dist/editor.css">
+
+		<script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@weekwood/editorjs-hyperlink@1.0.9/dist/bundle.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@editorjs/paragraph@latest"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest"></script>
+
+
+		<script type="module" src="./js/game-editor.js">
+		</script>
+
+	</head>
+	
+	<body>
+	<div id="info-overlay-container">
+		<img src="info_ws_icon100_100.png">
+		<h3 id="info-overlay-text"></h3>
+	</div>
+		<span id="saveText" style="display:none;"></span>
+		<div style="" class="loader"></div>
+		<div id="mainContainer">
+			<div id="mainContent">
+				<div id="scene-0" class="scene">
+					<img id="scene-0-img" src="sample.png" class="sceneImage">
+				</div>
+			</div>
+		</div>
+		<div class="container" id="controlPane" width="1000" height="135">
+			<div id="navControlPane" class="row">
+				<ul class="nav">
+				  <li id="buttonScenes" class="nav-item active">
+					<a class="nav-link" href="#">Szene bearbeiten</a>
+				 </li>
+				  <li id="buttonGraphics" class="nav-item">
+					<a class="nav-link" href="#">Grafik bearbeiten</a>
+				 </li>
+				</ul>
+			</div>
+			<div id="sceneLayer">
+				<div class="row">
+					<div class="col-6">
+						<!--<button type="button" id="newActionButton" class="btn btn-primary grow">Neue Aktionsfläche</button>-->
+						<button type="button" id="newCardButton" class="btn btn-primary grow">Neue Karte</button>
+						<button type="button" id="saveButton" class="btn">Speichern</button>
+					</div>
+					<div class="col-6">
+						<div class="col-12">
+							<div class="form-group">
+								<label id="labelSceneNameDisplay" for="sceneNameDisplay">Szene:</label>
+									<input type="text" class="form-control" id="sceneNameDisplay" readonly>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-3">
+								<button id="newSceneButton" type="button" class="btn btn-primary">Neue Szene</button>
+							</div>
+							<div class="col-3">
+								<button id="deleteSceneButton" type="button" class="btn btn-primary">Szene löschen</button>
+							</div>
+							<div class="col-6">
+								<select id="selectorScene" class="form-control">
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<div id="graphicsLayer" style="display:none;">
+				<div class="row">
+					<div class="col-4">
+					 	<button id="changeBackgroundButton" type="button" class="btn btn-primary">Hintergrundbild ändern</button>
+					</div>
+					<!--<div class="col-4">
+						<div class="row">
+							<select id="selectorCategory" class="form-control">
+							</select>
+						</div>
+					</div>
+					<div class="col-1">
+						<div id="tokenSelectorLeft" class="arrow-left"> </div>
+					</div>
+					<div id="tokenDisplay" class="col-2">
+						<div id="imgContainer">
+							<img id="propImage" width="80px"height="80px"src="" alt="Loading...">
+						</div>
+					</div>
+					<div class="col-1">
+						<div id="tokenSelectorRight" class="arrow-right"> </div>
+					</div>-->
+				</div>
+			</div>
+		</div>
+		
+				<script src="./js/popper.min.js"></script>
+
+		<script src="./js/bootstrap.min.js"></script>
+
+		<!--
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="./js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+			-->
+		<script type="module">
+			import { ll } from "./js/i18next-translate.js"
+
+			let l = ll.t("scene.initialSceneName")
+			document.querySelector('#buttonScenes .nav-link').textContent = ll.t("baseFields.editScene")
+			document.querySelector('#buttonGraphics .nav-link').textContent = ll.t("baseFields.editGraphics")
+			//document.querySelector('#newActionButton').textContent = ll.t("baseFields.newAction")
+			document.querySelector('#newCardButton').textContent = ll.t("baseFields.newCard")
+			document.querySelector('#saveButton').textContent = ll.t("baseFields.save")
+			document.querySelector('#labelSceneNameDisplay').textContent = ll.t("baseFields.scene")
+			document.querySelector('#newSceneButton').textContent = ll.t("baseFields.newScene")
+			document.querySelector('#deleteSceneButton').textContent = ll.t("baseFields.deleteScene")
+			document.querySelector('#changeBackgroundButton').textContent = ll.t("baseFields.changeBackground")
+		</script>
+	</body>
+
+</html>

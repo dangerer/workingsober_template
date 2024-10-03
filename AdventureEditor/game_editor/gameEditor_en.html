@@ -1,0 +1,1525 @@
+<!doctype html>
+
+<html lang="de">
+
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">-->
+		<link rel="stylesheet" href="./css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="gameEditor.css">
+		 <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+		 <link rel="stylesheet" href="./css/jquery-ui.css">
+		  <script src="./js/jquery-1.9.1.min.js"></script>
+		 <script src="./js/jquery-ui.js"></script>
+		 <script src=".js/jquery-ui-touch.js"></script>
+		 <script src="./js/domjson.js"></script>
+
+		<script>
+			var tempRef = null;
+			var curSceneNr = 0;
+			var scenes = [];
+			var propFiles = [];
+			var curPropFileNr = 0;
+			var curButtonCreateSceneLinkNr = 0;
+			var curButtonCreateWebLinkNr = 0;
+			var curButtonNewDialogNr = 0;
+			var curButtonChangeDialogNr = 0;
+			var prevDialogNr = 0;
+			var dialogLinks = [];
+			var curRoundNr = 0;
+			var tempActionNr = undefined;
+			
+			var userUidStr = parent.userUid;
+			var gameid = parent.gameid;
+			var editorConf = parent.editorConf;
+			var jsonEditConf;
+			if(editorConf != '') jsonEditConf = JSON.parse(editorConf);
+			var sceneConf = JSON.parse(parent.jsonConf);
+			var isEditMode = parent.isEditMode;
+			var backgroundImages = parent.backgroundPaths;
+			var objektImages = parent.objektePaths;
+			var objektCategories = new Set();
+			
+			var objCategoriesToPaths = {};
+			
+			console.log(parent.isEditMode);
+			objektImages.forEach(function (elem) {
+				objektCategories.add(elem.category);
+			});
+			var objCategoriesArr = Array.from(objektCategories);
+			for(let i = 0; i < objCategoriesArr.length; i++) {
+				let curPathsToCat = [];
+				objektImages.forEach(function (elem) {
+					if(elem.category == objCategoriesArr[i]) curPathsToCat.push(elem.path_name);
+				});
+				objCategoriesToPaths[objCategoriesArr[i]] = curPathsToCat;
+			}
+
+			var schatzImages = [];
+			
+			
+			
+			for(let i = 0; i < parent.schatzPaths.length; i++) {
+				let curPathBaseName = parent.schatzPaths[i].path_name.replace(/^.*[\\\/]/, '').split('.').slice(0, -1).join('.');
+				schatzImages.push({
+					name: curPathBaseName.substring(0, curPathBaseName.length - userUidStr.length),
+					path: parent.schatzPaths[i].path_name
+				});
+			}
+			
+			//need at least 1 treasure item and at least 1 background image
+			if(schatzImages.length <= 0 || backgroundImages.length <= 0) {
+				$(document).ready(() => {
+					$('.scene').append(getErrorMessageContainer());
+					$('body').css('pointer-events', 'none');
+					throw new Error("Need at least 1 treasure image and 1 background image!");
+				});
+				
+			}
+		
+			$(document).ready(function(){
+				if(isEditMode) {
+						scenes = sceneConf.scenes;
+						//$('#controlPane').replaceWith(domJSON.toDOM(jsonEditConf.controlPane));
+						$('#buttonScenes > a').attr('href', '#');
+						$('#buttonGraphics > a').attr('href', '#');
+						//scenes to container
+						let storedScenes = scenes;
+						console.log(storedScenes);
+						storedScenes.forEach(function (scene) {
+							$('#selectorScene').append($('<option/>', {
+								value: scene.uid,
+								text: scene.sceneName
+							}));
+						});
+						curSceneNr = storedScenes[0].uid;
+
+						storedScenes.forEach(function (scene) {
+							changeToScene(scene.uid);
+							scene.actions.forEach(function (sceneAction) {
+								
+								$('#scene-' + scene.uid).append('<div class="action" title="Dialog" id="scene-' + scene.uid + '-action-' + sceneAction.uid + '">' + 
+									'<p id="scene-' + scene.uid + '-action-' + sceneAction.uid + '-p">Choose action here</p></div>');
+
+								$('#scene-' + scene.uid + '-action-' + sceneAction.uid).dialog(
+								{ 
+									// Set the settings for the jquery-ui dialog here.
+									autoOpen: true, // Don't open the dialog instantly. Let an event such as a button press open it. Optional.
+									position: { my: "center", at: "center", of: "#scene-" + scene.uid }, // Set the position to center of the div.
+				
+									
+									///appendTo: '#scene-' + sceneAction.uid
+								}).parent().resizable(
+								{ 
+										// Settings that will execute when resized.
+									containment: "#scene-" + scene.uid // Constrains the resizing to the div.
+								}).draggable(
+								{ 
+									// Settings that execute when the dialog is dragged. If parent isn't used the text content will have dragging enabled.
+									containment: "#scene-" + scene.uid, // The element the dialog is constrained to.
+									opacity: 0.70, // Fancy opacity. Optional.
+									stop: function(event, ui) {
+											var offset = $(this).offset();
+											var offsetMain = $('#mainContent').offset();
+											var left = offset.left - offsetMain.left;
+											var top = offset.top - offsetMain.top;
+											let selectedId = $(this)[0].attributes[3].value;
+											let idNr = selectedId.substring((selectedId.indexOf("action-")+7), selectedId.length);
+
+											for(let i = 0; i < scenes[scene.uid].actions.length; i++) {
+												if(scenes[scene.uid].actions[i].uid == idNr) {
+													scenes[scene.uid].actions[i].x = left;
+													scenes[scene.uid].actions[i].y = top;	
+													scenes[scene.uid].actions[i].actWidth = $(this)[0].clientWidth;	
+													scenes[scene.uid].actions[i].actHeight = $(this)[0].clientHeight;	
+													break;
+												}
+											}
+											
+																	
+									}
+								});
+								
+								$("div[aria-describedby='scene-" + scene.uid + "-action-" + sceneAction.uid + "']").css("height", sceneAction.actHeight);
+								$("div[aria-describedby='scene-" + scene.uid + "-action-" + sceneAction.uid + "']").css("width", sceneAction.actWidth);
+								$("div[aria-describedby='scene-" + scene.uid + "-action-" + sceneAction.uid + "']").css("top", sceneAction.y);
+								$("div[aria-describedby='scene-" + scene.uid + "-action-" + sceneAction.uid + "']").css("left", sceneAction.x);
+								
+								if(sceneAction.actionType !== undefined && sceneAction.actionType.trim() != "") {
+									switch(sceneAction.actionType) {
+									case 'dialog':
+										comp = "<p>Conversation configured</p>"; 
+										$('#scene-' + scene.uid + '-action-' + sceneAction.uid).html(comp);
+										
+										break;
+									case 'scenelink':
+											var comp = '<p class="selection-box-text">Connect with scene:</p><select class="link-to-scene-selector" id="linkToSceneSelector-' + curButtonCreateSceneLinkNr + '">';
+											for(var i = 0; i < scenes.length; i++) {
+													if(scenes[i].uid != scene.uid)
+														comp += '<option id="opt' + scenes[i].sceneName + '" value="' + scenes[i].sceneName + '">' + scenes[i].sceneName 
+														+ '</option>';
+											}
+											comp += '</select>';
+											comp += '<p class="selection-box-text">Required item:</p><select class="link-condition-selector" id="linkConditionSelector-' + curButtonCreateSceneLinkNr + '">';
+											comp += '<option id="item-none" value="none">No item</option>';
+											for(let i = 0; i < schatzImages.length; i++) {
+												comp += '<option id="item-' + schatzImages[i].name + '" value="' + schatzImages[i].name + '">' + schatzImages[i].name
+														+ '</option>';
+											}
+											$('#scene-' + scene.uid + '-action-' + sceneAction.uid).html(comp);
+											$('#scene-' + scene.uid + '-action-' + sceneAction.uid + ' .link-condition-selector').val(sceneAction.conditionItem);
+											$('#scene-' + scene.uid + '-action-' + sceneAction.uid + ' .link-to-scene-selector').val(sceneAction.toScene);
+											
+											$('#linkToSceneSelector-' + curButtonCreateSceneLinkNr).on('change', function() {
+												for(var j = 0; j < scene.actions.length; j++) {
+													if(scene.actions[j].uid == sceneAction.uid) 
+														break;
+												}
+												scene.actions[j].toScene = this.value;
+											});
+											$('#linkConditionSelector-' + curButtonCreateSceneLinkNr).on('change', function() {
+												for(var j = 0; j < scene.actions.length; j++) {
+													if(scene.actions[j].uid == sceneAction.uid) 
+														break;
+												}
+												scene.actions[j].conditionItem = this.value;
+											});
+												break;
+
+											case 'weblink':
+													$('#scene-' + scene.uid + '-action-' + sceneAction.uid).html('Link: ' + sceneAction.weblink);
+													break;
+										}
+								} else {
+
+									$('#scene-' + scene.uid + '-action-' + sceneAction.uid).on('click', function(e) {
+										var selectedId = e.currentTarget.attributes[1].value;
+										thisActionNr = selectedId.substring((selectedId.indexOf("action-")+7), selectedId.length);
+
+										$('#' + selectedId + '-p').html(getChoosableActionContainer());
+										$('#sceneLinkButton-' + curButtonCreateSceneLinkNr).on('click', function() {
+											for(var objIndex = 0; objIndex < scenes[scene.uid].actions.length; objIndex++) {
+												if(scenes[scene.uid].actions[objIndex].uid == thisActionNr) break;
+											}
+											scenes[scene.uid].actions[objIndex].actionType = 'scenelink';
+											$('#' + selectedId).html(getSceneLinkActionContainer());
+											scenes[scene.uid].actions[objIndex].toScene = $('#linkToSceneSelector-' + curButtonCreateSceneLinkNr).val();
+											$('#linkToSceneSelector-' + curButtonCreateSceneLinkNr).on('change', function() {
+												for(var j = 0; j < scenes[curSceneNr].actions.length; j++) {
+													if(scenes[curSceneNr].actions[j].uid == thisActionNr) 
+														break;
+												}
+												scenes[scene.uid].actions[j].toScene = this.value;
+
+											});
+											$('#linkConditionSelector-' + curButtonCreateSceneLinkNr).on('change', function() {
+												for(var j = 0; j < scenes[scene.uid].actions.length; j++) {
+													if(scenes[scene.uid].actions[j].uid == thisActionNr) 
+														break;
+												}
+												scenes[scene.uid].actions[j].conditionItem = this.value;
+											});
+									
+										});
+										$('#plainLinkButton-' + curButtonCreateWebLinkNr).on('click', function() {
+											for(var objIndex = 0; objIndex < scenes[scene.uid].actions.length; objIndex++) {
+												if(scenes[scene.uid].actions[objIndex].uid == thisActionNr) break;
+											}
+											scenes[scene.uid].actions[objIndex].actionType = 'weblink';
+											$('#' + selectedId).html(getWebLinkActionContainer());
+											$('#confirmWeblink-' + curButtonCreateWebLinkNr).on('click', function(e) {
+												for(var x = 0; x < scenes[scene.uid].actions.length; x++) {
+													if(scenes[scene.uid].actions[x].uid == thisActionNr) 
+														break;
+												}
+												scenes[scene.uid].actions[x].weblink = $('#linktoURL-' + e.currentTarget.id.substring(e.currentTarget.id.indexOf("-")+1, e.currentTarget.id.length)).val();
+												$('#' + selectedId).html('Link: ' + scenes[scene.uid].actions[x].weblink);
+											})	
+											curButtonCreateWebLinkNr++;
+										});
+										
+										$('#newDialogButton-' + curButtonNewDialogNr).on('click', function() {
+											for(var objIndex = 0; objIndex < scenes[scene.uid].actions.length; objIndex++) {
+												if(scenes[scene.uid].actions[objIndex].uid == thisActionNr) break;
+											}
+											scenes[scene.uid].actions[objIndex].actionType = 'dialog';
+											toggleControlPane();
+											let curDialogId = $(this).parent().parent().parent().parent().parent()[0].id;
+											tempActionNr = curDialogId.substring(curDialogId.length-1, curDialogId.length);
+											$('#scene-' + scene.uid + '-action-' + tempActionNr).html(getDialogCreatedContainer());
+											$('#scene-' + scene.uid + '-action-' + tempActionNr + ' .change-dialog').on('click', function() {
+												console.log("HII");
+											});
+											let curPageDialogs = $('.ui-dialog');
+											for(let i = 0; i < curPageDialogs.length; i++) {
+												if(curPageDialogs[i].attributes[3].value.includes('scene-' + scene.uid)) {
+													$('#' + curPageDialogs[i].attributes[3].value).parent().css('display', 'none');
+												}
+											}
+											let curRoundNr = 0;
+											$('#scene-' + scene.uid).hide();
+											//console.log($('#' + selectedId).parent());
+											$('#' + selectedId).parent().hide();
+											createDialog(curRoundNr, null);
+											
+
+										});
+										
+
+
+									});
+									
+								}
+								
+
+						
+								//on dialog close, remove action
+								$('#scene-' + scene.uid + '-action-' + sceneAction.uid).on('dialogclose', function(e) {
+									for(var i = 0; i < scenes[scene.uid].actions.length; i++) {
+										let selectedId = e.currentTarget.attributes[1].value;
+										let idNr = selectedId.substring((selectedId.indexOf("action-")+7), selectedId.length);
+
+										if(scenes[scene.uid].actions[i].uid == idNr) {
+											scenes[scene.uid].actions.splice(i, 1);
+										}
+									}
+									let actionId = $(e.target)[0].id;
+									let actionNr = actionId.substring(actionId.length-1, actionId.length);
+									$(e.target).parent().remove();
+									$('#scene-' + scene.uid + '-action-' + actionNr).remove();
+
+									//var remIndex = scenes[scene.uid].actions.indexOf(e.currentTarget.attributes[1].nodeValue);
+								});
+								//on click on text, show options
+								curButtonCreateSceneLinkNr++;
+								curButtonNewDialogNr++;
+								curButtonCreateWebLinkNr++;
+								
+							});
+							
+							scene.props.forEach(function(prop) {
+								console.log($('#scene-' + scene.uid));
+								$('#scene-' + scene.uid).append('<div id="scene-' + scene.uid + '-prop-' + prop.uid + '" class="prop-item" style="position:absolute;display:inline-block;">' + 
+											'<img id="scene-' + scene.uid + '-prop-' + prop.uid + '-img"  width="100" height="100" ' +
+											'src="' + prop.filepath + '"/></div>');
+
+										$('#scene-' + scene.uid + '-prop-' + prop.uid).draggable({ 
+											// Settings that execute when the dialog is dragged. If parent isn't used the text content will have dragging enabled.
+											containment: "#scene-" + scene.uid,
+											//position: { my: "center", at: "center", of: "#scene-" + scene.uid }, // Set the position to center of the div.
+											
+											stop: function(event, ui) {
+													var offset = $(this).offset();
+
+													var offsetMain = $('#mainContent').offset();
+													var left = offset.left - offsetMain.left;
+													var top = offset.top - offsetMain.top;
+													let selectedId = $(this)[0].attributes[0].value;
+													let idNr = selectedId.substring((selectedId.indexOf("prop-")+5), selectedId.length);
+
+													for(let i = 0; i < scenes[scene.uid].props.length; i++) {
+														if(scenes[scene.uid].props[i].uid == idNr) {
+															scenes[scene.uid].props[i].x = left;
+															scenes[scene.uid].props[i].y = top;
+															scenes[scene.uid].props[i].actWidth = $(this)[0].clientWidth;	
+															scenes[scene.uid].props[i].actHeight = $(this)[0].clientHeight;		
+															break;
+														}
+													}					
+											}
+										});
+
+										$('#scene-' + scene.uid + '-prop-' + prop.uid + '-img').resizable({
+											start: function(event, ui) {
+										
+												
+											},
+										
+											resize: function(event, ui) {
+												
+												
+											
+											},
+											stop: function(event, ui) {
+													let selectedId = $(this).parent()[0].attributes[0].value;
+													let idNr = selectedId.substring((selectedId.indexOf("prop-")+5), selectedId.length);
+
+													for(let i = 0; i < scenes[scene.uid].props.length; i++) {
+														if(scenes[scene.uid].props[i].uid == idNr) {
+															scenes[scene.uid].props[i].actWidth = $(this).parent()[0].clientWidth;
+															scenes[scene.uid].props[i].actHeight = $(this).parent()[0].clientHeight;	
+															break;
+														}
+													}	
+													//console.log(scenes[scene.uid].props);		
+											}
+										});
+
+										$('#scene-' + scene.uid + '-prop-' + prop.uid).dblclick(function(e) {
+											for(var i = 0; i < scenes[scene.uid].props.length; i++) {
+												let selectedId = e.currentTarget.attributes[0].value;
+												let idNr = selectedId.substring((selectedId.indexOf("prop-")+5), selectedId.length);
+
+												if(scenes[scene.uid].props[i].uid == idNr) {
+													scenes[scene.uid].props.splice(i, 1);
+												}
+											}
+											$('#'+ e.currentTarget.attributes[0].value).remove();
+					
+										});
+										$('#scene-' + scene.uid + '-prop-' + prop.uid).css("height", prop.actHeight);
+										$('#scene-' + scene.uid + '-prop-' + prop.uid).css("width", prop.actWidth);
+										$('#scene-' + scene.uid + '-prop-' + prop.uid).css("top", prop.y);
+										$('#scene-' + scene.uid + '-prop-' + prop.uid).css("left", prop.x);
+										
+											$('#scene-' + scene.uid + '-prop-' + prop.uid + '-img').css("height", prop.actHeight);
+										$('#scene-' + scene.uid + '-prop-' + prop.uid + '-img').css("width", prop.actWidth);
+										$('#scene-' + scene.uid + '-prop-' + prop.uid + ' > .ui-wrapper').css("height", prop.actHeight);
+										$('#scene-' + scene.uid + '-prop-' + prop.uid + ' > .ui-wrapper').css("width", prop.actWidth);
+						
+
+
+							});
+				
+						});
+						//changeToScene(storedScenes[0].uid);
+
+						//-----------------------------------------
+						var dialogs = $('.ui-dialog');
+						for(let i = 0; i < dialogs.length; i++) {
+
+							
+							if($($(dialogs[i])[0]).attr('aria-describedby').includes('scene-' + curSceneNr)) {
+								$('#' + $($(dialogs[i])[0]).attr('aria-describedby')).parent().show();
+							} else {
+								$('#' + $($(dialogs[i])[0]).attr('aria-describedby')).parent().hide();
+							}
+						}
+						var props = $('.prop-item');
+						for(let i = 0; i < props.length; i++) {
+							if(props[i].attributes[0].value.includes('scene-' + curSceneNr)) {
+								$('#' + props[i].attributes[0].value).show();
+							} else {
+								$('#' + props[i].attributes[0].value).hide();
+							}
+						}
+						$('#selectorScene').val(curSceneNr).prop('selected', 'true');
+						$('#scene-' + curSceneNr + '-img').attr('src', scenes[curSceneNr].backgroundPath);
+						$('#scene-' + curSceneNr + '-img').attr('id', 'scene-' + curSceneNr + '-img');
+						$('#scene-' + curSceneNr).attr('id', 'scene-' + curSceneNr);
+						$('#sceneNameDisplay').val(scenes[curSceneNr].sceneName);
+						//-----------------------------------------
+						console.log(sceneConf);
+					
+				
+						$(document).trigger('jsonLoaded');
+					
+						
+					
+				} else {
+						$(document).trigger('jsonLoaded');
+				}
+			});
+			
+			
+	
+			
+			
+			function Round(I) {
+				I.conversations = [];
+				return I;
+			}
+
+			function Conversation(I) {
+				return I;
+			}
+
+			function Prop(I) {
+				I.actWidth = 0;
+				I.actHeight = 0;
+				return I;
+			}
+
+			function Action(I) {
+				I.actionType = '';
+				I.rounds = [];
+				return I;
+			}
+
+			function Scene(I) {
+				I.actions = [];
+				I.props = [];
+				I.propNr = 0;
+				I.actionNr = 0;
+				I.addAction = function(a) {
+					this.actions.push(a);
+				}
+				return I;
+			}
+			
+			if(scenes.length == 0) scenes.push(Scene({
+										sceneName: 'Startszene',
+										uid: 0
+									}));
+				$(document).on( "jsonLoaded", function() {
+						if(!isEditMode) {			
+							$('#selectorScene').append($('<option/>', {
+								value: 0,
+								text: 'Startszene'
+							}));
+						} else {
+							$('#selectorScene > option')
+								.filter(function() {
+									return !this.value || $.trim(this.value).length == 0 || $.trim(this.text).length == 0;
+								})
+							   .remove();
+						}
+						
+						for(let i = 0; i < objCategoriesArr.length; i++) {
+							$('#selectorCategory').append($('<option>', {
+								value: i,
+								text: objCategoriesArr[i]
+							}));
+						}
+						
+						$('#propImage').attr('src', objCategoriesToPaths[$("#selectorCategory option:selected").text()][0]);
+				
+						$('#selectorCategory').on('change', function() {
+							$('#propImage').attr('src', objCategoriesToPaths[$("#selectorCategory option:selected").text()][0]);
+						});
+						
+						
+						$("#buttonGraphics").on("click", function() {
+							$("#sceneLayer").css("display", "none");
+							$("#graphicsLayer").css("display", "");
+							changeToGraphicsScreen();
+
+						});
+						
+						$("#buttonScenes").on("click", function() {
+							$("#sceneLayer").css("display", "");
+							$("#graphicsLayer").css("display", "none");
+							changeToSceneScreen();
+						});
+						
+						$("#tokenSelectorLeft").on("click", function() {
+							if(curPropFileNr > 0) {
+								curPropFileNr--;
+								let propPath = objCategoriesToPaths[$("#selectorCategory option:selected").text()][curPropFileNr];
+								$('#propImage').attr('src', propPath);
+							}
+							
+						});
+						
+						$("#tokenSelectorRight").on("click", function() {
+							if(curPropFileNr < objCategoriesToPaths[$("#selectorCategory option:selected").text()].length-1) {
+								curPropFileNr++;
+								let propPath = objCategoriesToPaths[$("#selectorCategory option:selected").text()][curPropFileNr];								
+
+								$('#propImage').attr('src', propPath);
+							}
+						});
+						
+						$('#newActionButton').on('click', newAction);
+
+						$('#newSceneButton').on('click', newScene);
+
+						
+						$('#deleteSceneButton').on('click', deleteScene);
+
+
+						$('#selectorScene').on('change', function() {
+							changeToScene(this.value);
+						});;
+
+						
+						$('#propImage').on('click', newProp);
+
+						$('#sceneNameDisplay').val('Startszene');
+
+						$('#saveButton').on('click', function() {
+							setBackgroundActive(false);
+
+							$('.loader').show();
+							saveFunc();
+						});
+
+						$('#changeBackgroundButton').on('click', changeBackground);
+
+					});
+			
+			function deleteScene() {
+				toggleControlPane();
+				$('#scene-' + curSceneNr).append(getDeleteSceneContainer(curSceneNr));
+				$('#confirmDeleteSceneButton').on('click', function() {
+					if(scenes.length < 2) {
+						showStatusText("At least one scene is required!");
+					} else {
+						$('#deleteSceneContainer').remove();
+						var sceneToDeleteIndex;
+						for(let i = 0; i < scenes.length; i++) {
+							if(scenes[i].uid == curSceneNr) {
+								sceneToDeleteIndex = i;
+								break;
+							}
+						}
+						$('.ui-dialog').each(function() {
+							if($(this).attr('aria-describedby').includes("scene-" + sceneToDeleteIndex)) {
+								$('#' + $(this).attr('aria-describedby')).remove();
+								$(this).remove();
+							}
+						});
+						$('.prop-item').each(function() {
+							if($(this).attr('id').includes("scene-" + sceneToDeleteIndex)) {
+								$('#' + $(this).attr('id')).remove();
+							}
+						});
+						$("#selectorScene option[value='" + curSceneNr + "']").remove();
+						scenes.splice(sceneToDeleteIndex, 1);
+						changeToScene(0);
+						toggleControlPane();
+					}
+				});
+				$('#abortDeleteSceneButton').on('click', function() {
+					$('#deleteSceneContainer').remove();
+					toggleControlPane();
+				});
+			}
+
+			function getDeleteSceneContainer(uid) {
+				/*var mainOffset = $('#scene-' + curSceneNr).offset();
+				var top = mainOffset.top + $('#scene-' + curSceneNr)[0].clientHeight/2;
+				var left = mainOffset.left;*/
+				var comp = '<div id="deleteSceneContainer">'
+				+	'<h5 class="delete-scene-name-text">Delete scene "' + scenes[uid].sceneName + '" entirely?</h5>'
+				+	'<button id="confirmDeleteSceneButton">Yes</button>'
+				+ 	'<button id="abortDeleteSceneButton">Abort</button>'
+				 + '</div>';
+				 return comp;
+			}
+
+			function changeBackground() {
+				toggleControlPane();
+			
+				 	
+					
+					var backgroundPaths = []; 
+					backgroundImages.forEach(function (elem) {
+						backgroundPaths.push(elem.path_name);
+					});
+					
+				 	$('#scene-' + curSceneNr).append(getBackgroundChangeContainer(backgroundPaths[0]));
+				 	let curBackgroundFile = 0;
+					$('#backgroundImageSelectorLeft').on('click', function() {
+						if(curBackgroundFile > 0) {
+								curBackgroundFile--;
+								$('#changeToImage').attr('src', backgroundPaths[curBackgroundFile]);
+							}
+					})
+
+					$('#backgroundImageSelectorRight').on('click', function() {
+						if(curBackgroundFile < backgroundPaths.length-1) {
+								curBackgroundFile++;
+								$('#changeToImage').attr('src', backgroundPaths[curBackgroundFile]);
+							}
+					})
+
+					$('#confirmBackgroundImageButton').on('click', function() {
+						$('#scene-' + curSceneNr + '-img').attr('src', backgroundPaths[curBackgroundFile]);
+						scenes[curSceneNr].backgroundPath = backgroundPaths[curBackgroundFile];
+						$('#changeBackgroundContainer').remove();
+						toggleControlPane();
+					});
+
+				
+			}
+
+			function getBackgroundChangeContainer(initialBackgroundPath) {
+				let mainOffset = $('#scene-' + curSceneNr).offset();
+				let top = mainOffset.top + $('#scene-' + curSceneNr)[0].clientHeight/2;
+				let left = mainOffset.left;
+				var comp = '<div id="changeBackgroundContainer">'
+						+	'<div class="container">' 
+						+		'<div class="row">'
+						+			'<div class="col-1">'
+									+	'<div id="backgroundImageSelectorLeft" class="arrow-left"> </div>'
+						+			'</div>'
+						+			'<div class="col-10">'
+									+	'<img id="changeToImage" src="' + initialBackgroundPath + '">'
+						+			'</div>'
+						+			'<div class="col-1">'
+									+	'<div id="backgroundImageSelectorRight" class="arrow-right"> </div>'
+						+			'</div>'
+						+		'</div>'
+						+		'<div id="confirmBackImageContainer" class="row">'
+							+ 		'<button id="confirmBackgroundImageButton">Use as background</button>'
+						+		'</div>'
+						+	'</div>'
+						+ '</div>';
+				 return comp;
+			}
+
+			function saveFunc() {
+					let allItems = [];
+					for(let i = 0; i < scenes.length; i++) {
+							for(let j = 0; j < scenes[i].actions.length; j++) {
+								for(let k = 0; k < scenes[i].actions[j].rounds.length; k++) {
+									for(let l = 0; l < scenes[i].actions[j].rounds[k].conversations.length; l++) {
+										let curConversation = scenes[i].actions[j].rounds[k].conversations[l];
+										if(curConversation.collectible != "none") {
+											if(!allItems.includes(curConversation.collectible))
+												allItems.push(curConversation.collectible);
+										}
+									}
+								}
+							}
+						}
+				requiredSchatzItems = [];		
+				for(let i = 0; i < allItems.length; i++) {
+					for(let j = 0; j < schatzImages.length; j++) {
+						if(allItems[i] == schatzImages[j].name) {
+							requiredSchatzItems.push({
+									name: schatzImages[j].name,
+									path: schatzImages[j].path
+							});
+							break;
+						}
+					}
+				}
+				let gameConfiguration = {
+					items:	requiredSchatzItems,
+					scenes: scenes
+				}
+				console.log(gameConfiguration);
+				
+				let dialogs = document.getElementsByClassName("ui-dialog");
+				let dialogArr = [];
+				for(let i = 0; i < dialogs.length; i++) {
+					dialogArr.push(domJSON.toJSON(dialogs[i]));
+				}
+				let mainContainer = document.getElementById("mainContainer");
+				let controlPane = document.getElementById("controlPane");
+				let editObj = {
+					mainContainer: domJSON.toJSON(mainContainer),
+					controlPane: domJSON.toJSON(controlPane),
+					dialogs: dialogArr,
+					scenes: scenes
+				}
+				
+				let parentLoc = window.parent.location;
+				storeUrl = parentLoc.toString().substring(0, parentLoc.toString().indexOf("index.php"));
+				storeUrl += "index.php?id=29";
+				console.log(gameConfiguration);
+				var ajaxCall = {
+					url: storeUrl,
+					method: "POST",
+					data: {
+						gameid: gameid,
+						json: JSON.stringify(gameConfiguration),
+						editorConfig: JSON.stringify(editObj)
+					},
+					success: function(data, status, xhr) {
+							setBackgroundActive(true);
+						$('.loader').hide();
+						showStatusText("Configuration saved!");
+					},
+					error: function(xhr, status, error) {
+														setBackgroundActive(true);
+
+						$('.loader').hide();
+						console.log("error");
+						showStatusText("Error during saving process!");
+
+					}
+				};
+				$.ajax(ajaxCall);
+				
+				
+			
+				
+				/*var ajaxCallSaveForEdit = {
+					url: "saveForEdit.php",
+					method: "POST",
+					data: {
+						json: JSON.stringify(editObj) 
+					},
+					success: function(data, status, xhr) {
+						console.log(data);
+					},
+					error: function(xhr, status, error) {
+						console.log("error");
+					}
+				};
+				$.ajax(ajaxCallSaveForEdit);*/
+			}
+
+			function newProp() {
+															console.log("Cur scene nr" + curSceneNr);
+
+				let propSrc = $('#propImage').attr('src');
+				$('#scene-' + curSceneNr).append('<div id="scene-' + curSceneNr + '-prop-' + scenes[curSceneNr].propNr + '" class="prop-item" style="position:absolute;display:inline-block;">' + 
+							'<img id="scene-' + curSceneNr + '-prop-' + scenes[curSceneNr].propNr + '-img"  width="100" height="100" ' +
+							'src="' + propSrc + '"/></div>');
+
+						$('#scene-' + curSceneNr + '-prop-' + scenes[curSceneNr].propNr).draggable({ 
+							// Settings that execute when the dialog is dragged. If parent isn't used the text content will have dragging enabled.
+							containment: "#scene-" + curSceneNr,
+							//position: { my: "center", at: "center", of: "#scene-" + curSceneNr }, // Set the position to center of the div.
+							
+         					stop: function(event, ui) {
+									var offset = $(this).offset();
+
+									var offsetMain = $('#mainContent').offset();
+									var left = offset.left - offsetMain.left;
+									var top = offset.top - offsetMain.top;
+									let selectedId = $(this)[0].attributes[0].value;
+									let idNr = selectedId.substring((selectedId.indexOf("prop-")+5), selectedId.length);
+									for(let i = 0; i < scenes[curSceneNr].props.length; i++) {
+										if(scenes[curSceneNr].props[i].uid == idNr) {
+											scenes[curSceneNr].props[i].x = left;
+											scenes[curSceneNr].props[i].y = top;
+											scenes[curSceneNr].props[i].actWidth = $(this)[0].clientWidth;	
+																										console.log("Cur scene nr" + curSceneNr);
+							console.log($(this)[0].clientWidth);
+
+											scenes[curSceneNr].props[i].actHeight = $(this)[0].clientHeight;		
+											break;
+										}
+									}					
+         					}
+						});
+
+						$('#scene-' + curSceneNr + '-prop-' + scenes[curSceneNr].propNr + '-img').resizable({
+							start: function(event, ui) {
+						
+								
+							},
+						
+							resize: function(event, ui) {
+								
+								
+							
+							},
+							stop: function(event, ui) {
+									let selectedId = $(this).parent()[0].attributes[0].value;
+									let idNr = selectedId.substring((selectedId.indexOf("prop-")+5), selectedId.length);
+
+									for(let i = 0; i < scenes[curSceneNr].props.length; i++) {
+										if(scenes[curSceneNr].props[i].uid == idNr) {
+											scenes[curSceneNr].props[i].actWidth = $(this).parent()[0].clientWidth;
+											scenes[curSceneNr].props[i].actHeight = $(this).parent()[0].clientHeight;	
+											break;
+										}
+									}	
+									//console.log(scenes[curSceneNr].props);		
+							}
+						});
+
+						$('#scene-' + curSceneNr + '-prop-' + scenes[curSceneNr].propNr).dblclick(function(e) {
+							for(var i = 0; i < scenes[curSceneNr].props.length; i++) {
+								let selectedId = e.currentTarget.attributes[0].value;
+								let idNr = selectedId.substring(selectedId.length-1, selectedId.length);
+								if(scenes[curSceneNr].props[i].uid == idNr) {
+									scenes[curSceneNr].props.splice(i, 1);
+								}
+							}
+							$('#'+ e.currentTarget.attributes[0].value).remove();
+	
+						});
+
+						//store prop
+						scenes[curSceneNr].props.push(Prop({
+							uid: scenes[curSceneNr].propNr,
+							filepath: propSrc
+						}));
+						scenes[curSceneNr].propNr++;
+			}
+
+			function newScene() {
+				toggleControlPane();
+				$('#scene-' + curSceneNr).append(getNewSceneContainer());
+
+				$('#confirmSceneName').on('click', function() {
+					let newSceneName = $('#newSceneName').val();
+					scenes.push(Scene({
+						sceneName: newSceneName,
+						uid: scenes.length
+					}));
+					
+					$('#selectorScene').append($('<option/>', {
+						value: scenes.length-1,
+						text: newSceneName
+					}));
+					changeToScene(scenes.length-1);
+					$('#scene-' + curSceneNr + '-img').attr('src', 'sample_en.png');
+					toggleControlPane();
+				});
+			
+			}
+			
+			function changeToSceneScreen() {
+				var dialogs = $('.ui-dialog');
+					for(let i = 0; i < dialogs.length; i++) {
+						if($($(dialogs[i])[0]).attr('aria-describedby').includes('scene-' + curSceneNr)) 
+							$('#' + $($(dialogs[i])[0]).attr('aria-describedby')).parent().show();
+					}
+			}
+
+			function changeToGraphicsScreen() {
+				var dialogs = $('.ui-dialog');
+				
+					
+					for(let i = 0; i < dialogs.length; i++) {
+						if($($(dialogs[i])[0]).attr('aria-describedby').includes('scene-' + curSceneNr)) 
+							$('#' + $($(dialogs[i])[0]).attr('aria-describedby')).parent().hide();
+					}
+			}
+
+			function changeToScene(uid) {
+					//change id to act uid
+					$('#newSceneContainer').remove();
+					var dialogs = $('.ui-dialog');
+					for(let i = 0; i < dialogs.length; i++) {
+						if($($(dialogs[i])[0]).attr('aria-describedby').includes('scene-' + curSceneNr)) {
+							$('#' + $($(dialogs[i])[0]).attr('aria-describedby')).parent().hide();
+						} else if($($(dialogs[i])[0]).attr('aria-describedby').includes('scene-' + uid)) {
+							$('#' + $($(dialogs[i])[0]).attr('aria-describedby')).parent().show();
+							let curDialogId = $($(dialogs[i])[0]).attr('aria-describedby');
+							let curActionNr = curDialogId.substring((curDialogId.indexOf("action-")+7), curDialogId.length);
+							let curOptionsArr = [];
+							let curSelectedOpt = $('#scene-' + uid + '-action-' + (Number(curActionNr)) + ' > .link-to-scene-selector').val();
+
+							console.log(curSelectedOpt);
+
+							$('#scene-' + uid + '-action-' + (Number(curActionNr)) + ' > .link-to-scene-selector').empty();
+							//if(curOptionsArr.length > 0) {
+							scenes.forEach(function(scene) {
+									if(scene.uid != uid) {
+										$('#scene-' + uid + '-action-' + (Number(curActionNr)) + ' > .link-to-scene-selector').append($('<option>', {
+											id: 'opt' + scene.sceneName,
+											value: scene.sceneName,
+											text: scene.sceneName
+										}));		
+									}
+							});
+							if(curSelectedOpt != undefined)
+								$('#scene-' + uid + '-action-' + (Number(curActionNr)) + ' > .link-to-scene-selector').val(curSelectedOpt);
+							//}
+							
+						}
+					}
+					var props = $('.prop-item');
+					for(let i = 0; i < props.length; i++) {
+						if(props[i].attributes[0].value.includes('scene-' + curSceneNr)) {
+							//$('#' + props[i].attributes[0].value).css('display', 'none');
+							//$('#' + props[i].attributes[0].value).addClass('display-none-class');
+							$('#' + props[i].attributes[0].value).hide();
+
+						} else if(props[i].attributes[0].value.includes('scene-' + uid)) {
+							//$('#' + props[i].attributes[0].value).css('display', '');
+							//$('#' + props[i].attributes[0].value).removeClass('display-none-class');
+							$('#' + props[i].attributes[0].value).show();
+
+						}
+					}
+					$('#selectorScene').val(uid).prop('selected', 'true');
+					$('#scene-' + curSceneNr + '-img').attr('src', scenes[uid].backgroundPath);
+					$('#scene-' + curSceneNr + '-img').attr('id', 'scene-' + uid + '-img');
+					$('#scene-' + curSceneNr).attr('id', 'scene-' + uid);
+					$('#sceneNameDisplay').val(scenes[uid].sceneName);
+					curSceneNr = uid;
+
+			}
+			
+
+			function newAction() {
+						$('#scene-' + curSceneNr).append('<div class="action" title="Dialog" id="scene-' + curSceneNr + '-action-' + scenes[curSceneNr].actionNr + '">' + 
+							'<p id="scene-' + curSceneNr + '-action-' + scenes[curSceneNr].actionNr + '-p">Choose action here</p></div>');
+
+						$('#scene-' + curSceneNr + '-action-' + scenes[curSceneNr].actionNr).dialog(
+						{ 
+							// Set the settings for the jquery-ui dialog here.
+							autoOpen: true, // Don't open the dialog instantly. Let an event such as a button press open it. Optional.
+							position: { my: "center", at: "center", of: "#scene-" + curSceneNr } // Set the position to center of the div.
+							///appendTo: '#scene-' + curSceneNr
+						}).parent().resizable(
+						{ 
+							// Settings that will execute when resized.
+							containment: "#scene-" + curSceneNr // Constrains the resizing to the div.
+						}).draggable(
+						{ 
+							// Settings that execute when the dialog is dragged. If parent isn't used the text content will have dragging enabled.
+							containment: "#scene-" + curSceneNr, // The element the dialog is constrained to.
+							opacity: 0.70, // Fancy opacity. Optional.
+         					stop: function(event, ui) {
+									var offset = $(this).offset();
+									var offsetMain = $('#mainContent').offset();
+									var left = offset.left - offsetMain.left;
+									var top = offset.top - offsetMain.top;
+									let selectedId = $(this)[0].attributes[3].value;
+									let idNr = selectedId.substring((selectedId.indexOf("action-")+7), selectedId.length);
+
+									for(let i = 0; i < scenes[curSceneNr].actions.length; i++) {
+										if(scenes[curSceneNr].actions[i].uid == idNr) {
+											scenes[curSceneNr].actions[i].x = left;
+											scenes[curSceneNr].actions[i].y = top;	
+											scenes[curSceneNr].actions[i].actWidth = $(this)[0].clientWidth;	
+											scenes[curSceneNr].actions[i].actHeight = $(this)[0].clientHeight;	
+											console.log(scenes[curSceneNr].actions[i]);
+											break;
+										}
+									}
+									
+															
+         					}
+						});
+						//on dialog close, remove action
+						$('#scene-' + curSceneNr + '-action-' + scenes[curSceneNr].actionNr).on('dialogclose', function(e) {
+							for(var i = 0; i < scenes[curSceneNr].actions.length; i++) {
+								let selectedId = e.currentTarget.attributes[1].value;
+								let idNr = selectedId.substring((selectedId.indexOf("action-")+7), selectedId.length);
+
+								if(scenes[curSceneNr].actions[i].uid == idNr) {
+									scenes[curSceneNr].actions.splice(i, 1);
+								}
+							}
+							let actionId = $(e.target)[0].id;
+							let actionNr = actionId.substring(actionId.length-1, actionId.length);
+							$(e.target).parent().remove();
+							$('#scene-' + curSceneNr + '-action-' + actionNr).remove();
+
+							//var remIndex = scenes[curSceneNr].actions.indexOf(e.currentTarget.attributes[1].nodeValue);
+								
+
+	
+						});
+						//on click on text, show options
+						$('#scene-' + curSceneNr + '-action-' + scenes[curSceneNr].actionNr).on('click', function(e) {
+							var selectedId = e.currentTarget.attributes[1].value;
+							thisActionNr = selectedId.substring(selectedId.length-1, selectedId.length);
+							$('#' + selectedId + '-p').html(getChoosableActionContainer());
+							$('#sceneLinkButton-' + curButtonCreateSceneLinkNr).on('click', function() {
+								for(var objIndex = 0; objIndex < scenes[curSceneNr].actions.length; objIndex++) {
+									if(scenes[curSceneNr].actions[objIndex].uid == thisActionNr) break;
+								}
+								scenes[curSceneNr].actions[objIndex].actionType = 'scenelink';
+								$('#' + selectedId).html(getSceneLinkActionContainer());
+								scenes[curSceneNr].actions[objIndex].toScene = $('#linkToSceneSelector-' + curButtonCreateSceneLinkNr).val();
+								$('#linkToSceneSelector-' + curButtonCreateSceneLinkNr).on('change', function() {
+									for(var j = 0; j < scenes[curSceneNr].actions.length; j++) {
+										if(scenes[curSceneNr].actions[j].uid == thisActionNr) 
+											break;
+									}
+									scenes[curSceneNr].actions[j].toScene = this.value;
+
+								});
+								$('#linkConditionSelector-' + curButtonCreateSceneLinkNr).on('change', function() {
+									for(var j = 0; j < scenes[curSceneNr].actions.length; j++) {
+										if(scenes[curSceneNr].actions[j].uid == thisActionNr) 
+											break;
+									}
+									scenes[curSceneNr].actions[j].conditionItem = this.value;
+								});
+						
+							});
+							$('#plainLinkButton-' + curButtonCreateWebLinkNr).on('click', function() {
+								for(var objIndex = 0; objIndex < scenes[curSceneNr].actions.length; objIndex++) {
+									if(scenes[curSceneNr].actions[objIndex].uid == thisActionNr) break;
+								}
+								scenes[curSceneNr].actions[objIndex].actionType = 'weblink';
+								$('#' + selectedId).html(getWebLinkActionContainer());
+								$('#confirmWeblink-' + curButtonCreateWebLinkNr).on('click', function(e) {
+									for(var x = 0; x < scenes[curSceneNr].actions.length; x++) {
+										if(scenes[curSceneNr].actions[x].uid == thisActionNr) 
+											break;
+									}
+									scenes[curSceneNr].actions[x].weblink = $('#linktoURL-' + e.currentTarget.id.substring(e.currentTarget.id.indexOf("-")+1, e.currentTarget.id.length)).val();
+									$('#' + selectedId).html('Link: ' + scenes[curSceneNr].actions[x].weblink);
+								})	
+								curButtonCreateWebLinkNr++;
+							});
+							
+							$('#newDialogButton-' + curButtonNewDialogNr).on('click', function() {
+								for(var objIndex = 0; objIndex < scenes[curSceneNr].actions.length; objIndex++) {
+									if(scenes[curSceneNr].actions[objIndex].uid == thisActionNr) break;
+								}
+								scenes[curSceneNr].actions[objIndex].actionType = 'dialog';
+								toggleControlPane();
+								let curDialogId = $(this).parent().parent().parent().parent().parent()[0].id;
+								tempActionNr = curDialogId.substring(curDialogId.length-1, curDialogId.length);
+								$('#scene-' + curSceneNr + '-action-' + tempActionNr).html(getDialogCreatedContainer());
+								$('#scene-' + curSceneNr + '-action-' + tempActionNr + ' .change-dialog').on('click', function() {
+									console.log("HII");
+								});
+								let curPageDialogs = $('.ui-dialog');
+								for(let i = 0; i < curPageDialogs.length; i++) {
+									if(curPageDialogs[i].attributes[3].value.includes('scene-' + curSceneNr)) {
+										$('#' + curPageDialogs[i].attributes[3].value).parent().css('display', 'none');
+									}
+								}
+								let curRoundNr = 0;
+								$('#scene-' + curSceneNr).hide();
+								//console.log($('#' + selectedId).parent());
+								$('#' + selectedId).parent().hide();
+								createDialog(curRoundNr, null);
+								//changeDialog-' + (curButtonChangeDialogNr++) + '
+
+							});
+							curButtonCreateSceneLinkNr++;
+							curButtonNewDialogNr++;
+							curButtonCreateWebLinkNr++;
+
+
+						});
+			
+
+
+						//store action
+						scenes[curSceneNr].actions.push(Action({
+							uid: scenes[curSceneNr].actionNr
+						}));
+						scenes[curSceneNr].actionNr++;
+			}
+
+			function createDialog(roundNr, eventCreator) {
+				$('#mainContent').append(getDialogActionContainer(roundNr));
+				if(roundNr === 0) 
+					$('#dialogContainer-' + roundNr).find('.arrow-left').remove();
+				addDialogListeners(roundNr);
+				addDialogArrowListeners(roundNr, eventCreator);
+			}
+			function addDialogArrowListeners(roundNr, eventCreator) {
+				if(eventCreator !== null) {
+					let e = eventCreator;
+					let rightArrowId = e.currentTarget.attributes[0].value;
+					leftArrowId = rightArrowId.substring(0, 6) + roundNr + rightArrowId.substring(7, rightArrowId.length-5);
+					leftArrowId += 'left';
+					$('#' + leftArrowId).removeClass('blurry');
+					$('#' + leftArrowId).on('click', function(e) {
+						$(this).parent().parent().parent().hide();
+						$('#dialogContainer-' + rightArrowId.charAt(6)).show();
+					})
+
+				}
+				for(let i = 1; i <= 3; i++) {
+
+					$('#round-' + roundNr + '-conv-' + i + '-arrow-right').on('click', function(e) {
+						if(!$(e.target).hasClass('blurry')) {
+							$(this).parent().parent().parent().hide();
+							let curLink = getArrowLink($(this));
+							if(curLink != undefined) {
+								$('#dialogContainer-' + curLink).show();
+							} else {
+								roundNr++;
+								dialogLinks.push({
+									arrow: $(this),
+									linkTo: roundNr
+								}); 	
+								createDialog(roundNr, e);
+							}	
+						}	
+					})
+				}
+			}
+
+			function getArrowLink(ref) {
+				for(let i = 0; i < dialogLinks.length; i++) {
+					if(dialogLinks[i].arrow[0].id == ref[0].id) {
+						return dialogLinks[i].linkTo;
+					}
+				}
+				return undefined;
+			}
+
+			function toggleControlPane() {
+				let config = $('#controlPane').css('pointer-events') == 'none' ? {'pointer-events': '','opacity': '1.0'} : {'pointer-events': 'none','opacity': '0.5'}
+				$('#controlPane').css(config);
+			}
+
+			function addDialogListeners(roundNr) {
+				for(let i = 1; i <= 3; i++) {
+					$('#round-' + roundNr + '-conv-' + i + '-request').change(function() {
+						if($.trim($('#round-' + roundNr + '-conv-' + i + '-request').val())
+							&& $.trim($('#round-' + roundNr + '-conv-' + i + '-response').val())) {
+							$('#round-' + roundNr + '-conv-' + i + '-radio-endline').attr('disabled',false);
+							$('#round-' + roundNr + '-conv-' + i + '-radio-continuedialog').attr('disabled',false);
+							$('#round-' + roundNr + '-conv-' + i + '-radio-enddialog').attr('disabled',false);
+							$('#collectibleSelector-' + roundNr + '-conv-' + i).prop('disabled', false);
+							if($('#round-' + roundNr + '-conv-' + i + '-radio-continuedialog').is(':checked')) 
+								$('#round-' + roundNr + '-conv-' + i + '-arrow-right').removeClass('blurry');
+						}	else {
+							$('#round-' + roundNr + '-conv-' + i + '-arrow-right').addClass('blurry');
+							$('#round-' + roundNr + '-conv-' + i + '-radio-endline').attr('disabled',true);
+							$('#round-' + roundNr + '-conv-' + i + '-radio-continuedialog').attr('disabled',true);
+							$('#round-' + roundNr + '-conv-' + i + '-radio-enddialog').attr('disabled',true);
+							$('#collectibleSelector-' + roundNr + '-conv-' + i).prop('disabled', true);
+
+						}
+							
+					})
+					$('#round-' + roundNr + '-conv-' + i + '-response').change(function() {
+						if($.trim($('#round-' + roundNr + '-conv-' + i + '-request').val())
+							&& $.trim($('#round-' + roundNr + '-conv-' + i + '-response').val())) {
+							$('#round-' + roundNr + '-conv-' + i + '-radio-endline').attr('disabled',false);
+							$('#round-' + roundNr + '-conv-' + i + '-radio-continuedialog').attr('disabled',false);
+							$('#round-' + roundNr + '-conv-' + i + '-radio-enddialog').attr('disabled',false);
+							$('#collectibleSelector-' + roundNr + '-conv-' + i).prop('disabled', false);
+							if($('#round-' + roundNr + '-conv-' + i + '-radio-continuedialog').is(':checked')) 
+								$('#round-' + roundNr + '-conv-' + i + '-arrow-right').removeClass('blurry');
+						}	else {
+							$('#round-' + roundNr + '-conv-' + i + '-arrow-right').addClass('blurry');
+							$('#round-' + roundNr + '-conv-' + i + '-radio-endline').attr('disabled',true);
+							$('#round-' + roundNr + '-conv-' + i + '-radio-continuedialog').attr('disabled',true);
+							$('#round-' + roundNr + '-conv-' + i + '-radio-enddialog').attr('disabled',true);
+							$('#collectibleSelector-' + roundNr + '-conv-' + i).prop('disabled', true);
+
+						}
+					})
+					$('#round-' + roundNr + '-conv-' + i + '-radio-continuedialog').change(function() {
+						if($.trim($('#round-' + roundNr + '-conv-' + i + '-request').val())
+							&& $.trim($('#round-' + roundNr + '-conv-' + i + '-response').val())
+							&& $('#round-' + roundNr + '-conv-' + i + '-radio-continuedialog').is(':checked')) 
+							$('#round-' + roundNr + '-conv-' + i + '-arrow-right').removeClass('blurry');
+						else
+							$('#round-' + roundNr + '-conv-' + i + '-arrow-right').addClass('blurry');		
+					})
+					$('#round-' + roundNr + '-conv-' + i + '-radio-endline').change(function() {
+						$('#round-' + roundNr + '-conv-' + i + '-arrow-right').addClass('blurry');
+					});
+
+					$('#round-' + roundNr + '-conv-' + i + '-radio-enddialog').change(function() {
+						$('#round-' + roundNr + '-conv-' + i + '-arrow-right').addClass('blurry');
+					});
+
+				}
+				
+				$('#abortConversationButton-' + roundNr).on('click', function() {
+					$('#dialogContainer-' + roundNr).remove();
+					$('#scene-' + curSceneNr).show();
+						let curPageDialogs = $('.ui-dialog');
+						for(let i = 0; i < curPageDialogs.length; i++) {
+							if(curPageDialogs[i].attributes[3].value.includes('scene-' + curSceneNr)) {
+								$('#' + curPageDialogs[i].attributes[3].value).parent().css('display', '');
+							}
+						}
+												toggleControlPane();
+						$('#scene-' + curSceneNr + '-action-' + tempActionNr).remove();
+				});
+				$('#saveConversationButton-' + roundNr).on('click', function() {
+		
+					let convDialogs = $('.dialog');
+					let fpTextAreas = $(convDialogs[convDialogs.length-1]).find('textarea');
+					//check if last page has ending option selected 
+					let dataValid = false;
+					for(let x = 0; x < fpTextAreas.length; x=x+2) {
+						let actRadio = $(fpTextAreas[x]).parent().parent().find('.radio:checked');
+						let radioValue = actRadio.length != 0 ? actRadio[0].defaultValue : 'undefined';
+						if(radioValue == 'enddialog') dataValid = true;
+					}
+					if (dataValid) {
+						for(let j = 0; j < convDialogs.length; j++) {
+							let actRound = Round({uid:j});
+							let textareas = $(convDialogs[j]).find('textarea');
+							for(let k = 0; k < textareas.length; k=k+2) {
+								let actRadio = $(textareas[k]).parent().parent().find('.radio:checked');
+								let radioValue = actRadio.length != 0 ? actRadio[0].defaultValue : 'undefined';
+								let collectible = $(textareas[k]).parent().parent().find('.collectible-selector')[0].value;
+								let linkToRound = radioValue == 'continuedialog' ? dialogLinks[j].linkTo : '';
+								actRound.conversations.push(Conversation({
+									request: $(textareas[k]).val(),
+									response: $(textareas[k+1]).val(),
+									endAction: radioValue,
+									collectible: collectible,
+									linkToRound: linkToRound
+								}));
+							}
+							for(let l = 0; l < scenes[curSceneNr].actions.length; l++) {
+								if(scenes[curSceneNr].actions[l].uid == tempActionNr) {
+									scenes[curSceneNr].actions[l].rounds.push(actRound);
+									break;
+								}
+							}
+						}	
+						$('.dialog').remove();
+						$('#scene-' + curSceneNr).show();
+						let curPageDialogs = $('.ui-dialog');
+						for(let i = 0; i < curPageDialogs.length; i++) {
+							if(curPageDialogs[i].attributes[3].value.includes('scene-' + curSceneNr)) {
+								$('#' + curPageDialogs[i].attributes[3].value).parent().css('display', '');
+							}
+						}
+						
+						dialogLinks = [];
+						toggleControlPane();
+					} else {
+						showStatusText("\"End dialog\" rqeuired for at least one conversation line!");
+					}
+				}) 	
+			}
+
+
+			function getDialogActionContainer(roundNr) {
+				var comp = '<div id="dialogContainer-' + roundNr + '" class="container dialog">'+
+						'<div class="row"><div class="col-1"><button id="saveConversationButton-' + roundNr + '">Save</button></div><div class="col-1"><button id="abortConversationButton-' + roundNr + '">Abbrechen</button></div></div>'+
+						'<div class="row dialog-background">'+
+							'<div class="col-1">' +
+						
+							'</div>'+
+							'<div class="col-3 first-textarea-round-' + roundNr + '">'+
+								'<p>Player says:</p>'+
+							'</div>'+
+							'<div class="col-3">'+
+								'<p>Computer answers:</p>'+
+							'</div>'+
+						'</div> '+
+						'<div class="row dialog-background">'+
+							'<div class="col-1">' +
+								'<div id="round-' + roundNr + '-conv-1-arrow-left" class="arrow-left blurry"> </div>' +
+							'</div>'+
+							'<div class="col-3 first-textarea-round-' + roundNr + '">'+
+								'<textarea id="round-' + roundNr + '-conv-1-request" rows="4" cols="30"> </textarea>'+
+							'</div>'+
+							'<div class="col-3">'+
+								'<textarea id="round-' + roundNr + '-conv-1-response" rows="4" cols="30"> </textarea>'+
+							'</div>'+
+							'<div class="col-3">'+ getDialogOptions(roundNr, 1) + 
+							'</div>'+
+							'<div class="col-1">'+
+								'<div id="round-' + roundNr + '-conv-1-arrow-right" class="arrow-right blurry"> </div>'+
+							'</div>'+
+						'</div> '+
+						'<div class="row dialog-background">'+
+							'<div class="col-1">' +
+								'<div id="round-' + roundNr + '-conv-2-arrow-left" class="arrow-left blurry"> </div>' +
+							'</div>'+
+							'<div class="col-3 first-textarea-round-' + roundNr + '">'+
+								'<textarea id="round-' + roundNr + '-conv-2-request" rows="4" cols="30"> </textarea>'+
+							'</div>'+
+							'<div class="col-3">'+
+								'<textarea id="round-' + roundNr + '-conv-2-response" rows="4" cols="30"> </textarea>'+
+							'</div>'+
+							'<div class="col-3">'+ getDialogOptions(roundNr, 2) +
+							'</div>'+
+							'<div class="col-1">'+
+								'<div id="round-' + roundNr + '-conv-2-arrow-right" class="arrow-right blurry"> </div>'+
+							'</div>'+
+						'</div> '+
+						'<div class="row dialog-background">'+
+							'<div class="col-1">' +
+								'<div id="round-' + roundNr + '-conv-3-arrow-left" class="arrow-left blurry"> </div>' +
+							'</div>'+
+							'<div class="col-3 first-textarea-round-' + roundNr + '">'+
+								
+								'<textarea id="round-' + roundNr + '-conv-3-request" rows="4" cols="30"> </textarea>'+
+							'</div>'+
+							'<div class="col-3">'+
+								'<textarea id="round-' + roundNr + '-conv-3-response" rows="4" cols="30"> </textarea>'+
+							'</div>'+
+							'<div class="col-3">'+ getDialogOptions(roundNr, 3) +
+							'</div>'+
+							'<div class="col-1">'+
+								'<div id="round-' + roundNr + '-conv-3-arrow-right" class="arrow-right blurry"> </div>'+
+							'</div>'+
+						'</div> '+
+					'</div>';
+				return comp;
+			}
+
+			function getDialogOptions(roundNr, convNr) {
+				var comp = '<form action="">'+
+  				'<input id="round-' + roundNr + '-conv-' + convNr + '-radio-endline" class="radio" type="radio" name="dialog" value="endline" disabled="disabled">End of dialog<br>'+
+				  '<input id="round-' + roundNr + '-conv-' + convNr + '-radio-continuedialog" class="radio" type="radio" name="dialog" value="continuedialog" disabled="disabled">Continue dialog<br>'+
+				  '<input id="round-' + roundNr + '-conv-' + convNr + '-radio-enddialog" class="radio" type="radio" name="dialog" value="enddialog" disabled="disabled">End dialog<br>'+
+				  '<p>Gegenstand wird erhalten:</p><select id="collectibleSelector-' + roundNr + '-conv-' + convNr + '" class="collectible-selector" disabled="disabled">';
+				  comp += '<option value="none">None</option> '
+				  for(let i = 0; i < schatzImages.length; i++) {
+				  	comp += '<option value="' + schatzImages[i].name + '">' + schatzImages[i].name + '</option>';
+				  }
+				comp += '</select></form>';
+				return comp;
+			}
+
+			function getNewSceneContainer() {
+				var mainOffset = $('#scene-' + curSceneNr).offset();
+				var top = mainOffset.top + $('#scene-' + curSceneNr)[0].clientHeight/2;
+				var left = mainOffset.left;
+				var comp = '<div id="newSceneContainer">'
+				+	'<h5 class="new-scene-name-text">Name of new scene?</h5>'
+				+	'<input type="text" id="newSceneName"></br>'
+				+ 	'<button id="confirmSceneName">OK</button>'
+				 + '</div>';
+				 return comp;
+			}
+			
+			function getErrorMessageContainer() {
+				var mainOffset = $('#scene-' + curSceneNr).offset();
+				var top = mainOffset.top + $('#scene-' + curSceneNr)[0].clientHeight/2;
+				var left = mainOffset.left;
+				var comp = '<div id="errorMessageContainer">'
+				+	'<h5 class="new-error-message-text"> At least 1 object and 1 background image required in the treasure box to use the editor!</h5>'
+				 + '</div>';
+				 return comp;
+			}
+
+			function getDialogCreatedContainer() {
+				//return '<p>Conversation configured</p> <button class="change-dialog" id="changeDialog-' + (curButtonChangeDialogNr++) + '">Change dialog</button>';
+				return '<p>Conversation configured</p>';
+
+			}
+
+			function getSceneLinkActionContainer() {
+
+				var comp = '<p class="selection-box-text">Connect with Scene:</p><select class="link-to-scene-selector" id="linkToSceneSelector-' + curButtonCreateSceneLinkNr + '">';
+				for(var i = 0; i < scenes.length; i++) {
+						if(scenes[i].uid != curSceneNr)
+							comp += '<option id="opt' + scenes[i].sceneName + '" value="' + scenes[i].sceneName + '">' + scenes[i].sceneName 
+							+ '</option>';
+				}
+				comp += '</select>';
+				comp += '<p class="selection-box-text">Benötigter Gegenstand:</p><select class="scene-link-selector" id="linkConditionSelector-' + curButtonCreateSceneLinkNr + '">';
+				comp += '<option id="item-none" value="none">No item</option>';
+				for(let i = 0; i < schatzImages.length; i++) {
+					comp += '<option id="item-' + schatzImages[i].name + '" value="' + schatzImages[i].name + '">' + schatzImages[i].name
+							+ '</option>';
+				}
+				return comp;
+			}
+
+			function getWebLinkActionContainer() {
+				var comp = '<p>Link to page:</p><input type="text" id="linktoURL-' + curButtonCreateWebLinkNr + '"></br>';
+				comp += '<button id="confirmWeblink-' + curButtonCreateWebLinkNr + '">Bestätigen</button>';
+				return comp;
+			}
+
+			
+			function setBackgroundActive(setActive) {
+				var opac = setActive ? '1.0':'0.3';
+				var pointers = setActive ? '':'none';
+				$('#controlPane').css({
+					'opacity': opac,
+					'pointer-events': pointers
+				});
+				$('#mainContainer').css({
+					'opacity': opac,
+					'pointer-events': pointers
+				});
+
+			}
+			
+			function getChoosableActionContainer() {
+				return '<div class="container" id="choosableActions">'
+					+ '<div class="row">' 
+					+ '<div class="col-4"><button id="newDialogButton-' + curButtonNewDialogNr + '">Create dialog</button></div>'
+					+ '<div class="col-4"><button id="sceneLinkButton-' + curButtonCreateSceneLinkNr + '">Connect to scene</button></div>'
+					+ '<div class="col-4"><button id="plainLinkButton-' + curButtonCreateWebLinkNr + '">Link</button></div>'
+					+ '</div> </div>';
+			}
+			
+			 var statusTextInt = undefined;
+			 
+			function showStatusText(str) 	{
+				if(statusTextInt != undefined)
+					clearTimeout(statusTextInt);
+				$('#saveText').css('display', 'none');
+				$('#saveText').html(str);
+				$('#saveText').fadeIn();
+				statusTextInt = setTimeout(function() {
+					$('#saveText').fadeOut();
+				}, 5000);
+
+			}	
+		</script>
+	
+	</head>
+	
+	<body>
+		<span id="saveText" style="display:none;">Configuration saved!</span>
+		<div style="display:none;" class="loader"></div>
+		<div id="mainContainer">
+			<div id="mainContent">
+				<div id="scene-0" class="scene">
+					<img id="scene-0-img" src="sample_en.png" class="sceneImage">
+				</div>
+			</div>
+		</div>
+		<div class="container" id="controlPane" width="1000" height="135">
+			<div id="navControlPane" class="row">
+				<ul class="nav">
+				  <li id="buttonScenes" class="nav-item active">
+					<a class="nav-link" href="#">Scene options</a>
+				 </li>
+				  <li id="buttonGraphics" class="nav-item">
+					<a class="nav-link" href="#">Graphic options</a>
+				 </li>
+				</ul>
+			</div>
+			<div id="sceneLayer">
+				<div class="row">
+					<div class="col-6">
+						<button type="button" id="newActionButton" class="btn btn-primary grow">New action</button>
+						<button type="button" id="saveButton" class="btn">Save</button>
+					</div>
+					<div class="col-6">
+						<div class="col-12">
+							<div class="form-group">
+								<label for="sceneNameDisplay">Scene:</label>
+									<input type="text" class="form-control" id="sceneNameDisplay" readonly>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-3">
+								<button id="newSceneButton" type="button" class="btn btn-primary">New scene</button>
+							</div>
+							<div class="col-3">
+								<button id="deleteSceneButton" type="button" class="btn btn-primary">Delete scene</button>
+							</div>
+							<div class="col-6">
+								<select id="selectorScene" class="form-control">
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<div id="graphicsLayer" style="display:none;">
+				<div class="row">
+					<div class="col-4">
+					 	<button id="changeBackgroundButton" type="button" class="btn btn-primary">Change background</button>
+					</div>
+					<div class="col-4">
+						<div class="row">
+							<select id="selectorCategory" class="form-control">
+							</select>
+						</div>
+					</div>
+					<div class="col-1">
+						<div id="tokenSelectorLeft" class="arrow-left"> </div>
+					</div>
+					<div id="tokenDisplay" class="col-2">
+						<div id="imgContainer">
+							<img id="propImage" width="80px"height="80px"src="" alt="Loading...">
+						</div>
+					</div>
+					<div class="col-1">
+						<div id="tokenSelectorRight" class="arrow-right"> </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+				<script src="./js/popper.min.js"></script>
+
+		<script src="./js/bootstrap.min.js"></script>
+
+		<!--
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="./js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+			-->
+	</body>
+
+</html>

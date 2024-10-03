@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "https://working-sober.at/fileadmin/AdventureEditor/game_engine/static/css/main.e6c13ad2.css",
+    "main.js": "https://working-sober.at/fileadmin/AdventureEditor/game_engine/static/js/main.73016942.js",
+    "static/js/787.9d2d9213.chunk.js": "https://working-sober.at/fileadmin/AdventureEditor/game_engine/static/js/787.9d2d9213.chunk.js",
+    "index.html": "https://working-sober.at/fileadmin/AdventureEditor/game_engine/index.html",
+    "static/media/cancel.svg": "https://working-sober.at/fileadmin/AdventureEditor/game_engine/static/media/cancel.d16285af062cc6a7965c6ca3384c1e01.svg",
+    "main.e6c13ad2.css.map": "https://working-sober.at/fileadmin/AdventureEditor/game_engine/static/css/main.e6c13ad2.css.map",
+    "main.73016942.js.map": "https://working-sober.at/fileadmin/AdventureEditor/game_engine/static/js/main.73016942.js.map",
+    "787.9d2d9213.chunk.js.map": "https://working-sober.at/fileadmin/AdventureEditor/game_engine/static/js/787.9d2d9213.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.73016942.js"
+  ]
+}
