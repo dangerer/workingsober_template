@@ -81,6 +81,7 @@ page {
         X-UA-Compatible = IE=edge
         X-UA-Compatible.httpEquivalent = 1
         viewport = width=device-width, initial-scale=1
+        #viewport = width=device-width, initial-scale=.5, maximum-scale=12.0, minimum-scale=.25, user-scalable=yes
     }
 
     headerData {
