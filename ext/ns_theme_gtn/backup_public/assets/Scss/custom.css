@@ -51,7 +51,9 @@
 	margin-top: -50px;  
   }
 }
-
+.page-header{
+	background-color: yellow;
+}
 .page-header-game {
 	background-color: transparent;
 	padding: 0 !important;
